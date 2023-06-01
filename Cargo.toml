@@ -1,5 +1,6 @@
 [workspace]
-members = ["proto-build"]
+members  = ["osmosis-proto", "proto-build"]
+resolver = "2"
 
 [workspace.package]
 version       = "0.0.0"
@@ -13,9 +14,12 @@ documentation = "https://github.com/larry0x/osmosis-proto#readme"
 keywords      = ["osmosis", "protobuf"]
 
 [workspace.dependencies]
-prost       = "0.11"
-prost-build = "0.11"
-tonic       = "0.9"
-tonic-build = "0.9"
-regex       = "1"
-walkdir     = "2"
+cosmos-sdk-proto = { verson = "0.19", default-features = false }
+prost            = "0.11"
+prost-build      = "0.11"
+prost-types      = "0.11"
+regex            = "1"
+tendermint-proto = "0.32"
+tonic            = { version = "0.9", default-features = false }
+tonic-build      = "0.9"
+walkdir          = "2"
