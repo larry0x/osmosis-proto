@@ -25,3 +25,6 @@ prost            = { workspace = true }
 prost-types      = { workspace = true }
 tendermint-proto = { workspace = true }
 tonic            = { workspace = true, optional = true, features = ["codegen", "prost"] }
+
+[dev-dependencies]
+tokio = { workspace = true }

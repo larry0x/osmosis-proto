@@ -476,6 +476,7 @@ dependencies = [
  "prost",
  "prost-types",
  "tendermint-proto",
+ "tokio",
  "tonic",
 ]
 

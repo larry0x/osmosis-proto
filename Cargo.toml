@@ -14,12 +14,13 @@ documentation = "https://github.com/larry0x/osmosis-proto#readme"
 keywords      = ["osmosis", "protobuf"]
 
 [workspace.dependencies]
-cosmos-sdk-proto = { verson = "0.19", default-features = false }
+cosmos-sdk-proto = { version = "0.19", default-features = false }
 prost            = "0.11"
 prost-build      = "0.11"
 prost-types      = "0.11"
 regex            = "1"
 tendermint-proto = "0.32"
+tokio            = "1"
 tonic            = { version = "0.9", default-features = false }
 tonic-build      = "0.9"
 walkdir          = "2"
