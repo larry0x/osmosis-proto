@@ -1,14 +1,12 @@
-use std::time::{SystemTime, UNIX_EPOCH};
+use {
+    osmosis_proto::osmosis::twap::v1beta1::{self as twap, query_client::QueryClient},
+    std::time::{SystemTime, UNIX_EPOCH},
+};
 
-use osmosis_proto::osmosis::twap::v1beta1::{self as twap, query_client::QueryClient};
-
-const GRPC_ENDPOINT: &str = "https://osmosis-grpc.polkachu.com:12590";
-
-const OSMO_USDC_POOL_ID: u64 = 678;
-
-const OSMO_DENOM: &str = "uosmo";
-
-const USDC_DENOM: &str = "ibc/D189335C6E4A68B513C10AB227BF1C1D38C746766278BA3EEB4FB14124F1D858";
+const GRPC_ENDPOINT:     &str = "https://osmosis-grpc.polkachu.com:12590";
+const OSMO_DENOM:        &str = "uosmo";
+const USDC_DENOM:        &str = "ibc/D189335C6E4A68B513C10AB227BF1C1D38C746766278BA3EEB4FB14124F1D858";
+const OSMO_USDC_POOL_ID: u64  = 678;
 
 // number of seconds in half an hour
 const HALF_AN_HOUR_SECS: i64 = 30 * 60;

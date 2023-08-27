@@ -3,17 +3,19 @@
 //! proto files for further compilation. This is based on the proto-compiler code
 //! in github.com/informalsystems/ibc-rs
 
-use regex::Regex;
-use std::{
-    env,
-    ffi::{OsStr, OsString},
-    fs::{self, create_dir_all, remove_dir_all},
-    io,
-    path::{Path, PathBuf},
-    process,
-    sync::atomic::{self, AtomicBool},
+use {
+    regex::Regex,
+    std::{
+        env,
+        ffi::{OsStr, OsString},
+        fs::{self, create_dir_all, remove_dir_all},
+        io,
+        path::{Path, PathBuf},
+        process,
+        sync::atomic::{self, AtomicBool},
+    },
+    walkdir::WalkDir,
 };
-use walkdir::WalkDir;
 
 // Suppress log messages
 static QUIET: AtomicBool = AtomicBool::new(false);
