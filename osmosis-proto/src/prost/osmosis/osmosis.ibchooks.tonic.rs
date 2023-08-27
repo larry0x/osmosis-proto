@@ -2,16 +2,16 @@
 /// Generated client implementations.
 #[cfg(feature = "grpc")]
 #[cfg_attr(docsrs, doc(cfg(feature = "grpc")))]
-pub mod query_client {
+pub mod msg_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
     use tonic::codegen::{http::Uri, *};
     #[derive(Debug, Clone)]
-    pub struct QueryClient<T> {
+    pub struct MsgClient<T> {
         inner: tonic::client::Grpc<T>,
     }
     #[cfg(feature = "grpc-transport")]
     #[cfg_attr(docsrs, doc(cfg(feature = "grpc-transport")))]
-    impl QueryClient<tonic::transport::Channel> {
+    impl MsgClient<tonic::transport::Channel> {
         /// Attempt to create a new client by connecting to a given endpoint.
         pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
         where
@@ -22,7 +22,7 @@ pub mod query_client {
             Ok(Self::new(conn))
         }
     }
-    impl<T> QueryClient<T>
+    impl<T> MsgClient<T>
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
         T::Error: Into<StdError>,
@@ -41,10 +41,7 @@ pub mod query_client {
                 inner,
             }
         }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> QueryClient<InterceptedService<T, F>>
+        pub fn with_interceptor<F>(inner: T, interceptor: F) -> MsgClient<InterceptedService<T, F>>
         where
             F: tonic::service::Interceptor,
             T::ResponseBody: Default,
@@ -57,7 +54,7 @@ pub mod query_client {
             <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
                 Into<StdError> + Send + Sync,
         {
-            QueryClient::new(InterceptedService::new(inner, interceptor))
+            MsgClient::new(InterceptedService::new(inner, interceptor))
         }
         /// Compress requests with the given encoding.
         ///
@@ -90,13 +87,11 @@ pub mod query_client {
             self.inner = self.inner.max_encoding_message_size(limit);
             self
         }
-        /** Params defines a gRPC query method that returns the ibc-rate-limit module's
-         parameters.
-        */
-        pub async fn params(
+        pub async fn emit_ibc_ack(
             &mut self,
-            request: impl tonic::IntoRequest<super::ParamsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ParamsResponse>, tonic::Status> {
+            request: impl tonic::IntoRequest<super::MsgEmitIbcAck>,
+        ) -> std::result::Result<tonic::Response<super::MsgEmitIbcAckResponse>, tonic::Status>
+        {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -104,11 +99,9 @@ pub mod query_client {
                 )
             })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/osmosis.ibcratelimit.v1beta1.Query/Params");
+            let path = http::uri::PathAndQuery::from_static("/osmosis.ibchooks.Msg/EmitIBCAck");
             let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("osmosis.ibcratelimit.v1beta1.Query", "Params"));
+            req.extensions_mut().insert(GrpcMethod::new("osmosis.ibchooks.Msg", "EmitIBCAck"));
             self.inner.unary(req, path, codec).await
         }
     }
@@ -116,22 +109,19 @@ pub mod query_client {
 /// Generated server implementations.
 #[cfg(feature = "grpc")]
 #[cfg_attr(docsrs, doc(cfg(feature = "grpc")))]
-pub mod query_server {
+pub mod msg_server {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
     use tonic::codegen::*;
-    /// Generated trait containing gRPC methods that should be implemented for use with QueryServer.
+    /// Generated trait containing gRPC methods that should be implemented for use with MsgServer.
     #[async_trait]
-    pub trait Query: Send + Sync + 'static {
-        /** Params defines a gRPC query method that returns the ibc-rate-limit module's
-         parameters.
-        */
-        async fn params(
+    pub trait Msg: Send + Sync + 'static {
+        async fn emit_ibc_ack(
             &self,
-            request: tonic::Request<super::ParamsRequest>,
-        ) -> std::result::Result<tonic::Response<super::ParamsResponse>, tonic::Status>;
+            request: tonic::Request<super::MsgEmitIbcAck>,
+        ) -> std::result::Result<tonic::Response<super::MsgEmitIbcAckResponse>, tonic::Status>;
     }
     #[derive(Debug)]
-    pub struct QueryServer<T: Query> {
+    pub struct MsgServer<T: Msg> {
         inner: _Inner<T>,
         accept_compression_encodings: EnabledCompressionEncodings,
         send_compression_encodings: EnabledCompressionEncodings,
@@ -139,7 +129,7 @@ pub mod query_server {
         max_encoding_message_size: Option<usize>,
     }
     struct _Inner<T>(Arc<T>);
-    impl<T: Query> QueryServer<T> {
+    impl<T: Msg> MsgServer<T> {
         pub fn new(inner: T) -> Self {
             Self::from_arc(Arc::new(inner))
         }
@@ -188,9 +178,9 @@ pub mod query_server {
             self
         }
     }
-    impl<T, B> tonic::codegen::Service<http::Request<B>> for QueryServer<T>
+    impl<T, B> tonic::codegen::Service<http::Request<B>> for MsgServer<T>
     where
-        T: Query,
+        T: Msg,
         B: Body + Send + 'static,
         B::Error: Into<StdError> + Send + 'static,
     {
@@ -206,18 +196,18 @@ pub mod query_server {
         fn call(&mut self, req: http::Request<B>) -> Self::Future {
             let inner = self.inner.clone();
             match req.uri().path() {
-                "/osmosis.ibcratelimit.v1beta1.Query/Params" => {
+                "/osmosis.ibchooks.Msg/EmitIBCAck" => {
                     #[allow(non_camel_case_types)]
-                    struct ParamsSvc<T: Query>(pub Arc<T>);
-                    impl<T: Query> tonic::server::UnaryService<super::ParamsRequest> for ParamsSvc<T> {
-                        type Response = super::ParamsResponse;
+                    struct EmitIBCAckSvc<T: Msg>(pub Arc<T>);
+                    impl<T: Msg> tonic::server::UnaryService<super::MsgEmitIbcAck> for EmitIBCAckSvc<T> {
+                        type Response = super::MsgEmitIbcAckResponse;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
-                            request: tonic::Request<super::ParamsRequest>,
+                            request: tonic::Request<super::MsgEmitIbcAck>,
                         ) -> Self::Future {
                             let inner = Arc::clone(&self.0);
-                            let fut = async move { (*inner).params(request).await };
+                            let fut = async move { (*inner).emit_ibc_ack(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -228,7 +218,7 @@ pub mod query_server {
                     let inner = self.inner.clone();
                     let fut = async move {
                         let inner = inner.0;
-                        let method = ParamsSvc(inner);
+                        let method = EmitIBCAckSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec)
                             .apply_compression_config(
@@ -255,7 +245,7 @@ pub mod query_server {
             }
         }
     }
-    impl<T: Query> Clone for QueryServer<T> {
+    impl<T: Msg> Clone for MsgServer<T> {
         fn clone(&self) -> Self {
             let inner = self.inner.clone();
             Self {
@@ -267,7 +257,7 @@ pub mod query_server {
             }
         }
     }
-    impl<T: Query> Clone for _Inner<T> {
+    impl<T: Msg> Clone for _Inner<T> {
         fn clone(&self) -> Self {
             Self(Arc::clone(&self.0))
         }
@@ -277,7 +267,7 @@ pub mod query_server {
             write!(f, "{:?}", self.0)
         }
     }
-    impl<T: Query> tonic::server::NamedService for QueryServer<T> {
-        const NAME: &'static str = "osmosis.ibcratelimit.v1beta1.Query";
+    impl<T: Msg> tonic::server::NamedService for MsgServer<T> {
+        const NAME: &'static str = "osmosis.ibchooks.Msg";
     }
 }

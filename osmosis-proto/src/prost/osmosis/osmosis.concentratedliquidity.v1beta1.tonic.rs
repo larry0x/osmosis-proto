@@ -90,49 +90,10 @@ pub mod query_client {
             self.inner = self.inner.max_encoding_message_size(limit);
             self
         }
-        pub async fn module_balance(
+        pub async fn pools(
             &mut self,
-            request: impl tonic::IntoRequest<super::ModuleBalanceRequest>,
-        ) -> std::result::Result<tonic::Response<super::ModuleBalanceResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/osmosis.lockup.Query/ModuleBalance");
-            let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new("osmosis.lockup.Query", "ModuleBalance"));
-            self.inner.unary(req, path, codec).await
-        }
-        pub async fn module_locked_amount(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ModuleLockedAmountRequest>,
-        ) -> std::result::Result<tonic::Response<super::ModuleLockedAmountResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/osmosis.lockup.Query/ModuleLockedAmount");
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("osmosis.lockup.Query", "ModuleLockedAmount"));
-            self.inner.unary(req, path, codec).await
-        }
-        pub async fn account_unlockable_coins(
-            &mut self,
-            request: impl tonic::IntoRequest<super::AccountUnlockableCoinsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::AccountUnlockableCoinsResponse>,
-            tonic::Status,
-        > {
+            request: impl tonic::IntoRequest<super::PoolsRequest>,
+        ) -> std::result::Result<tonic::Response<super::PoolsResponse>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -141,344 +102,36 @@ pub mod query_client {
             })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
-                "/osmosis.lockup.Query/AccountUnlockableCoins",
+                "/osmosis.concentratedliquidity.v1beta1.Query/Pools",
             );
             let mut req = request.into_request();
             req.extensions_mut()
-                .insert(GrpcMethod::new("osmosis.lockup.Query", "AccountUnlockableCoins"));
-            self.inner.unary(req, path, codec).await
-        }
-        pub async fn account_unlocking_coins(
-            &mut self,
-            request: impl tonic::IntoRequest<super::AccountUnlockingCoinsRequest>,
-        ) -> std::result::Result<tonic::Response<super::AccountUnlockingCoinsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/osmosis.lockup.Query/AccountUnlockingCoins");
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("osmosis.lockup.Query", "AccountUnlockingCoins"));
-            self.inner.unary(req, path, codec).await
-        }
-        pub async fn account_locked_coins(
-            &mut self,
-            request: impl tonic::IntoRequest<super::AccountLockedCoinsRequest>,
-        ) -> std::result::Result<tonic::Response<super::AccountLockedCoinsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/osmosis.lockup.Query/AccountLockedCoins");
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("osmosis.lockup.Query", "AccountLockedCoins"));
-            self.inner.unary(req, path, codec).await
-        }
-        pub async fn account_locked_past_time(
-            &mut self,
-            request: impl tonic::IntoRequest<super::AccountLockedPastTimeRequest>,
-        ) -> std::result::Result<tonic::Response<super::AccountLockedPastTimeResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/osmosis.lockup.Query/AccountLockedPastTime");
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("osmosis.lockup.Query", "AccountLockedPastTime"));
-            self.inner.unary(req, path, codec).await
-        }
-        pub async fn account_locked_past_time_not_unlocking_only(
-            &mut self,
-            request: impl tonic::IntoRequest<super::AccountLockedPastTimeNotUnlockingOnlyRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::AccountLockedPastTimeNotUnlockingOnlyResponse>,
-            tonic::Status,
-        > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/osmosis.lockup.Query/AccountLockedPastTimeNotUnlockingOnly",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "osmosis.lockup.Query",
-                "AccountLockedPastTimeNotUnlockingOnly",
-            ));
-            self.inner.unary(req, path, codec).await
-        }
-        pub async fn account_unlocked_before_time(
-            &mut self,
-            request: impl tonic::IntoRequest<super::AccountUnlockedBeforeTimeRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::AccountUnlockedBeforeTimeResponse>,
-            tonic::Status,
-        > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/osmosis.lockup.Query/AccountUnlockedBeforeTime",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("osmosis.lockup.Query", "AccountUnlockedBeforeTime"));
-            self.inner.unary(req, path, codec).await
-        }
-        pub async fn account_locked_past_time_denom(
-            &mut self,
-            request: impl tonic::IntoRequest<super::AccountLockedPastTimeDenomRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::AccountLockedPastTimeDenomResponse>,
-            tonic::Status,
-        > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/osmosis.lockup.Query/AccountLockedPastTimeDenom",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("osmosis.lockup.Query", "AccountLockedPastTimeDenom"));
-            self.inner.unary(req, path, codec).await
-        }
-        pub async fn locked_denom(
-            &mut self,
-            request: impl tonic::IntoRequest<super::LockedDenomRequest>,
-        ) -> std::result::Result<tonic::Response<super::LockedDenomResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/osmosis.lockup.Query/LockedDenom");
-            let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new("osmosis.lockup.Query", "LockedDenom"));
-            self.inner.unary(req, path, codec).await
-        }
-        pub async fn locked_by_id(
-            &mut self,
-            request: impl tonic::IntoRequest<super::LockedRequest>,
-        ) -> std::result::Result<tonic::Response<super::LockedResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/osmosis.lockup.Query/LockedByID");
-            let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new("osmosis.lockup.Query", "LockedByID"));
-            self.inner.unary(req, path, codec).await
-        }
-        pub async fn lock_reward_receiver(
-            &mut self,
-            request: impl tonic::IntoRequest<super::LockRewardReceiverRequest>,
-        ) -> std::result::Result<tonic::Response<super::LockRewardReceiverResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/osmosis.lockup.Query/LockRewardReceiver");
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("osmosis.lockup.Query", "LockRewardReceiver"));
-            self.inner.unary(req, path, codec).await
-        }
-        pub async fn next_lock_id(
-            &mut self,
-            request: impl tonic::IntoRequest<super::NextLockIdRequest>,
-        ) -> std::result::Result<tonic::Response<super::NextLockIdResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/osmosis.lockup.Query/NextLockID");
-            let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new("osmosis.lockup.Query", "NextLockID"));
-            self.inner.unary(req, path, codec).await
-        }
-        pub async fn synthetic_lockups_by_lockup_id(
-            &mut self,
-            request: impl tonic::IntoRequest<super::SyntheticLockupsByLockupIdRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::SyntheticLockupsByLockupIdResponse>,
-            tonic::Status,
-        > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/osmosis.lockup.Query/SyntheticLockupsByLockupID",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("osmosis.lockup.Query", "SyntheticLockupsByLockupID"));
-            self.inner.unary(req, path, codec).await
-        }
-        pub async fn synthetic_lockup_by_lockup_id(
-            &mut self,
-            request: impl tonic::IntoRequest<super::SyntheticLockupByLockupIdRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::SyntheticLockupByLockupIdResponse>,
-            tonic::Status,
-        > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/osmosis.lockup.Query/SyntheticLockupByLockupID",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("osmosis.lockup.Query", "SyntheticLockupByLockupID"));
-            self.inner.unary(req, path, codec).await
-        }
-        pub async fn account_locked_longer_duration(
-            &mut self,
-            request: impl tonic::IntoRequest<super::AccountLockedLongerDurationRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::AccountLockedLongerDurationResponse>,
-            tonic::Status,
-        > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/osmosis.lockup.Query/AccountLockedLongerDuration",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("osmosis.lockup.Query", "AccountLockedLongerDuration"));
-            self.inner.unary(req, path, codec).await
-        }
-        pub async fn account_locked_duration(
-            &mut self,
-            request: impl tonic::IntoRequest<super::AccountLockedDurationRequest>,
-        ) -> std::result::Result<tonic::Response<super::AccountLockedDurationResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/osmosis.lockup.Query/AccountLockedDuration");
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("osmosis.lockup.Query", "AccountLockedDuration"));
-            self.inner.unary(req, path, codec).await
-        }
-        pub async fn account_locked_longer_duration_not_unlocking_only(
-            &mut self,
-            request: impl tonic::IntoRequest<super::AccountLockedLongerDurationNotUnlockingOnlyRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::AccountLockedLongerDurationNotUnlockingOnlyResponse>,
-            tonic::Status,
-        > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/osmosis.lockup.Query/AccountLockedLongerDurationNotUnlockingOnly",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "osmosis.lockup.Query",
-                "AccountLockedLongerDurationNotUnlockingOnly",
-            ));
-            self.inner.unary(req, path, codec).await
-        }
-        pub async fn account_locked_longer_duration_denom(
-            &mut self,
-            request: impl tonic::IntoRequest<super::AccountLockedLongerDurationDenomRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::AccountLockedLongerDurationDenomResponse>,
-            tonic::Status,
-        > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/osmosis.lockup.Query/AccountLockedLongerDurationDenom",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new(
-                "osmosis.lockup.Query",
-                "AccountLockedLongerDurationDenom",
-            ));
+                .insert(GrpcMethod::new("osmosis.concentratedliquidity.v1beta1.Query", "Pools"));
             self.inner.unary(req, path, codec).await
         }
         pub async fn params(
             &mut self,
-            request: impl tonic::IntoRequest<super::QueryParamsRequest>,
-        ) -> std::result::Result<tonic::Response<super::QueryParamsResponse>, tonic::Status>
+            request: impl tonic::IntoRequest<super::ParamsRequest>,
+        ) -> std::result::Result<tonic::Response<super::ParamsResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/osmosis.concentratedliquidity.v1beta1.Query/Params",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("osmosis.concentratedliquidity.v1beta1.Query", "Params"));
+            self.inner.unary(req, path, codec).await
+        }
+        pub async fn user_positions(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UserPositionsRequest>,
+        ) -> std::result::Result<tonic::Response<super::UserPositionsResponse>, tonic::Status>
         {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
@@ -487,9 +140,268 @@ pub mod query_client {
                 )
             })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/osmosis.lockup.Query/Params");
+            let path = http::uri::PathAndQuery::from_static(
+                "/osmosis.concentratedliquidity.v1beta1.Query/UserPositions",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new("osmosis.lockup.Query", "Params"));
+            req.extensions_mut().insert(GrpcMethod::new(
+                "osmosis.concentratedliquidity.v1beta1.Query",
+                "UserPositions",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        pub async fn liquidity_per_tick_range(
+            &mut self,
+            request: impl tonic::IntoRequest<super::LiquidityPerTickRangeRequest>,
+        ) -> std::result::Result<tonic::Response<super::LiquidityPerTickRangeResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/osmosis.concentratedliquidity.v1beta1.Query/LiquidityPerTickRange",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "osmosis.concentratedliquidity.v1beta1.Query",
+                "LiquidityPerTickRange",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        pub async fn liquidity_net_in_direction(
+            &mut self,
+            request: impl tonic::IntoRequest<super::LiquidityNetInDirectionRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::LiquidityNetInDirectionResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/osmosis.concentratedliquidity.v1beta1.Query/LiquidityNetInDirection",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "osmosis.concentratedliquidity.v1beta1.Query",
+                "LiquidityNetInDirection",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        pub async fn claimable_spread_rewards(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ClaimableSpreadRewardsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::ClaimableSpreadRewardsResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/osmosis.concentratedliquidity.v1beta1.Query/ClaimableSpreadRewards",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "osmosis.concentratedliquidity.v1beta1.Query",
+                "ClaimableSpreadRewards",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        pub async fn claimable_incentives(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ClaimableIncentivesRequest>,
+        ) -> std::result::Result<tonic::Response<super::ClaimableIncentivesResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/osmosis.concentratedliquidity.v1beta1.Query/ClaimableIncentives",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "osmosis.concentratedliquidity.v1beta1.Query",
+                "ClaimableIncentives",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        pub async fn position_by_id(
+            &mut self,
+            request: impl tonic::IntoRequest<super::PositionByIdRequest>,
+        ) -> std::result::Result<tonic::Response<super::PositionByIdResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/osmosis.concentratedliquidity.v1beta1.Query/PositionById",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "osmosis.concentratedliquidity.v1beta1.Query",
+                "PositionById",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        pub async fn pool_accumulator_rewards(
+            &mut self,
+            request: impl tonic::IntoRequest<super::PoolAccumulatorRewardsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::PoolAccumulatorRewardsResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/osmosis.concentratedliquidity.v1beta1.Query/PoolAccumulatorRewards",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "osmosis.concentratedliquidity.v1beta1.Query",
+                "PoolAccumulatorRewards",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        pub async fn incentive_records(
+            &mut self,
+            request: impl tonic::IntoRequest<super::IncentiveRecordsRequest>,
+        ) -> std::result::Result<tonic::Response<super::IncentiveRecordsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/osmosis.concentratedliquidity.v1beta1.Query/IncentiveRecords",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "osmosis.concentratedliquidity.v1beta1.Query",
+                "IncentiveRecords",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        pub async fn tick_accumulator_trackers(
+            &mut self,
+            request: impl tonic::IntoRequest<super::TickAccumulatorTrackersRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::TickAccumulatorTrackersResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/osmosis.concentratedliquidity.v1beta1.Query/TickAccumulatorTrackers",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "osmosis.concentratedliquidity.v1beta1.Query",
+                "TickAccumulatorTrackers",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        pub async fn cfmm_pool_id_link_from_concentrated_pool_id(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CfmmPoolIdLinkFromConcentratedPoolIdRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::CfmmPoolIdLinkFromConcentratedPoolIdResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/osmosis.concentratedliquidity.v1beta1.Query/CFMMPoolIdLinkFromConcentratedPoolId",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "osmosis.concentratedliquidity.v1beta1.Query",
+                "CFMMPoolIdLinkFromConcentratedPoolId",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        pub async fn user_unbonding_positions(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UserUnbondingPositionsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::UserUnbondingPositionsResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/osmosis.concentratedliquidity.v1beta1.Query/UserUnbondingPositions",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "osmosis.concentratedliquidity.v1beta1.Query",
+                "UserUnbondingPositions",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        pub async fn get_total_liquidity(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetTotalLiquidityRequest>,
+        ) -> std::result::Result<tonic::Response<super::GetTotalLiquidityResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/osmosis.concentratedliquidity.v1beta1.Query/GetTotalLiquidity",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "osmosis.concentratedliquidity.v1beta1.Query",
+                "GetTotalLiquidity",
+            ));
             self.inner.unary(req, path, codec).await
         }
     }
@@ -503,113 +415,80 @@ pub mod query_server {
     /// Generated trait containing gRPC methods that should be implemented for use with QueryServer.
     #[async_trait]
     pub trait Query: Send + Sync + 'static {
-        async fn module_balance(
+        async fn pools(
             &self,
-            request: tonic::Request<super::ModuleBalanceRequest>,
-        ) -> std::result::Result<tonic::Response<super::ModuleBalanceResponse>, tonic::Status>;
-        async fn module_locked_amount(
-            &self,
-            request: tonic::Request<super::ModuleLockedAmountRequest>,
-        ) -> std::result::Result<tonic::Response<super::ModuleLockedAmountResponse>, tonic::Status>;
-        async fn account_unlockable_coins(
-            &self,
-            request: tonic::Request<super::AccountUnlockableCoinsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::AccountUnlockableCoinsResponse>,
-            tonic::Status,
-        >;
-        async fn account_unlocking_coins(
-            &self,
-            request: tonic::Request<super::AccountUnlockingCoinsRequest>,
-        ) -> std::result::Result<tonic::Response<super::AccountUnlockingCoinsResponse>, tonic::Status>;
-        async fn account_locked_coins(
-            &self,
-            request: tonic::Request<super::AccountLockedCoinsRequest>,
-        ) -> std::result::Result<tonic::Response<super::AccountLockedCoinsResponse>, tonic::Status>;
-        async fn account_locked_past_time(
-            &self,
-            request: tonic::Request<super::AccountLockedPastTimeRequest>,
-        ) -> std::result::Result<tonic::Response<super::AccountLockedPastTimeResponse>, tonic::Status>;
-        async fn account_locked_past_time_not_unlocking_only(
-            &self,
-            request: tonic::Request<super::AccountLockedPastTimeNotUnlockingOnlyRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::AccountLockedPastTimeNotUnlockingOnlyResponse>,
-            tonic::Status,
-        >;
-        async fn account_unlocked_before_time(
-            &self,
-            request: tonic::Request<super::AccountUnlockedBeforeTimeRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::AccountUnlockedBeforeTimeResponse>,
-            tonic::Status,
-        >;
-        async fn account_locked_past_time_denom(
-            &self,
-            request: tonic::Request<super::AccountLockedPastTimeDenomRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::AccountLockedPastTimeDenomResponse>,
-            tonic::Status,
-        >;
-        async fn locked_denom(
-            &self,
-            request: tonic::Request<super::LockedDenomRequest>,
-        ) -> std::result::Result<tonic::Response<super::LockedDenomResponse>, tonic::Status>;
-        async fn locked_by_id(
-            &self,
-            request: tonic::Request<super::LockedRequest>,
-        ) -> std::result::Result<tonic::Response<super::LockedResponse>, tonic::Status>;
-        async fn lock_reward_receiver(
-            &self,
-            request: tonic::Request<super::LockRewardReceiverRequest>,
-        ) -> std::result::Result<tonic::Response<super::LockRewardReceiverResponse>, tonic::Status>;
-        async fn next_lock_id(
-            &self,
-            request: tonic::Request<super::NextLockIdRequest>,
-        ) -> std::result::Result<tonic::Response<super::NextLockIdResponse>, tonic::Status>;
-        async fn synthetic_lockups_by_lockup_id(
-            &self,
-            request: tonic::Request<super::SyntheticLockupsByLockupIdRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::SyntheticLockupsByLockupIdResponse>,
-            tonic::Status,
-        >;
-        async fn synthetic_lockup_by_lockup_id(
-            &self,
-            request: tonic::Request<super::SyntheticLockupByLockupIdRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::SyntheticLockupByLockupIdResponse>,
-            tonic::Status,
-        >;
-        async fn account_locked_longer_duration(
-            &self,
-            request: tonic::Request<super::AccountLockedLongerDurationRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::AccountLockedLongerDurationResponse>,
-            tonic::Status,
-        >;
-        async fn account_locked_duration(
-            &self,
-            request: tonic::Request<super::AccountLockedDurationRequest>,
-        ) -> std::result::Result<tonic::Response<super::AccountLockedDurationResponse>, tonic::Status>;
-        async fn account_locked_longer_duration_not_unlocking_only(
-            &self,
-            request: tonic::Request<super::AccountLockedLongerDurationNotUnlockingOnlyRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::AccountLockedLongerDurationNotUnlockingOnlyResponse>,
-            tonic::Status,
-        >;
-        async fn account_locked_longer_duration_denom(
-            &self,
-            request: tonic::Request<super::AccountLockedLongerDurationDenomRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::AccountLockedLongerDurationDenomResponse>,
-            tonic::Status,
-        >;
+            request: tonic::Request<super::PoolsRequest>,
+        ) -> std::result::Result<tonic::Response<super::PoolsResponse>, tonic::Status>;
         async fn params(
             &self,
-            request: tonic::Request<super::QueryParamsRequest>,
-        ) -> std::result::Result<tonic::Response<super::QueryParamsResponse>, tonic::Status>;
+            request: tonic::Request<super::ParamsRequest>,
+        ) -> std::result::Result<tonic::Response<super::ParamsResponse>, tonic::Status>;
+        async fn user_positions(
+            &self,
+            request: tonic::Request<super::UserPositionsRequest>,
+        ) -> std::result::Result<tonic::Response<super::UserPositionsResponse>, tonic::Status>;
+        async fn liquidity_per_tick_range(
+            &self,
+            request: tonic::Request<super::LiquidityPerTickRangeRequest>,
+        ) -> std::result::Result<tonic::Response<super::LiquidityPerTickRangeResponse>, tonic::Status>;
+        async fn liquidity_net_in_direction(
+            &self,
+            request: tonic::Request<super::LiquidityNetInDirectionRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::LiquidityNetInDirectionResponse>,
+            tonic::Status,
+        >;
+        async fn claimable_spread_rewards(
+            &self,
+            request: tonic::Request<super::ClaimableSpreadRewardsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::ClaimableSpreadRewardsResponse>,
+            tonic::Status,
+        >;
+        async fn claimable_incentives(
+            &self,
+            request: tonic::Request<super::ClaimableIncentivesRequest>,
+        ) -> std::result::Result<tonic::Response<super::ClaimableIncentivesResponse>, tonic::Status>;
+        async fn position_by_id(
+            &self,
+            request: tonic::Request<super::PositionByIdRequest>,
+        ) -> std::result::Result<tonic::Response<super::PositionByIdResponse>, tonic::Status>;
+        async fn pool_accumulator_rewards(
+            &self,
+            request: tonic::Request<super::PoolAccumulatorRewardsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::PoolAccumulatorRewardsResponse>,
+            tonic::Status,
+        >;
+        async fn incentive_records(
+            &self,
+            request: tonic::Request<super::IncentiveRecordsRequest>,
+        ) -> std::result::Result<tonic::Response<super::IncentiveRecordsResponse>, tonic::Status>;
+        async fn tick_accumulator_trackers(
+            &self,
+            request: tonic::Request<super::TickAccumulatorTrackersRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::TickAccumulatorTrackersResponse>,
+            tonic::Status,
+        >;
+        async fn cfmm_pool_id_link_from_concentrated_pool_id(
+            &self,
+            request: tonic::Request<super::CfmmPoolIdLinkFromConcentratedPoolIdRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::CfmmPoolIdLinkFromConcentratedPoolIdResponse>,
+            tonic::Status,
+        >;
+        async fn user_unbonding_positions(
+            &self,
+            request: tonic::Request<super::UserUnbondingPositionsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::UserUnbondingPositionsResponse>,
+            tonic::Status,
+        >;
+        async fn get_total_liquidity(
+            &self,
+            request: tonic::Request<super::GetTotalLiquidityRequest>,
+        ) -> std::result::Result<tonic::Response<super::GetTotalLiquidityResponse>, tonic::Status>;
     }
     #[derive(Debug)]
     pub struct QueryServer<T: Query> {
@@ -687,18 +566,22 @@ pub mod query_server {
         fn call(&mut self, req: http::Request<B>) -> Self::Future {
             let inner = self.inner.clone();
             match req.uri().path() {
-                "/osmosis.lockup.Query/ModuleBalance" => {
+                "/osmosis.concentratedliquidity.v1beta1.Query/Pools" => {
                     #[allow(non_camel_case_types)]
-                    struct ModuleBalanceSvc<T: Query>(pub Arc<T>);
-                    impl<T: Query> tonic::server::UnaryService<super::ModuleBalanceRequest> for ModuleBalanceSvc<T> {
-                        type Response = super::ModuleBalanceResponse;
-                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                    struct PoolsSvc<T: Query>(pub Arc<T>);
+                    impl<T: Query> tonic::server::UnaryService<super::PoolsRequest>
+                    for PoolsSvc<T> {
+                        type Response = super::PoolsResponse;
+                        type Future = BoxFuture<
+                            tonic::Response<Self::Response>,
+                            tonic::Status,
+                        >;
                         fn call(
                             &mut self,
-                            request: tonic::Request<super::ModuleBalanceRequest>,
+                            request: tonic::Request<super::PoolsRequest>,
                         ) -> Self::Future {
                             let inner = Arc::clone(&self.0);
-                            let fut = async move { (*inner).module_balance(request).await };
+                            let fut = async move { (*inner).pools(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -709,7 +592,7 @@ pub mod query_server {
                     let inner = self.inner.clone();
                     let fut = async move {
                         let inner = inner.0;
-                        let method = ModuleBalanceSvc(inner);
+                        let method = PoolsSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec)
                             .apply_compression_config(
@@ -724,765 +607,20 @@ pub mod query_server {
                         Ok(res)
                     };
                     Box::pin(fut)
-                },
-                "/osmosis.lockup.Query/ModuleLockedAmount" => {
-                    #[allow(non_camel_case_types)]
-                    struct ModuleLockedAmountSvc<T: Query>(pub Arc<T>);
-                    impl<T: Query> tonic::server::UnaryService<super::ModuleLockedAmountRequest>
-                        for ModuleLockedAmountSvc<T>
-                    {
-                        type Response = super::ModuleLockedAmountResponse;
-                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
-                        fn call(
-                            &mut self,
-                            request: tonic::Request<super::ModuleLockedAmountRequest>,
-                        ) -> Self::Future {
-                            let inner = Arc::clone(&self.0);
-                            let fut = async move { (*inner).module_locked_amount(request).await };
-                            Box::pin(fut)
-                        }
-                    }
-                    let accept_compression_encodings = self.accept_compression_encodings;
-                    let send_compression_encodings = self.send_compression_encodings;
-                    let max_decoding_message_size = self.max_decoding_message_size;
-                    let max_encoding_message_size = self.max_encoding_message_size;
-                    let inner = self.inner.clone();
-                    let fut = async move {
-                        let inner = inner.0;
-                        let method = ModuleLockedAmountSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec)
-                            .apply_compression_config(
-                                accept_compression_encodings,
-                                send_compression_encodings,
-                            )
-                            .apply_max_message_size_config(
-                                max_decoding_message_size,
-                                max_encoding_message_size,
-                            );
-                        let res = grpc.unary(method, req).await;
-                        Ok(res)
-                    };
-                    Box::pin(fut)
-                },
-                "/osmosis.lockup.Query/AccountUnlockableCoins" => {
-                    #[allow(non_camel_case_types)]
-                    struct AccountUnlockableCoinsSvc<T: Query>(pub Arc<T>);
-                    impl<T: Query> tonic::server::UnaryService<super::AccountUnlockableCoinsRequest>
-                        for AccountUnlockableCoinsSvc<T>
-                    {
-                        type Response = super::AccountUnlockableCoinsResponse;
-                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
-                        fn call(
-                            &mut self,
-                            request: tonic::Request<super::AccountUnlockableCoinsRequest>,
-                        ) -> Self::Future {
-                            let inner = Arc::clone(&self.0);
-                            let fut =
-                                async move { (*inner).account_unlockable_coins(request).await };
-                            Box::pin(fut)
-                        }
-                    }
-                    let accept_compression_encodings = self.accept_compression_encodings;
-                    let send_compression_encodings = self.send_compression_encodings;
-                    let max_decoding_message_size = self.max_decoding_message_size;
-                    let max_encoding_message_size = self.max_encoding_message_size;
-                    let inner = self.inner.clone();
-                    let fut = async move {
-                        let inner = inner.0;
-                        let method = AccountUnlockableCoinsSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec)
-                            .apply_compression_config(
-                                accept_compression_encodings,
-                                send_compression_encodings,
-                            )
-                            .apply_max_message_size_config(
-                                max_decoding_message_size,
-                                max_encoding_message_size,
-                            );
-                        let res = grpc.unary(method, req).await;
-                        Ok(res)
-                    };
-                    Box::pin(fut)
-                },
-                "/osmosis.lockup.Query/AccountUnlockingCoins" => {
-                    #[allow(non_camel_case_types)]
-                    struct AccountUnlockingCoinsSvc<T: Query>(pub Arc<T>);
-                    impl<T: Query> tonic::server::UnaryService<super::AccountUnlockingCoinsRequest>
-                        for AccountUnlockingCoinsSvc<T>
-                    {
-                        type Response = super::AccountUnlockingCoinsResponse;
-                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
-                        fn call(
-                            &mut self,
-                            request: tonic::Request<super::AccountUnlockingCoinsRequest>,
-                        ) -> Self::Future {
-                            let inner = Arc::clone(&self.0);
-                            let fut =
-                                async move { (*inner).account_unlocking_coins(request).await };
-                            Box::pin(fut)
-                        }
-                    }
-                    let accept_compression_encodings = self.accept_compression_encodings;
-                    let send_compression_encodings = self.send_compression_encodings;
-                    let max_decoding_message_size = self.max_decoding_message_size;
-                    let max_encoding_message_size = self.max_encoding_message_size;
-                    let inner = self.inner.clone();
-                    let fut = async move {
-                        let inner = inner.0;
-                        let method = AccountUnlockingCoinsSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec)
-                            .apply_compression_config(
-                                accept_compression_encodings,
-                                send_compression_encodings,
-                            )
-                            .apply_max_message_size_config(
-                                max_decoding_message_size,
-                                max_encoding_message_size,
-                            );
-                        let res = grpc.unary(method, req).await;
-                        Ok(res)
-                    };
-                    Box::pin(fut)
-                },
-                "/osmosis.lockup.Query/AccountLockedCoins" => {
-                    #[allow(non_camel_case_types)]
-                    struct AccountLockedCoinsSvc<T: Query>(pub Arc<T>);
-                    impl<T: Query> tonic::server::UnaryService<super::AccountLockedCoinsRequest>
-                        for AccountLockedCoinsSvc<T>
-                    {
-                        type Response = super::AccountLockedCoinsResponse;
-                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
-                        fn call(
-                            &mut self,
-                            request: tonic::Request<super::AccountLockedCoinsRequest>,
-                        ) -> Self::Future {
-                            let inner = Arc::clone(&self.0);
-                            let fut = async move { (*inner).account_locked_coins(request).await };
-                            Box::pin(fut)
-                        }
-                    }
-                    let accept_compression_encodings = self.accept_compression_encodings;
-                    let send_compression_encodings = self.send_compression_encodings;
-                    let max_decoding_message_size = self.max_decoding_message_size;
-                    let max_encoding_message_size = self.max_encoding_message_size;
-                    let inner = self.inner.clone();
-                    let fut = async move {
-                        let inner = inner.0;
-                        let method = AccountLockedCoinsSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec)
-                            .apply_compression_config(
-                                accept_compression_encodings,
-                                send_compression_encodings,
-                            )
-                            .apply_max_message_size_config(
-                                max_decoding_message_size,
-                                max_encoding_message_size,
-                            );
-                        let res = grpc.unary(method, req).await;
-                        Ok(res)
-                    };
-                    Box::pin(fut)
-                },
-                "/osmosis.lockup.Query/AccountLockedPastTime" => {
-                    #[allow(non_camel_case_types)]
-                    struct AccountLockedPastTimeSvc<T: Query>(pub Arc<T>);
-                    impl<T: Query> tonic::server::UnaryService<super::AccountLockedPastTimeRequest>
-                        for AccountLockedPastTimeSvc<T>
-                    {
-                        type Response = super::AccountLockedPastTimeResponse;
-                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
-                        fn call(
-                            &mut self,
-                            request: tonic::Request<super::AccountLockedPastTimeRequest>,
-                        ) -> Self::Future {
-                            let inner = Arc::clone(&self.0);
-                            let fut =
-                                async move { (*inner).account_locked_past_time(request).await };
-                            Box::pin(fut)
-                        }
-                    }
-                    let accept_compression_encodings = self.accept_compression_encodings;
-                    let send_compression_encodings = self.send_compression_encodings;
-                    let max_decoding_message_size = self.max_decoding_message_size;
-                    let max_encoding_message_size = self.max_encoding_message_size;
-                    let inner = self.inner.clone();
-                    let fut = async move {
-                        let inner = inner.0;
-                        let method = AccountLockedPastTimeSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec)
-                            .apply_compression_config(
-                                accept_compression_encodings,
-                                send_compression_encodings,
-                            )
-                            .apply_max_message_size_config(
-                                max_decoding_message_size,
-                                max_encoding_message_size,
-                            );
-                        let res = grpc.unary(method, req).await;
-                        Ok(res)
-                    };
-                    Box::pin(fut)
-                },
-                "/osmosis.lockup.Query/AccountLockedPastTimeNotUnlockingOnly" => {
-                    #[allow(non_camel_case_types)]
-                    struct AccountLockedPastTimeNotUnlockingOnlySvc<T: Query>(pub Arc<T>);
-                    impl<T: Query>
-                        tonic::server::UnaryService<
-                            super::AccountLockedPastTimeNotUnlockingOnlyRequest,
-                        > for AccountLockedPastTimeNotUnlockingOnlySvc<T>
-                    {
-                        type Response = super::AccountLockedPastTimeNotUnlockingOnlyResponse;
-                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
-                        fn call(
-                            &mut self,
-                            request: tonic::Request<
-                                super::AccountLockedPastTimeNotUnlockingOnlyRequest,
-                            >,
-                        ) -> Self::Future {
-                            let inner = Arc::clone(&self.0);
-                            let fut = async move {
-                                (*inner).account_locked_past_time_not_unlocking_only(request).await
-                            };
-                            Box::pin(fut)
-                        }
-                    }
-                    let accept_compression_encodings = self.accept_compression_encodings;
-                    let send_compression_encodings = self.send_compression_encodings;
-                    let max_decoding_message_size = self.max_decoding_message_size;
-                    let max_encoding_message_size = self.max_encoding_message_size;
-                    let inner = self.inner.clone();
-                    let fut = async move {
-                        let inner = inner.0;
-                        let method = AccountLockedPastTimeNotUnlockingOnlySvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec)
-                            .apply_compression_config(
-                                accept_compression_encodings,
-                                send_compression_encodings,
-                            )
-                            .apply_max_message_size_config(
-                                max_decoding_message_size,
-                                max_encoding_message_size,
-                            );
-                        let res = grpc.unary(method, req).await;
-                        Ok(res)
-                    };
-                    Box::pin(fut)
-                },
-                "/osmosis.lockup.Query/AccountUnlockedBeforeTime" => {
-                    #[allow(non_camel_case_types)]
-                    struct AccountUnlockedBeforeTimeSvc<T: Query>(pub Arc<T>);
-                    impl<T: Query>
-                        tonic::server::UnaryService<super::AccountUnlockedBeforeTimeRequest>
-                        for AccountUnlockedBeforeTimeSvc<T>
-                    {
-                        type Response = super::AccountUnlockedBeforeTimeResponse;
-                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
-                        fn call(
-                            &mut self,
-                            request: tonic::Request<super::AccountUnlockedBeforeTimeRequest>,
-                        ) -> Self::Future {
-                            let inner = Arc::clone(&self.0);
-                            let fut =
-                                async move { (*inner).account_unlocked_before_time(request).await };
-                            Box::pin(fut)
-                        }
-                    }
-                    let accept_compression_encodings = self.accept_compression_encodings;
-                    let send_compression_encodings = self.send_compression_encodings;
-                    let max_decoding_message_size = self.max_decoding_message_size;
-                    let max_encoding_message_size = self.max_encoding_message_size;
-                    let inner = self.inner.clone();
-                    let fut = async move {
-                        let inner = inner.0;
-                        let method = AccountUnlockedBeforeTimeSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec)
-                            .apply_compression_config(
-                                accept_compression_encodings,
-                                send_compression_encodings,
-                            )
-                            .apply_max_message_size_config(
-                                max_decoding_message_size,
-                                max_encoding_message_size,
-                            );
-                        let res = grpc.unary(method, req).await;
-                        Ok(res)
-                    };
-                    Box::pin(fut)
-                },
-                "/osmosis.lockup.Query/AccountLockedPastTimeDenom" => {
-                    #[allow(non_camel_case_types)]
-                    struct AccountLockedPastTimeDenomSvc<T: Query>(pub Arc<T>);
-                    impl<T: Query>
-                        tonic::server::UnaryService<super::AccountLockedPastTimeDenomRequest>
-                        for AccountLockedPastTimeDenomSvc<T>
-                    {
-                        type Response = super::AccountLockedPastTimeDenomResponse;
-                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
-                        fn call(
-                            &mut self,
-                            request: tonic::Request<super::AccountLockedPastTimeDenomRequest>,
-                        ) -> Self::Future {
-                            let inner = Arc::clone(&self.0);
-                            let fut = async move {
-                                (*inner).account_locked_past_time_denom(request).await
-                            };
-                            Box::pin(fut)
-                        }
-                    }
-                    let accept_compression_encodings = self.accept_compression_encodings;
-                    let send_compression_encodings = self.send_compression_encodings;
-                    let max_decoding_message_size = self.max_decoding_message_size;
-                    let max_encoding_message_size = self.max_encoding_message_size;
-                    let inner = self.inner.clone();
-                    let fut = async move {
-                        let inner = inner.0;
-                        let method = AccountLockedPastTimeDenomSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec)
-                            .apply_compression_config(
-                                accept_compression_encodings,
-                                send_compression_encodings,
-                            )
-                            .apply_max_message_size_config(
-                                max_decoding_message_size,
-                                max_encoding_message_size,
-                            );
-                        let res = grpc.unary(method, req).await;
-                        Ok(res)
-                    };
-                    Box::pin(fut)
-                },
-                "/osmosis.lockup.Query/LockedDenom" => {
-                    #[allow(non_camel_case_types)]
-                    struct LockedDenomSvc<T: Query>(pub Arc<T>);
-                    impl<T: Query> tonic::server::UnaryService<super::LockedDenomRequest> for LockedDenomSvc<T> {
-                        type Response = super::LockedDenomResponse;
-                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
-                        fn call(
-                            &mut self,
-                            request: tonic::Request<super::LockedDenomRequest>,
-                        ) -> Self::Future {
-                            let inner = Arc::clone(&self.0);
-                            let fut = async move { (*inner).locked_denom(request).await };
-                            Box::pin(fut)
-                        }
-                    }
-                    let accept_compression_encodings = self.accept_compression_encodings;
-                    let send_compression_encodings = self.send_compression_encodings;
-                    let max_decoding_message_size = self.max_decoding_message_size;
-                    let max_encoding_message_size = self.max_encoding_message_size;
-                    let inner = self.inner.clone();
-                    let fut = async move {
-                        let inner = inner.0;
-                        let method = LockedDenomSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec)
-                            .apply_compression_config(
-                                accept_compression_encodings,
-                                send_compression_encodings,
-                            )
-                            .apply_max_message_size_config(
-                                max_decoding_message_size,
-                                max_encoding_message_size,
-                            );
-                        let res = grpc.unary(method, req).await;
-                        Ok(res)
-                    };
-                    Box::pin(fut)
-                },
-                "/osmosis.lockup.Query/LockedByID" => {
-                    #[allow(non_camel_case_types)]
-                    struct LockedByIDSvc<T: Query>(pub Arc<T>);
-                    impl<T: Query> tonic::server::UnaryService<super::LockedRequest> for LockedByIDSvc<T> {
-                        type Response = super::LockedResponse;
-                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
-                        fn call(
-                            &mut self,
-                            request: tonic::Request<super::LockedRequest>,
-                        ) -> Self::Future {
-                            let inner = Arc::clone(&self.0);
-                            let fut = async move { (*inner).locked_by_id(request).await };
-                            Box::pin(fut)
-                        }
-                    }
-                    let accept_compression_encodings = self.accept_compression_encodings;
-                    let send_compression_encodings = self.send_compression_encodings;
-                    let max_decoding_message_size = self.max_decoding_message_size;
-                    let max_encoding_message_size = self.max_encoding_message_size;
-                    let inner = self.inner.clone();
-                    let fut = async move {
-                        let inner = inner.0;
-                        let method = LockedByIDSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec)
-                            .apply_compression_config(
-                                accept_compression_encodings,
-                                send_compression_encodings,
-                            )
-                            .apply_max_message_size_config(
-                                max_decoding_message_size,
-                                max_encoding_message_size,
-                            );
-                        let res = grpc.unary(method, req).await;
-                        Ok(res)
-                    };
-                    Box::pin(fut)
-                },
-                "/osmosis.lockup.Query/LockRewardReceiver" => {
-                    #[allow(non_camel_case_types)]
-                    struct LockRewardReceiverSvc<T: Query>(pub Arc<T>);
-                    impl<T: Query> tonic::server::UnaryService<super::LockRewardReceiverRequest>
-                        for LockRewardReceiverSvc<T>
-                    {
-                        type Response = super::LockRewardReceiverResponse;
-                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
-                        fn call(
-                            &mut self,
-                            request: tonic::Request<super::LockRewardReceiverRequest>,
-                        ) -> Self::Future {
-                            let inner = Arc::clone(&self.0);
-                            let fut = async move { (*inner).lock_reward_receiver(request).await };
-                            Box::pin(fut)
-                        }
-                    }
-                    let accept_compression_encodings = self.accept_compression_encodings;
-                    let send_compression_encodings = self.send_compression_encodings;
-                    let max_decoding_message_size = self.max_decoding_message_size;
-                    let max_encoding_message_size = self.max_encoding_message_size;
-                    let inner = self.inner.clone();
-                    let fut = async move {
-                        let inner = inner.0;
-                        let method = LockRewardReceiverSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec)
-                            .apply_compression_config(
-                                accept_compression_encodings,
-                                send_compression_encodings,
-                            )
-                            .apply_max_message_size_config(
-                                max_decoding_message_size,
-                                max_encoding_message_size,
-                            );
-                        let res = grpc.unary(method, req).await;
-                        Ok(res)
-                    };
-                    Box::pin(fut)
-                },
-                "/osmosis.lockup.Query/NextLockID" => {
-                    #[allow(non_camel_case_types)]
-                    struct NextLockIDSvc<T: Query>(pub Arc<T>);
-                    impl<T: Query> tonic::server::UnaryService<super::NextLockIdRequest> for NextLockIDSvc<T> {
-                        type Response = super::NextLockIdResponse;
-                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
-                        fn call(
-                            &mut self,
-                            request: tonic::Request<super::NextLockIdRequest>,
-                        ) -> Self::Future {
-                            let inner = Arc::clone(&self.0);
-                            let fut = async move { (*inner).next_lock_id(request).await };
-                            Box::pin(fut)
-                        }
-                    }
-                    let accept_compression_encodings = self.accept_compression_encodings;
-                    let send_compression_encodings = self.send_compression_encodings;
-                    let max_decoding_message_size = self.max_decoding_message_size;
-                    let max_encoding_message_size = self.max_encoding_message_size;
-                    let inner = self.inner.clone();
-                    let fut = async move {
-                        let inner = inner.0;
-                        let method = NextLockIDSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec)
-                            .apply_compression_config(
-                                accept_compression_encodings,
-                                send_compression_encodings,
-                            )
-                            .apply_max_message_size_config(
-                                max_decoding_message_size,
-                                max_encoding_message_size,
-                            );
-                        let res = grpc.unary(method, req).await;
-                        Ok(res)
-                    };
-                    Box::pin(fut)
-                },
-                "/osmosis.lockup.Query/SyntheticLockupsByLockupID" => {
-                    #[allow(non_camel_case_types)]
-                    struct SyntheticLockupsByLockupIDSvc<T: Query>(pub Arc<T>);
-                    impl<T: Query>
-                        tonic::server::UnaryService<super::SyntheticLockupsByLockupIdRequest>
-                        for SyntheticLockupsByLockupIDSvc<T>
-                    {
-                        type Response = super::SyntheticLockupsByLockupIdResponse;
-                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
-                        fn call(
-                            &mut self,
-                            request: tonic::Request<super::SyntheticLockupsByLockupIdRequest>,
-                        ) -> Self::Future {
-                            let inner = Arc::clone(&self.0);
-                            let fut = async move {
-                                (*inner).synthetic_lockups_by_lockup_id(request).await
-                            };
-                            Box::pin(fut)
-                        }
-                    }
-                    let accept_compression_encodings = self.accept_compression_encodings;
-                    let send_compression_encodings = self.send_compression_encodings;
-                    let max_decoding_message_size = self.max_decoding_message_size;
-                    let max_encoding_message_size = self.max_encoding_message_size;
-                    let inner = self.inner.clone();
-                    let fut = async move {
-                        let inner = inner.0;
-                        let method = SyntheticLockupsByLockupIDSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec)
-                            .apply_compression_config(
-                                accept_compression_encodings,
-                                send_compression_encodings,
-                            )
-                            .apply_max_message_size_config(
-                                max_decoding_message_size,
-                                max_encoding_message_size,
-                            );
-                        let res = grpc.unary(method, req).await;
-                        Ok(res)
-                    };
-                    Box::pin(fut)
-                },
-                "/osmosis.lockup.Query/SyntheticLockupByLockupID" => {
-                    #[allow(non_camel_case_types)]
-                    struct SyntheticLockupByLockupIDSvc<T: Query>(pub Arc<T>);
-                    impl<T: Query>
-                        tonic::server::UnaryService<super::SyntheticLockupByLockupIdRequest>
-                        for SyntheticLockupByLockupIDSvc<T>
-                    {
-                        type Response = super::SyntheticLockupByLockupIdResponse;
-                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
-                        fn call(
-                            &mut self,
-                            request: tonic::Request<super::SyntheticLockupByLockupIdRequest>,
-                        ) -> Self::Future {
-                            let inner = Arc::clone(&self.0);
-                            let fut = async move {
-                                (*inner).synthetic_lockup_by_lockup_id(request).await
-                            };
-                            Box::pin(fut)
-                        }
-                    }
-                    let accept_compression_encodings = self.accept_compression_encodings;
-                    let send_compression_encodings = self.send_compression_encodings;
-                    let max_decoding_message_size = self.max_decoding_message_size;
-                    let max_encoding_message_size = self.max_encoding_message_size;
-                    let inner = self.inner.clone();
-                    let fut = async move {
-                        let inner = inner.0;
-                        let method = SyntheticLockupByLockupIDSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec)
-                            .apply_compression_config(
-                                accept_compression_encodings,
-                                send_compression_encodings,
-                            )
-                            .apply_max_message_size_config(
-                                max_decoding_message_size,
-                                max_encoding_message_size,
-                            );
-                        let res = grpc.unary(method, req).await;
-                        Ok(res)
-                    };
-                    Box::pin(fut)
-                },
-                "/osmosis.lockup.Query/AccountLockedLongerDuration" => {
-                    #[allow(non_camel_case_types)]
-                    struct AccountLockedLongerDurationSvc<T: Query>(pub Arc<T>);
-                    impl<T: Query>
-                        tonic::server::UnaryService<super::AccountLockedLongerDurationRequest>
-                        for AccountLockedLongerDurationSvc<T>
-                    {
-                        type Response = super::AccountLockedLongerDurationResponse;
-                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
-                        fn call(
-                            &mut self,
-                            request: tonic::Request<super::AccountLockedLongerDurationRequest>,
-                        ) -> Self::Future {
-                            let inner = Arc::clone(&self.0);
-                            let fut = async move {
-                                (*inner).account_locked_longer_duration(request).await
-                            };
-                            Box::pin(fut)
-                        }
-                    }
-                    let accept_compression_encodings = self.accept_compression_encodings;
-                    let send_compression_encodings = self.send_compression_encodings;
-                    let max_decoding_message_size = self.max_decoding_message_size;
-                    let max_encoding_message_size = self.max_encoding_message_size;
-                    let inner = self.inner.clone();
-                    let fut = async move {
-                        let inner = inner.0;
-                        let method = AccountLockedLongerDurationSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec)
-                            .apply_compression_config(
-                                accept_compression_encodings,
-                                send_compression_encodings,
-                            )
-                            .apply_max_message_size_config(
-                                max_decoding_message_size,
-                                max_encoding_message_size,
-                            );
-                        let res = grpc.unary(method, req).await;
-                        Ok(res)
-                    };
-                    Box::pin(fut)
-                },
-                "/osmosis.lockup.Query/AccountLockedDuration" => {
-                    #[allow(non_camel_case_types)]
-                    struct AccountLockedDurationSvc<T: Query>(pub Arc<T>);
-                    impl<T: Query> tonic::server::UnaryService<super::AccountLockedDurationRequest>
-                        for AccountLockedDurationSvc<T>
-                    {
-                        type Response = super::AccountLockedDurationResponse;
-                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
-                        fn call(
-                            &mut self,
-                            request: tonic::Request<super::AccountLockedDurationRequest>,
-                        ) -> Self::Future {
-                            let inner = Arc::clone(&self.0);
-                            let fut =
-                                async move { (*inner).account_locked_duration(request).await };
-                            Box::pin(fut)
-                        }
-                    }
-                    let accept_compression_encodings = self.accept_compression_encodings;
-                    let send_compression_encodings = self.send_compression_encodings;
-                    let max_decoding_message_size = self.max_decoding_message_size;
-                    let max_encoding_message_size = self.max_encoding_message_size;
-                    let inner = self.inner.clone();
-                    let fut = async move {
-                        let inner = inner.0;
-                        let method = AccountLockedDurationSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec)
-                            .apply_compression_config(
-                                accept_compression_encodings,
-                                send_compression_encodings,
-                            )
-                            .apply_max_message_size_config(
-                                max_decoding_message_size,
-                                max_encoding_message_size,
-                            );
-                        let res = grpc.unary(method, req).await;
-                        Ok(res)
-                    };
-                    Box::pin(fut)
-                },
-                "/osmosis.lockup.Query/AccountLockedLongerDurationNotUnlockingOnly" => {
-                    #[allow(non_camel_case_types)]
-                    struct AccountLockedLongerDurationNotUnlockingOnlySvc<T: Query>(pub Arc<T>);
-                    impl<T: Query>
-                        tonic::server::UnaryService<
-                            super::AccountLockedLongerDurationNotUnlockingOnlyRequest,
-                        > for AccountLockedLongerDurationNotUnlockingOnlySvc<T>
-                    {
-                        type Response = super::AccountLockedLongerDurationNotUnlockingOnlyResponse;
-                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
-                        fn call(
-                            &mut self,
-                            request: tonic::Request<
-                                super::AccountLockedLongerDurationNotUnlockingOnlyRequest,
-                            >,
-                        ) -> Self::Future {
-                            let inner = Arc::clone(&self.0);
-                            let fut = async move {
-                                (*inner)
-                                    .account_locked_longer_duration_not_unlocking_only(request)
-                                    .await
-                            };
-                            Box::pin(fut)
-                        }
-                    }
-                    let accept_compression_encodings = self.accept_compression_encodings;
-                    let send_compression_encodings = self.send_compression_encodings;
-                    let max_decoding_message_size = self.max_decoding_message_size;
-                    let max_encoding_message_size = self.max_encoding_message_size;
-                    let inner = self.inner.clone();
-                    let fut = async move {
-                        let inner = inner.0;
-                        let method = AccountLockedLongerDurationNotUnlockingOnlySvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec)
-                            .apply_compression_config(
-                                accept_compression_encodings,
-                                send_compression_encodings,
-                            )
-                            .apply_max_message_size_config(
-                                max_decoding_message_size,
-                                max_encoding_message_size,
-                            );
-                        let res = grpc.unary(method, req).await;
-                        Ok(res)
-                    };
-                    Box::pin(fut)
-                },
-                "/osmosis.lockup.Query/AccountLockedLongerDurationDenom" => {
-                    #[allow(non_camel_case_types)]
-                    struct AccountLockedLongerDurationDenomSvc<T: Query>(pub Arc<T>);
-                    impl<T: Query>
-                        tonic::server::UnaryService<super::AccountLockedLongerDurationDenomRequest>
-                        for AccountLockedLongerDurationDenomSvc<T>
-                    {
-                        type Response = super::AccountLockedLongerDurationDenomResponse;
-                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
-                        fn call(
-                            &mut self,
-                            request: tonic::Request<super::AccountLockedLongerDurationDenomRequest>,
-                        ) -> Self::Future {
-                            let inner = Arc::clone(&self.0);
-                            let fut = async move {
-                                (*inner).account_locked_longer_duration_denom(request).await
-                            };
-                            Box::pin(fut)
-                        }
-                    }
-                    let accept_compression_encodings = self.accept_compression_encodings;
-                    let send_compression_encodings = self.send_compression_encodings;
-                    let max_decoding_message_size = self.max_decoding_message_size;
-                    let max_encoding_message_size = self.max_encoding_message_size;
-                    let inner = self.inner.clone();
-                    let fut = async move {
-                        let inner = inner.0;
-                        let method = AccountLockedLongerDurationDenomSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec)
-                            .apply_compression_config(
-                                accept_compression_encodings,
-                                send_compression_encodings,
-                            )
-                            .apply_max_message_size_config(
-                                max_decoding_message_size,
-                                max_encoding_message_size,
-                            );
-                        let res = grpc.unary(method, req).await;
-                        Ok(res)
-                    };
-                    Box::pin(fut)
-                },
-                "/osmosis.lockup.Query/Params" => {
+                }
+                "/osmosis.concentratedliquidity.v1beta1.Query/Params" => {
                     #[allow(non_camel_case_types)]
                     struct ParamsSvc<T: Query>(pub Arc<T>);
-                    impl<T: Query> tonic::server::UnaryService<super::QueryParamsRequest> for ParamsSvc<T> {
-                        type Response = super::QueryParamsResponse;
-                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                    impl<T: Query> tonic::server::UnaryService<super::ParamsRequest>
+                    for ParamsSvc<T> {
+                        type Response = super::ParamsResponse;
+                        type Future = BoxFuture<
+                            tonic::Response<Self::Response>,
+                            tonic::Status,
+                        >;
                         fn call(
                             &mut self,
-                            request: tonic::Request<super::QueryParamsRequest>,
+                            request: tonic::Request<super::ParamsRequest>,
                         ) -> Self::Future {
                             let inner = Arc::clone(&self.0);
                             let fut = async move { (*inner).params(request).await };
@@ -1511,15 +649,580 @@ pub mod query_server {
                         Ok(res)
                     };
                     Box::pin(fut)
-                },
-                _ => Box::pin(async move {
-                    Ok(http::Response::builder()
-                        .status(200)
-                        .header("grpc-status", "12")
-                        .header("content-type", "application/grpc")
-                        .body(empty_body())
-                        .unwrap())
-                }),
+                }
+                "/osmosis.concentratedliquidity.v1beta1.Query/UserPositions" => {
+                    #[allow(non_camel_case_types)]
+                    struct UserPositionsSvc<T: Query>(pub Arc<T>);
+                    impl<
+                        T: Query,
+                    > tonic::server::UnaryService<super::UserPositionsRequest>
+                    for UserPositionsSvc<T> {
+                        type Response = super::UserPositionsResponse;
+                        type Future = BoxFuture<
+                            tonic::Response<Self::Response>,
+                            tonic::Status,
+                        >;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::UserPositionsRequest>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move {
+                                (*inner).user_positions(request).await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = UserPositionsSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/osmosis.concentratedliquidity.v1beta1.Query/LiquidityPerTickRange" => {
+                    #[allow(non_camel_case_types)]
+                    struct LiquidityPerTickRangeSvc<T: Query>(pub Arc<T>);
+                    impl<
+                        T: Query,
+                    > tonic::server::UnaryService<super::LiquidityPerTickRangeRequest>
+                    for LiquidityPerTickRangeSvc<T> {
+                        type Response = super::LiquidityPerTickRangeResponse;
+                        type Future = BoxFuture<
+                            tonic::Response<Self::Response>,
+                            tonic::Status,
+                        >;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::LiquidityPerTickRangeRequest>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move {
+                                (*inner).liquidity_per_tick_range(request).await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = LiquidityPerTickRangeSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/osmosis.concentratedliquidity.v1beta1.Query/LiquidityNetInDirection" => {
+                    #[allow(non_camel_case_types)]
+                    struct LiquidityNetInDirectionSvc<T: Query>(pub Arc<T>);
+                    impl<
+                        T: Query,
+                    > tonic::server::UnaryService<super::LiquidityNetInDirectionRequest>
+                    for LiquidityNetInDirectionSvc<T> {
+                        type Response = super::LiquidityNetInDirectionResponse;
+                        type Future = BoxFuture<
+                            tonic::Response<Self::Response>,
+                            tonic::Status,
+                        >;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<
+                                super::LiquidityNetInDirectionRequest,
+                            >,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move {
+                                (*inner).liquidity_net_in_direction(request).await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = LiquidityNetInDirectionSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/osmosis.concentratedliquidity.v1beta1.Query/ClaimableSpreadRewards" => {
+                    #[allow(non_camel_case_types)]
+                    struct ClaimableSpreadRewardsSvc<T: Query>(pub Arc<T>);
+                    impl<
+                        T: Query,
+                    > tonic::server::UnaryService<super::ClaimableSpreadRewardsRequest>
+                    for ClaimableSpreadRewardsSvc<T> {
+                        type Response = super::ClaimableSpreadRewardsResponse;
+                        type Future = BoxFuture<
+                            tonic::Response<Self::Response>,
+                            tonic::Status,
+                        >;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::ClaimableSpreadRewardsRequest>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move {
+                                (*inner).claimable_spread_rewards(request).await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = ClaimableSpreadRewardsSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/osmosis.concentratedliquidity.v1beta1.Query/ClaimableIncentives" => {
+                    #[allow(non_camel_case_types)]
+                    struct ClaimableIncentivesSvc<T: Query>(pub Arc<T>);
+                    impl<
+                        T: Query,
+                    > tonic::server::UnaryService<super::ClaimableIncentivesRequest>
+                    for ClaimableIncentivesSvc<T> {
+                        type Response = super::ClaimableIncentivesResponse;
+                        type Future = BoxFuture<
+                            tonic::Response<Self::Response>,
+                            tonic::Status,
+                        >;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::ClaimableIncentivesRequest>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move {
+                                (*inner).claimable_incentives(request).await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = ClaimableIncentivesSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/osmosis.concentratedliquidity.v1beta1.Query/PositionById" => {
+                    #[allow(non_camel_case_types)]
+                    struct PositionByIdSvc<T: Query>(pub Arc<T>);
+                    impl<
+                        T: Query,
+                    > tonic::server::UnaryService<super::PositionByIdRequest>
+                    for PositionByIdSvc<T> {
+                        type Response = super::PositionByIdResponse;
+                        type Future = BoxFuture<
+                            tonic::Response<Self::Response>,
+                            tonic::Status,
+                        >;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::PositionByIdRequest>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move {
+                                (*inner).position_by_id(request).await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = PositionByIdSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/osmosis.concentratedliquidity.v1beta1.Query/PoolAccumulatorRewards" => {
+                    #[allow(non_camel_case_types)]
+                    struct PoolAccumulatorRewardsSvc<T: Query>(pub Arc<T>);
+                    impl<
+                        T: Query,
+                    > tonic::server::UnaryService<super::PoolAccumulatorRewardsRequest>
+                    for PoolAccumulatorRewardsSvc<T> {
+                        type Response = super::PoolAccumulatorRewardsResponse;
+                        type Future = BoxFuture<
+                            tonic::Response<Self::Response>,
+                            tonic::Status,
+                        >;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::PoolAccumulatorRewardsRequest>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move {
+                                (*inner).pool_accumulator_rewards(request).await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = PoolAccumulatorRewardsSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/osmosis.concentratedliquidity.v1beta1.Query/IncentiveRecords" => {
+                    #[allow(non_camel_case_types)]
+                    struct IncentiveRecordsSvc<T: Query>(pub Arc<T>);
+                    impl<
+                        T: Query,
+                    > tonic::server::UnaryService<super::IncentiveRecordsRequest>
+                    for IncentiveRecordsSvc<T> {
+                        type Response = super::IncentiveRecordsResponse;
+                        type Future = BoxFuture<
+                            tonic::Response<Self::Response>,
+                            tonic::Status,
+                        >;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::IncentiveRecordsRequest>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move {
+                                (*inner).incentive_records(request).await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = IncentiveRecordsSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/osmosis.concentratedliquidity.v1beta1.Query/TickAccumulatorTrackers" => {
+                    #[allow(non_camel_case_types)]
+                    struct TickAccumulatorTrackersSvc<T: Query>(pub Arc<T>);
+                    impl<
+                        T: Query,
+                    > tonic::server::UnaryService<super::TickAccumulatorTrackersRequest>
+                    for TickAccumulatorTrackersSvc<T> {
+                        type Response = super::TickAccumulatorTrackersResponse;
+                        type Future = BoxFuture<
+                            tonic::Response<Self::Response>,
+                            tonic::Status,
+                        >;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<
+                                super::TickAccumulatorTrackersRequest,
+                            >,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move {
+                                (*inner).tick_accumulator_trackers(request).await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = TickAccumulatorTrackersSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/osmosis.concentratedliquidity.v1beta1.Query/CFMMPoolIdLinkFromConcentratedPoolId" => {
+                    #[allow(non_camel_case_types)]
+                    struct CFMMPoolIdLinkFromConcentratedPoolIdSvc<T: Query>(pub Arc<T>);
+                    impl<
+                        T: Query,
+                    > tonic::server::UnaryService<
+                        super::CfmmPoolIdLinkFromConcentratedPoolIdRequest,
+                    > for CFMMPoolIdLinkFromConcentratedPoolIdSvc<T> {
+                        type Response = super::CfmmPoolIdLinkFromConcentratedPoolIdResponse;
+                        type Future = BoxFuture<
+                            tonic::Response<Self::Response>,
+                            tonic::Status,
+                        >;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<
+                                super::CfmmPoolIdLinkFromConcentratedPoolIdRequest,
+                            >,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move {
+                                (*inner)
+                                    .cfmm_pool_id_link_from_concentrated_pool_id(request)
+                                    .await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = CFMMPoolIdLinkFromConcentratedPoolIdSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/osmosis.concentratedliquidity.v1beta1.Query/UserUnbondingPositions" => {
+                    #[allow(non_camel_case_types)]
+                    struct UserUnbondingPositionsSvc<T: Query>(pub Arc<T>);
+                    impl<
+                        T: Query,
+                    > tonic::server::UnaryService<super::UserUnbondingPositionsRequest>
+                    for UserUnbondingPositionsSvc<T> {
+                        type Response = super::UserUnbondingPositionsResponse;
+                        type Future = BoxFuture<
+                            tonic::Response<Self::Response>,
+                            tonic::Status,
+                        >;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::UserUnbondingPositionsRequest>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move {
+                                (*inner).user_unbonding_positions(request).await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = UserUnbondingPositionsSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/osmosis.concentratedliquidity.v1beta1.Query/GetTotalLiquidity" => {
+                    #[allow(non_camel_case_types)]
+                    struct GetTotalLiquiditySvc<T: Query>(pub Arc<T>);
+                    impl<
+                        T: Query,
+                    > tonic::server::UnaryService<super::GetTotalLiquidityRequest>
+                    for GetTotalLiquiditySvc<T> {
+                        type Response = super::GetTotalLiquidityResponse;
+                        type Future = BoxFuture<
+                            tonic::Response<Self::Response>,
+                            tonic::Status,
+                        >;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::GetTotalLiquidityRequest>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move {
+                                (*inner).get_total_liquidity(request).await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = GetTotalLiquiditySvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                _ => {
+                    Box::pin(async move {
+                        Ok(
+                            http::Response::builder()
+                                .status(200)
+                                .header("grpc-status", "12")
+                                .header("content-type", "application/grpc")
+                                .body(empty_body())
+                                .unwrap(),
+                        )
+                    })
+                }
             }
         }
     }
@@ -1546,7 +1249,7 @@ pub mod query_server {
         }
     }
     impl<T: Query> tonic::server::NamedService for QueryServer<T> {
-        const NAME: &'static str = "osmosis.lockup.Query";
+        const NAME: &'static str = "osmosis.concentratedliquidity.v1beta1.Query";
     }
 }
 /// Generated client implementations.
@@ -1637,10 +1340,10 @@ pub mod msg_client {
             self.inner = self.inner.max_encoding_message_size(limit);
             self
         }
-        pub async fn lock_tokens(
+        pub async fn create_position(
             &mut self,
-            request: impl tonic::IntoRequest<super::MsgLockTokens>,
-        ) -> std::result::Result<tonic::Response<super::MsgLockTokensResponse>, tonic::Status>
+            request: impl tonic::IntoRequest<super::MsgCreatePosition>,
+        ) -> std::result::Result<tonic::Response<super::MsgCreatePositionResponse>, tonic::Status>
         {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
@@ -1649,15 +1352,20 @@ pub mod msg_client {
                 )
             })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/osmosis.lockup.Msg/LockTokens");
+            let path = http::uri::PathAndQuery::from_static(
+                "/osmosis.concentratedliquidity.v1beta1.Msg/CreatePosition",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new("osmosis.lockup.Msg", "LockTokens"));
+            req.extensions_mut().insert(GrpcMethod::new(
+                "osmosis.concentratedliquidity.v1beta1.Msg",
+                "CreatePosition",
+            ));
             self.inner.unary(req, path, codec).await
         }
-        pub async fn begin_unlocking_all(
+        pub async fn withdraw_position(
             &mut self,
-            request: impl tonic::IntoRequest<super::MsgBeginUnlockingAll>,
-        ) -> std::result::Result<tonic::Response<super::MsgBeginUnlockingAllResponse>, tonic::Status>
+            request: impl tonic::IntoRequest<super::MsgWithdrawPosition>,
+        ) -> std::result::Result<tonic::Response<super::MsgWithdrawPositionResponse>, tonic::Status>
         {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
@@ -1666,16 +1374,20 @@ pub mod msg_client {
                 )
             })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/osmosis.lockup.Msg/BeginUnlockingAll");
+            let path = http::uri::PathAndQuery::from_static(
+                "/osmosis.concentratedliquidity.v1beta1.Msg/WithdrawPosition",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new("osmosis.lockup.Msg", "BeginUnlockingAll"));
+            req.extensions_mut().insert(GrpcMethod::new(
+                "osmosis.concentratedliquidity.v1beta1.Msg",
+                "WithdrawPosition",
+            ));
             self.inner.unary(req, path, codec).await
         }
-        pub async fn begin_unlocking(
+        pub async fn add_to_position(
             &mut self,
-            request: impl tonic::IntoRequest<super::MsgBeginUnlocking>,
-        ) -> std::result::Result<tonic::Response<super::MsgBeginUnlockingResponse>, tonic::Status>
+            request: impl tonic::IntoRequest<super::MsgAddToPosition>,
+        ) -> std::result::Result<tonic::Response<super::MsgAddToPositionResponse>, tonic::Status>
         {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
@@ -1684,50 +1396,21 @@ pub mod msg_client {
                 )
             })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/osmosis.lockup.Msg/BeginUnlocking");
+            let path = http::uri::PathAndQuery::from_static(
+                "/osmosis.concentratedliquidity.v1beta1.Msg/AddToPosition",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new("osmosis.lockup.Msg", "BeginUnlocking"));
+            req.extensions_mut().insert(GrpcMethod::new(
+                "osmosis.concentratedliquidity.v1beta1.Msg",
+                "AddToPosition",
+            ));
             self.inner.unary(req, path, codec).await
         }
-        pub async fn extend_lockup(
+        pub async fn collect_spread_rewards(
             &mut self,
-            request: impl tonic::IntoRequest<super::MsgExtendLockup>,
-        ) -> std::result::Result<tonic::Response<super::MsgExtendLockupResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/osmosis.lockup.Msg/ExtendLockup");
-            let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new("osmosis.lockup.Msg", "ExtendLockup"));
-            self.inner.unary(req, path, codec).await
-        }
-        pub async fn force_unlock(
-            &mut self,
-            request: impl tonic::IntoRequest<super::MsgForceUnlock>,
-        ) -> std::result::Result<tonic::Response<super::MsgForceUnlockResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/osmosis.lockup.Msg/ForceUnlock");
-            let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new("osmosis.lockup.Msg", "ForceUnlock"));
-            self.inner.unary(req, path, codec).await
-        }
-        pub async fn set_reward_receiver_address(
-            &mut self,
-            request: impl tonic::IntoRequest<super::MsgSetRewardReceiverAddress>,
+            request: impl tonic::IntoRequest<super::MsgCollectSpreadRewards>,
         ) -> std::result::Result<
-            tonic::Response<super::MsgSetRewardReceiverAddressResponse>,
+            tonic::Response<super::MsgCollectSpreadRewardsResponse>,
             tonic::Status,
         > {
             self.inner.ready().await.map_err(|e| {
@@ -1738,11 +1421,35 @@ pub mod msg_client {
             })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
-                "/osmosis.lockup.Msg/SetRewardReceiverAddress",
+                "/osmosis.concentratedliquidity.v1beta1.Msg/CollectSpreadRewards",
             );
             let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("osmosis.lockup.Msg", "SetRewardReceiverAddress"));
+            req.extensions_mut().insert(GrpcMethod::new(
+                "osmosis.concentratedliquidity.v1beta1.Msg",
+                "CollectSpreadRewards",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        pub async fn collect_incentives(
+            &mut self,
+            request: impl tonic::IntoRequest<super::MsgCollectIncentives>,
+        ) -> std::result::Result<tonic::Response<super::MsgCollectIncentivesResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/osmosis.concentratedliquidity.v1beta1.Msg/CollectIncentives",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "osmosis.concentratedliquidity.v1beta1.Msg",
+                "CollectIncentives",
+            ));
             self.inner.unary(req, path, codec).await
         }
     }
@@ -1756,33 +1463,29 @@ pub mod msg_server {
     /// Generated trait containing gRPC methods that should be implemented for use with MsgServer.
     #[async_trait]
     pub trait Msg: Send + Sync + 'static {
-        async fn lock_tokens(
+        async fn create_position(
             &self,
-            request: tonic::Request<super::MsgLockTokens>,
-        ) -> std::result::Result<tonic::Response<super::MsgLockTokensResponse>, tonic::Status>;
-        async fn begin_unlocking_all(
+            request: tonic::Request<super::MsgCreatePosition>,
+        ) -> std::result::Result<tonic::Response<super::MsgCreatePositionResponse>, tonic::Status>;
+        async fn withdraw_position(
             &self,
-            request: tonic::Request<super::MsgBeginUnlockingAll>,
-        ) -> std::result::Result<tonic::Response<super::MsgBeginUnlockingAllResponse>, tonic::Status>;
-        async fn begin_unlocking(
+            request: tonic::Request<super::MsgWithdrawPosition>,
+        ) -> std::result::Result<tonic::Response<super::MsgWithdrawPositionResponse>, tonic::Status>;
+        async fn add_to_position(
             &self,
-            request: tonic::Request<super::MsgBeginUnlocking>,
-        ) -> std::result::Result<tonic::Response<super::MsgBeginUnlockingResponse>, tonic::Status>;
-        async fn extend_lockup(
+            request: tonic::Request<super::MsgAddToPosition>,
+        ) -> std::result::Result<tonic::Response<super::MsgAddToPositionResponse>, tonic::Status>;
+        async fn collect_spread_rewards(
             &self,
-            request: tonic::Request<super::MsgExtendLockup>,
-        ) -> std::result::Result<tonic::Response<super::MsgExtendLockupResponse>, tonic::Status>;
-        async fn force_unlock(
-            &self,
-            request: tonic::Request<super::MsgForceUnlock>,
-        ) -> std::result::Result<tonic::Response<super::MsgForceUnlockResponse>, tonic::Status>;
-        async fn set_reward_receiver_address(
-            &self,
-            request: tonic::Request<super::MsgSetRewardReceiverAddress>,
+            request: tonic::Request<super::MsgCollectSpreadRewards>,
         ) -> std::result::Result<
-            tonic::Response<super::MsgSetRewardReceiverAddressResponse>,
+            tonic::Response<super::MsgCollectSpreadRewardsResponse>,
             tonic::Status,
         >;
+        async fn collect_incentives(
+            &self,
+            request: tonic::Request<super::MsgCollectIncentives>,
+        ) -> std::result::Result<tonic::Response<super::MsgCollectIncentivesResponse>, tonic::Status>;
     }
     #[derive(Debug)]
     pub struct MsgServer<T: Msg> {
@@ -1860,18 +1563,18 @@ pub mod msg_server {
         fn call(&mut self, req: http::Request<B>) -> Self::Future {
             let inner = self.inner.clone();
             match req.uri().path() {
-                "/osmosis.lockup.Msg/LockTokens" => {
+                "/osmosis.concentratedliquidity.v1beta1.Msg/CreatePosition" => {
                     #[allow(non_camel_case_types)]
-                    struct LockTokensSvc<T: Msg>(pub Arc<T>);
-                    impl<T: Msg> tonic::server::UnaryService<super::MsgLockTokens> for LockTokensSvc<T> {
-                        type Response = super::MsgLockTokensResponse;
+                    struct CreatePositionSvc<T: Msg>(pub Arc<T>);
+                    impl<T: Msg> tonic::server::UnaryService<super::MsgCreatePosition> for CreatePositionSvc<T> {
+                        type Response = super::MsgCreatePositionResponse;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
-                            request: tonic::Request<super::MsgLockTokens>,
+                            request: tonic::Request<super::MsgCreatePosition>,
                         ) -> Self::Future {
                             let inner = Arc::clone(&self.0);
-                            let fut = async move { (*inner).lock_tokens(request).await };
+                            let fut = async move { (*inner).create_position(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -1882,7 +1585,7 @@ pub mod msg_server {
                     let inner = self.inner.clone();
                     let fut = async move {
                         let inner = inner.0;
-                        let method = LockTokensSvc(inner);
+                        let method = CreatePositionSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec)
                             .apply_compression_config(
@@ -1898,18 +1601,18 @@ pub mod msg_server {
                     };
                     Box::pin(fut)
                 },
-                "/osmosis.lockup.Msg/BeginUnlockingAll" => {
+                "/osmosis.concentratedliquidity.v1beta1.Msg/WithdrawPosition" => {
                     #[allow(non_camel_case_types)]
-                    struct BeginUnlockingAllSvc<T: Msg>(pub Arc<T>);
-                    impl<T: Msg> tonic::server::UnaryService<super::MsgBeginUnlockingAll> for BeginUnlockingAllSvc<T> {
-                        type Response = super::MsgBeginUnlockingAllResponse;
+                    struct WithdrawPositionSvc<T: Msg>(pub Arc<T>);
+                    impl<T: Msg> tonic::server::UnaryService<super::MsgWithdrawPosition> for WithdrawPositionSvc<T> {
+                        type Response = super::MsgWithdrawPositionResponse;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
-                            request: tonic::Request<super::MsgBeginUnlockingAll>,
+                            request: tonic::Request<super::MsgWithdrawPosition>,
                         ) -> Self::Future {
                             let inner = Arc::clone(&self.0);
-                            let fut = async move { (*inner).begin_unlocking_all(request).await };
+                            let fut = async move { (*inner).withdraw_position(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -1920,7 +1623,7 @@ pub mod msg_server {
                     let inner = self.inner.clone();
                     let fut = async move {
                         let inner = inner.0;
-                        let method = BeginUnlockingAllSvc(inner);
+                        let method = WithdrawPositionSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec)
                             .apply_compression_config(
@@ -1936,18 +1639,18 @@ pub mod msg_server {
                     };
                     Box::pin(fut)
                 },
-                "/osmosis.lockup.Msg/BeginUnlocking" => {
+                "/osmosis.concentratedliquidity.v1beta1.Msg/AddToPosition" => {
                     #[allow(non_camel_case_types)]
-                    struct BeginUnlockingSvc<T: Msg>(pub Arc<T>);
-                    impl<T: Msg> tonic::server::UnaryService<super::MsgBeginUnlocking> for BeginUnlockingSvc<T> {
-                        type Response = super::MsgBeginUnlockingResponse;
+                    struct AddToPositionSvc<T: Msg>(pub Arc<T>);
+                    impl<T: Msg> tonic::server::UnaryService<super::MsgAddToPosition> for AddToPositionSvc<T> {
+                        type Response = super::MsgAddToPositionResponse;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
-                            request: tonic::Request<super::MsgBeginUnlocking>,
+                            request: tonic::Request<super::MsgAddToPosition>,
                         ) -> Self::Future {
                             let inner = Arc::clone(&self.0);
-                            let fut = async move { (*inner).begin_unlocking(request).await };
+                            let fut = async move { (*inner).add_to_position(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -1958,7 +1661,7 @@ pub mod msg_server {
                     let inner = self.inner.clone();
                     let fut = async move {
                         let inner = inner.0;
-                        let method = BeginUnlockingSvc(inner);
+                        let method = AddToPositionSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec)
                             .apply_compression_config(
@@ -1974,97 +1677,20 @@ pub mod msg_server {
                     };
                     Box::pin(fut)
                 },
-                "/osmosis.lockup.Msg/ExtendLockup" => {
+                "/osmosis.concentratedliquidity.v1beta1.Msg/CollectSpreadRewards" => {
                     #[allow(non_camel_case_types)]
-                    struct ExtendLockupSvc<T: Msg>(pub Arc<T>);
-                    impl<T: Msg> tonic::server::UnaryService<super::MsgExtendLockup> for ExtendLockupSvc<T> {
-                        type Response = super::MsgExtendLockupResponse;
-                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
-                        fn call(
-                            &mut self,
-                            request: tonic::Request<super::MsgExtendLockup>,
-                        ) -> Self::Future {
-                            let inner = Arc::clone(&self.0);
-                            let fut = async move { (*inner).extend_lockup(request).await };
-                            Box::pin(fut)
-                        }
-                    }
-                    let accept_compression_encodings = self.accept_compression_encodings;
-                    let send_compression_encodings = self.send_compression_encodings;
-                    let max_decoding_message_size = self.max_decoding_message_size;
-                    let max_encoding_message_size = self.max_encoding_message_size;
-                    let inner = self.inner.clone();
-                    let fut = async move {
-                        let inner = inner.0;
-                        let method = ExtendLockupSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec)
-                            .apply_compression_config(
-                                accept_compression_encodings,
-                                send_compression_encodings,
-                            )
-                            .apply_max_message_size_config(
-                                max_decoding_message_size,
-                                max_encoding_message_size,
-                            );
-                        let res = grpc.unary(method, req).await;
-                        Ok(res)
-                    };
-                    Box::pin(fut)
-                },
-                "/osmosis.lockup.Msg/ForceUnlock" => {
-                    #[allow(non_camel_case_types)]
-                    struct ForceUnlockSvc<T: Msg>(pub Arc<T>);
-                    impl<T: Msg> tonic::server::UnaryService<super::MsgForceUnlock> for ForceUnlockSvc<T> {
-                        type Response = super::MsgForceUnlockResponse;
-                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
-                        fn call(
-                            &mut self,
-                            request: tonic::Request<super::MsgForceUnlock>,
-                        ) -> Self::Future {
-                            let inner = Arc::clone(&self.0);
-                            let fut = async move { (*inner).force_unlock(request).await };
-                            Box::pin(fut)
-                        }
-                    }
-                    let accept_compression_encodings = self.accept_compression_encodings;
-                    let send_compression_encodings = self.send_compression_encodings;
-                    let max_decoding_message_size = self.max_decoding_message_size;
-                    let max_encoding_message_size = self.max_encoding_message_size;
-                    let inner = self.inner.clone();
-                    let fut = async move {
-                        let inner = inner.0;
-                        let method = ForceUnlockSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec)
-                            .apply_compression_config(
-                                accept_compression_encodings,
-                                send_compression_encodings,
-                            )
-                            .apply_max_message_size_config(
-                                max_decoding_message_size,
-                                max_encoding_message_size,
-                            );
-                        let res = grpc.unary(method, req).await;
-                        Ok(res)
-                    };
-                    Box::pin(fut)
-                },
-                "/osmosis.lockup.Msg/SetRewardReceiverAddress" => {
-                    #[allow(non_camel_case_types)]
-                    struct SetRewardReceiverAddressSvc<T: Msg>(pub Arc<T>);
-                    impl<T: Msg> tonic::server::UnaryService<super::MsgSetRewardReceiverAddress>
-                        for SetRewardReceiverAddressSvc<T>
+                    struct CollectSpreadRewardsSvc<T: Msg>(pub Arc<T>);
+                    impl<T: Msg> tonic::server::UnaryService<super::MsgCollectSpreadRewards>
+                        for CollectSpreadRewardsSvc<T>
                     {
-                        type Response = super::MsgSetRewardReceiverAddressResponse;
+                        type Response = super::MsgCollectSpreadRewardsResponse;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
-                            request: tonic::Request<super::MsgSetRewardReceiverAddress>,
+                            request: tonic::Request<super::MsgCollectSpreadRewards>,
                         ) -> Self::Future {
                             let inner = Arc::clone(&self.0);
-                            let fut =
-                                async move { (*inner).set_reward_receiver_address(request).await };
+                            let fut = async move { (*inner).collect_spread_rewards(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -2075,7 +1701,45 @@ pub mod msg_server {
                     let inner = self.inner.clone();
                     let fut = async move {
                         let inner = inner.0;
-                        let method = SetRewardReceiverAddressSvc(inner);
+                        let method = CollectSpreadRewardsSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                },
+                "/osmosis.concentratedliquidity.v1beta1.Msg/CollectIncentives" => {
+                    #[allow(non_camel_case_types)]
+                    struct CollectIncentivesSvc<T: Msg>(pub Arc<T>);
+                    impl<T: Msg> tonic::server::UnaryService<super::MsgCollectIncentives> for CollectIncentivesSvc<T> {
+                        type Response = super::MsgCollectIncentivesResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::MsgCollectIncentives>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move { (*inner).collect_incentives(request).await };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = CollectIncentivesSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec)
                             .apply_compression_config(
@@ -2125,6 +1789,6 @@ pub mod msg_server {
         }
     }
     impl<T: Msg> tonic::server::NamedService for MsgServer<T> {
-        const NAME: &'static str = "osmosis.lockup.Msg";
+        const NAME: &'static str = "osmosis.concentratedliquidity.v1beta1.Msg";
     }
 }

@@ -1,5 +1,6 @@
 // @generated
 /// SuperfluidAsset stores the pair of superfluid asset type and denom pair
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SuperfluidAsset {
     #[prost(string, tag = "1")]
@@ -12,6 +13,7 @@ pub struct SuperfluidAsset {
 /// SuperfluidIntermediaryAccount takes the role of intermediary between LP token
 /// and OSMO tokens for superfluid staking. The intermediary account is the
 /// actual account responsible for delegation, not the validator account itself.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SuperfluidIntermediaryAccount {
     /// Denom indicates the denom of the superfluid asset.
@@ -30,6 +32,7 @@ pub struct SuperfluidIntermediaryAccount {
 /// epochs rewards) However for now, this is not the TWAP but instead the spot
 /// price at the boundary. For different types of assets in the future, it could
 /// change.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OsmoEquivalentMultiplierRecord {
     #[prost(int64, tag = "1")]
@@ -42,6 +45,7 @@ pub struct OsmoEquivalentMultiplierRecord {
 }
 /// SuperfluidDelegationRecord is a struct used to indicate superfluid
 /// delegations of an account in the state machine in a user friendly form.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SuperfluidDelegationRecord {
     #[prost(string, tag = "1")]
@@ -57,6 +61,7 @@ pub struct SuperfluidDelegationRecord {
 /// LockIdIntermediaryAccountConnection is a struct used to indicate the
 /// relationship between the underlying lock id and superfluid delegation done
 /// via lp shares.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LockIdIntermediaryAccountConnection {
     #[prost(uint64, tag = "1")]
@@ -64,19 +69,38 @@ pub struct LockIdIntermediaryAccountConnection {
     #[prost(string, tag = "2")]
     pub intermediary_account: ::prost::alloc::string::String,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UnpoolWhitelistedPools {
     #[prost(uint64, repeated, tag = "1")]
     pub ids: ::prost::alloc::vec::Vec<u64>,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ConcentratedPoolUserPositionRecord {
+    #[prost(string, tag = "1")]
+    pub validator_address: ::prost::alloc::string::String,
+    #[prost(uint64, tag = "2")]
+    pub position_id: u64,
+    #[prost(uint64, tag = "3")]
+    pub lock_id: u64,
+    #[prost(message, optional, tag = "4")]
+    pub synthetic_lock: ::core::option::Option<super::lockup::SyntheticLock>,
+    #[prost(message, optional, tag = "5")]
+    pub delegation_amount: ::core::option::Option<::cosmos_sdk_proto::cosmos::base::v1beta1::Coin>,
+    #[prost(message, optional, tag = "6")]
+    pub equivalent_staked_amount:
+        ::core::option::Option<::cosmos_sdk_proto::cosmos::base::v1beta1::Coin>,
+}
 /// SuperfluidAssetType indicates whether the superfluid asset is
-/// a native token itself or the lp share of a pool.
+/// a native token, lp share of a pool, or concentrated share of a pool
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum SuperfluidAssetType {
     Native = 0,
-    /// SuperfluidAssetTypeLendingShare = 2; // for now not exist
     LpShare = 1,
+    /// SuperfluidAssetTypeLendingShare = 3; // for now not exist
+    ConcentratedShare = 2,
 }
 impl SuperfluidAssetType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -87,10 +111,21 @@ impl SuperfluidAssetType {
         match self {
             SuperfluidAssetType::Native => "SuperfluidAssetTypeNative",
             SuperfluidAssetType::LpShare => "SuperfluidAssetTypeLPShare",
+            SuperfluidAssetType::ConcentratedShare => "SuperfluidAssetTypeConcentratedShare",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "SuperfluidAssetTypeNative" => Some(Self::Native),
+            "SuperfluidAssetTypeLPShare" => Some(Self::LpShare),
+            "SuperfluidAssetTypeConcentratedShare" => Some(Self::ConcentratedShare),
+            _ => None,
         }
     }
 }
 /// Params holds parameters for the superfluid module
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Params {
     /// minimum_risk_factor is to be cut on OSMO equivalent value of lp tokens for
@@ -101,6 +136,7 @@ pub struct Params {
     pub minimum_risk_factor: ::prost::alloc::string::String,
 }
 /// GenesisState defines the module's genesis state.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenesisState {
     #[prost(message, optional, tag = "1")]
@@ -121,41 +157,50 @@ pub struct GenesisState {
     pub intemediary_account_connections:
         ::prost::alloc::vec::Vec<LockIdIntermediaryAccountConnection>,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryParamsRequest {}
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryParamsResponse {
     /// params defines the parameters of the module.
     #[prost(message, optional, tag = "1")]
     pub params: ::core::option::Option<Params>,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AssetTypeRequest {
     #[prost(string, tag = "1")]
     pub denom: ::prost::alloc::string::String,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AssetTypeResponse {
     #[prost(enumeration = "SuperfluidAssetType", tag = "1")]
     pub asset_type: i32,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AllAssetsRequest {}
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AllAssetsResponse {
     #[prost(message, repeated, tag = "1")]
     pub assets: ::prost::alloc::vec::Vec<SuperfluidAsset>,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AssetMultiplierRequest {
     #[prost(string, tag = "1")]
     pub denom: ::prost::alloc::string::String,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AssetMultiplierResponse {
     #[prost(message, optional, tag = "1")]
     pub osmo_equivalent_multiplier: ::core::option::Option<OsmoEquivalentMultiplierRecord>,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SuperfluidIntermediaryAccountInfo {
     #[prost(string, tag = "1")]
@@ -167,12 +212,14 @@ pub struct SuperfluidIntermediaryAccountInfo {
     #[prost(string, tag = "4")]
     pub address: ::prost::alloc::string::String,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AllIntermediaryAccountsRequest {
     #[prost(message, optional, tag = "1")]
     pub pagination:
         ::core::option::Option<::cosmos_sdk_proto::cosmos::base::query::v1beta1::PageRequest>,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AllIntermediaryAccountsResponse {
     #[prost(message, repeated, tag = "1")]
@@ -181,26 +228,31 @@ pub struct AllIntermediaryAccountsResponse {
     pub pagination:
         ::core::option::Option<::cosmos_sdk_proto::cosmos::base::query::v1beta1::PageResponse>,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ConnectedIntermediaryAccountRequest {
     #[prost(uint64, tag = "1")]
     pub lock_id: u64,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ConnectedIntermediaryAccountResponse {
     #[prost(message, optional, tag = "1")]
     pub account: ::core::option::Option<SuperfluidIntermediaryAccountInfo>,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryTotalDelegationByValidatorForDenomRequest {
     #[prost(string, tag = "1")]
     pub denom: ::prost::alloc::string::String,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryTotalDelegationByValidatorForDenomResponse {
     #[prost(message, repeated, tag = "1")]
     pub assets: ::prost::alloc::vec::Vec<Delegations>,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Delegations {
     #[prost(string, tag = "1")]
@@ -210,13 +262,16 @@ pub struct Delegations {
     #[prost(string, tag = "3")]
     pub osmo_equivalent: ::prost::alloc::string::String,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TotalSuperfluidDelegationsRequest {}
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TotalSuperfluidDelegationsResponse {
     #[prost(string, tag = "1")]
     pub total_delegations: ::prost::alloc::string::String,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SuperfluidDelegationAmountRequest {
     #[prost(string, tag = "1")]
@@ -226,16 +281,19 @@ pub struct SuperfluidDelegationAmountRequest {
     #[prost(string, tag = "3")]
     pub denom: ::prost::alloc::string::String,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SuperfluidDelegationAmountResponse {
     #[prost(message, repeated, tag = "1")]
     pub amount: ::prost::alloc::vec::Vec<::cosmos_sdk_proto::cosmos::base::v1beta1::Coin>,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SuperfluidDelegationsByDelegatorRequest {
     #[prost(string, tag = "1")]
     pub delegator_address: ::prost::alloc::string::String,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SuperfluidDelegationsByDelegatorResponse {
     #[prost(message, repeated, tag = "1")]
@@ -247,6 +305,7 @@ pub struct SuperfluidDelegationsByDelegatorResponse {
     pub total_equivalent_staked_amount:
         ::core::option::Option<::cosmos_sdk_proto::cosmos::base::v1beta1::Coin>,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SuperfluidUndelegationsByDelegatorRequest {
     #[prost(string, tag = "1")]
@@ -254,6 +313,7 @@ pub struct SuperfluidUndelegationsByDelegatorRequest {
     #[prost(string, tag = "2")]
     pub denom: ::prost::alloc::string::String,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SuperfluidUndelegationsByDelegatorResponse {
     #[prost(message, repeated, tag = "1")]
@@ -264,6 +324,7 @@ pub struct SuperfluidUndelegationsByDelegatorResponse {
     #[prost(message, repeated, tag = "3")]
     pub synthetic_locks: ::prost::alloc::vec::Vec<super::lockup::SyntheticLock>,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SuperfluidDelegationsByValidatorDenomRequest {
     #[prost(string, tag = "1")]
@@ -271,11 +332,13 @@ pub struct SuperfluidDelegationsByValidatorDenomRequest {
     #[prost(string, tag = "2")]
     pub denom: ::prost::alloc::string::String,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SuperfluidDelegationsByValidatorDenomResponse {
     #[prost(message, repeated, tag = "1")]
     pub superfluid_delegation_records: ::prost::alloc::vec::Vec<SuperfluidDelegationRecord>,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EstimateSuperfluidDelegatedAmountByValidatorDenomRequest {
     #[prost(string, tag = "1")]
@@ -283,17 +346,20 @@ pub struct EstimateSuperfluidDelegatedAmountByValidatorDenomRequest {
     #[prost(string, tag = "2")]
     pub denom: ::prost::alloc::string::String,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EstimateSuperfluidDelegatedAmountByValidatorDenomResponse {
     #[prost(message, repeated, tag = "1")]
     pub total_delegated_coins:
         ::prost::alloc::vec::Vec<::cosmos_sdk_proto::cosmos::base::v1beta1::Coin>,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryTotalDelegationByDelegatorRequest {
     #[prost(string, tag = "1")]
     pub delegator_address: ::prost::alloc::string::String,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryTotalDelegationByDelegatorResponse {
     #[prost(message, repeated, tag = "1")]
@@ -308,13 +374,40 @@ pub struct QueryTotalDelegationByDelegatorResponse {
     pub total_equivalent_staked_amount:
         ::core::option::Option<::cosmos_sdk_proto::cosmos::base::v1beta1::Coin>,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryUnpoolWhitelistRequest {}
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryUnpoolWhitelistResponse {
     #[prost(uint64, repeated, tag = "1")]
     pub pool_ids: ::prost::alloc::vec::Vec<u64>,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UserConcentratedSuperfluidPositionsDelegatedRequest {
+    #[prost(string, tag = "1")]
+    pub delegator_address: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UserConcentratedSuperfluidPositionsDelegatedResponse {
+    #[prost(message, repeated, tag = "1")]
+    pub cl_pool_user_position_records: ::prost::alloc::vec::Vec<ConcentratedPoolUserPositionRecord>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UserConcentratedSuperfluidPositionsUndelegatingRequest {
+    #[prost(string, tag = "1")]
+    pub delegator_address: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UserConcentratedSuperfluidPositionsUndelegatingResponse {
+    #[prost(message, repeated, tag = "1")]
+    pub cl_pool_user_position_records: ::prost::alloc::vec::Vec<ConcentratedPoolUserPositionRecord>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MsgSuperfluidDelegate {
     #[prost(string, tag = "1")]
@@ -324,8 +417,10 @@ pub struct MsgSuperfluidDelegate {
     #[prost(string, tag = "3")]
     pub val_addr: ::prost::alloc::string::String,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MsgSuperfluidDelegateResponse {}
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MsgSuperfluidUndelegate {
     #[prost(string, tag = "1")]
@@ -333,8 +428,10 @@ pub struct MsgSuperfluidUndelegate {
     #[prost(uint64, tag = "2")]
     pub lock_id: u64,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MsgSuperfluidUndelegateResponse {}
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MsgSuperfluidUnbondLock {
     #[prost(string, tag = "1")]
@@ -342,8 +439,10 @@ pub struct MsgSuperfluidUnbondLock {
     #[prost(uint64, tag = "2")]
     pub lock_id: u64,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MsgSuperfluidUnbondLockResponse {}
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MsgSuperfluidUndelegateAndUnbondLock {
     #[prost(string, tag = "1")]
@@ -354,8 +453,15 @@ pub struct MsgSuperfluidUndelegateAndUnbondLock {
     #[prost(message, optional, tag = "3")]
     pub coin: ::core::option::Option<::cosmos_sdk_proto::cosmos::base::v1beta1::Coin>,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MsgSuperfluidUndelegateAndUnbondLockResponse {}
+pub struct MsgSuperfluidUndelegateAndUnbondLockResponse {
+    /// lock id of the new lock created for the remaining amount.
+    /// returns the original lockid if the unlocked amount is equal to the
+    /// original lock's amount.
+    #[prost(uint64, tag = "1")]
+    pub lock_id: u64,
+}
 // message MsgSuperfluidRedelegate {
 //    string sender = 1 [ (gogoproto.moretags) = "yaml:\"sender\"" ];
 //    uint64 lock_id = 2;
@@ -366,6 +472,7 @@ pub struct MsgSuperfluidUndelegateAndUnbondLockResponse {}
 /// MsgLockAndSuperfluidDelegate locks coins with the unbonding period duration,
 /// and then does a superfluid lock from the newly created lockup, to the
 /// specified validator addr.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MsgLockAndSuperfluidDelegate {
     #[prost(string, tag = "1")]
@@ -375,10 +482,33 @@ pub struct MsgLockAndSuperfluidDelegate {
     #[prost(string, tag = "3")]
     pub val_addr: ::prost::alloc::string::String,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MsgLockAndSuperfluidDelegateResponse {
     #[prost(uint64, tag = "1")]
     pub id: u64,
+}
+/// MsgCreateFullRangePositionAndSuperfluidDelegate creates a full range position
+/// in a concentrated liquidity pool, then superfluid delegates.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgCreateFullRangePositionAndSuperfluidDelegate {
+    #[prost(string, tag = "1")]
+    pub sender: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "2")]
+    pub coins: ::prost::alloc::vec::Vec<::cosmos_sdk_proto::cosmos::base::v1beta1::Coin>,
+    #[prost(string, tag = "3")]
+    pub val_addr: ::prost::alloc::string::String,
+    #[prost(uint64, tag = "4")]
+    pub pool_id: u64,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgCreateFullRangePositionAndSuperfluidDelegateResponse {
+    #[prost(uint64, tag = "1")]
+    pub lock_id: u64,
+    #[prost(uint64, tag = "2")]
+    pub position_id: u64,
 }
 /// MsgUnPoolWhitelistedPool Unpools every lock the sender has, that is
 /// associated with pool pool_id. If pool_id is not approved for unpooling by
@@ -388,6 +518,7 @@ pub struct MsgLockAndSuperfluidDelegateResponse {
 /// lock for every constituent token, with the duration associated with the lock.
 /// If the lock was unbonding, the new lockup durations should be the time left
 /// until unbond completion.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MsgUnPoolWhitelistedPool {
     #[prost(string, tag = "1")]
@@ -395,10 +526,98 @@ pub struct MsgUnPoolWhitelistedPool {
     #[prost(uint64, tag = "2")]
     pub pool_id: u64,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MsgUnPoolWhitelistedPoolResponse {
     #[prost(uint64, repeated, tag = "1")]
     pub exited_lock_ids: ::prost::alloc::vec::Vec<u64>,
+}
+/// =====================
+/// MsgUnlockAndMigrateSharesToFullRangeConcentratedPosition
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgUnlockAndMigrateSharesToFullRangeConcentratedPosition {
+    #[prost(string, tag = "1")]
+    pub sender: ::prost::alloc::string::String,
+    #[prost(int64, tag = "2")]
+    pub lock_id: i64,
+    #[prost(message, optional, tag = "3")]
+    pub shares_to_migrate: ::core::option::Option<::cosmos_sdk_proto::cosmos::base::v1beta1::Coin>,
+    /// token_out_mins indicates minimum token to exit Balancer pool with.
+    #[prost(message, repeated, tag = "4")]
+    pub token_out_mins: ::prost::alloc::vec::Vec<::cosmos_sdk_proto::cosmos::base::v1beta1::Coin>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgUnlockAndMigrateSharesToFullRangeConcentratedPositionResponse {
+    #[prost(string, tag = "1")]
+    pub amount0: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub amount1: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub liquidity_created: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "4")]
+    pub join_time: ::core::option::Option<::prost_types::Timestamp>,
+}
+/// ===================== MsgAddToConcentratedLiquiditySuperfluidPosition
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgAddToConcentratedLiquiditySuperfluidPosition {
+    #[prost(uint64, tag = "1")]
+    pub position_id: u64,
+    #[prost(string, tag = "2")]
+    pub sender: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub token_desired0: ::core::option::Option<::cosmos_sdk_proto::cosmos::base::v1beta1::Coin>,
+    #[prost(message, optional, tag = "4")]
+    pub token_desired1: ::core::option::Option<::cosmos_sdk_proto::cosmos::base::v1beta1::Coin>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgAddToConcentratedLiquiditySuperfluidPositionResponse {
+    #[prost(uint64, tag = "1")]
+    pub position_id: u64,
+    #[prost(string, tag = "2")]
+    pub amount0: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub amount1: ::prost::alloc::string::String,
+    /// new_liquidity is the final liquidity after the add.
+    /// It includes the liquidity that existed before in the position
+    /// and the new liquidity that was added to the position.
+    #[prost(string, tag = "5")]
+    pub new_liquidity: ::prost::alloc::string::String,
+    #[prost(uint64, tag = "4")]
+    pub lock_id: u64,
+}
+/// ===================== MsgUnbondConvertAndStake
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgUnbondConvertAndStake {
+    /// lock ID to convert and stake.
+    /// lock id with 0 should be provided if converting liquid gamm shares to stake
+    #[prost(uint64, tag = "1")]
+    pub lock_id: u64,
+    #[prost(string, tag = "2")]
+    pub sender: ::prost::alloc::string::String,
+    /// validator address to delegate to.
+    /// If provided empty string, we use the validators returned from
+    /// valset-preference module.
+    #[prost(string, tag = "3")]
+    pub val_addr: ::prost::alloc::string::String,
+    /// min_amt_to_stake indicates the minimum amount to stake after conversion
+    #[prost(string, tag = "4")]
+    pub min_amt_to_stake: ::prost::alloc::string::String,
+    /// shares_to_convert indicates shares wanted to stake.
+    /// Note that this field is only used for liquid(unlocked) gamm shares.
+    /// For all other cases, this field would be disregarded.
+    #[prost(message, optional, tag = "5")]
+    pub shares_to_convert: ::core::option::Option<::cosmos_sdk_proto::cosmos::base::v1beta1::Coin>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgUnbondConvertAndStakeResponse {
+    #[prost(string, tag = "1")]
+    pub total_amt_staked: ::prost::alloc::string::String,
 }
 include!("osmosis.superfluid.tonic.rs");
 // @@protoc_insertion_point(module)

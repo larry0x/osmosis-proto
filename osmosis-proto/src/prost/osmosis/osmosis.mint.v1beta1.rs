@@ -1,5 +1,6 @@
 // @generated
 /// Minter represents the minting state.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Minter {
     /// epoch_provisions represent rewards for the current epoch.
@@ -9,6 +10,7 @@ pub struct Minter {
 /// WeightedAddress represents an address with a weight assigned to it.
 /// The weight is used to determine the proportion of the total minted
 /// tokens to be minted to the address.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct WeightedAddress {
     #[prost(string, tag = "1")]
@@ -19,6 +21,7 @@ pub struct WeightedAddress {
 /// DistributionProportions defines the distribution proportions of the minted
 /// denom. In other words, defines which stakeholders will receive the minted
 /// denoms and how much.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DistributionProportions {
     /// staking defines the proportion of the minted mint_denom that is to be
@@ -39,6 +42,7 @@ pub struct DistributionProportions {
     pub community_pool: ::prost::alloc::string::String,
 }
 /// Params holds parameters for the x/mint module.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Params {
     /// mint_denom is the denom of the coin to mint.
@@ -75,6 +79,7 @@ pub struct Params {
     pub minting_rewards_distribution_start_epoch: i64,
 }
 /// GenesisState defines the mint module's genesis state.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenesisState {
     /// minter is an abstraction for holding current rewards information.
@@ -89,9 +94,11 @@ pub struct GenesisState {
     pub reduction_started_epoch: i64,
 }
 /// QueryParamsRequest is the request type for the Query/Params RPC method.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryParamsRequest {}
 /// QueryParamsResponse is the response type for the Query/Params RPC method.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryParamsResponse {
     /// params defines the parameters of the module.
@@ -100,10 +107,12 @@ pub struct QueryParamsResponse {
 }
 /// QueryEpochProvisionsRequest is the request type for the
 /// Query/EpochProvisions RPC method.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryEpochProvisionsRequest {}
 /// QueryEpochProvisionsResponse is the response type for the
 /// Query/EpochProvisions RPC method.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryEpochProvisionsResponse {
     /// epoch_provisions is the current minting per epoch provisions value.

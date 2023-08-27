@@ -15,7 +15,7 @@ pub mod query_client {
         /// Attempt to create a new client by connecting to a given endpoint.
         pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
         where
-            D: std::convert::TryInto<tonic::transport::Endpoint>,
+            D: TryInto<tonic::transport::Endpoint>,
             D::Error: Into<StdError>,
         {
             let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
@@ -74,10 +74,27 @@ pub mod query_client {
             self.inner = self.inner.accept_compressed(encoding);
             self
         }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
         pub async fn params(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryParamsRequest>,
-        ) -> Result<tonic::Response<super::QueryParamsResponse>, tonic::Status> {
+        ) -> std::result::Result<tonic::Response<super::QueryParamsResponse>, tonic::Status>
+        {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -87,13 +104,18 @@ pub mod query_client {
             let codec = tonic::codec::ProstCodec::default();
             let path =
                 http::uri::PathAndQuery::from_static("/osmosis.protorev.v1beta1.Query/Params");
-            self.inner.unary(request.into_request(), path, codec).await
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("osmosis.protorev.v1beta1.Query", "Params"));
+            self.inner.unary(req, path, codec).await
         }
         pub async fn get_proto_rev_number_of_trades(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryGetProtoRevNumberOfTradesRequest>,
-        ) -> Result<tonic::Response<super::QueryGetProtoRevNumberOfTradesResponse>, tonic::Status>
-        {
+        ) -> std::result::Result<
+            tonic::Response<super::QueryGetProtoRevNumberOfTradesResponse>,
+            tonic::Status,
+        > {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -104,13 +126,20 @@ pub mod query_client {
             let path = http::uri::PathAndQuery::from_static(
                 "/osmosis.protorev.v1beta1.Query/GetProtoRevNumberOfTrades",
             );
-            self.inner.unary(request.into_request(), path, codec).await
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "osmosis.protorev.v1beta1.Query",
+                "GetProtoRevNumberOfTrades",
+            ));
+            self.inner.unary(req, path, codec).await
         }
         pub async fn get_proto_rev_profits_by_denom(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryGetProtoRevProfitsByDenomRequest>,
-        ) -> Result<tonic::Response<super::QueryGetProtoRevProfitsByDenomResponse>, tonic::Status>
-        {
+        ) -> std::result::Result<
+            tonic::Response<super::QueryGetProtoRevProfitsByDenomResponse>,
+            tonic::Status,
+        > {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -121,13 +150,20 @@ pub mod query_client {
             let path = http::uri::PathAndQuery::from_static(
                 "/osmosis.protorev.v1beta1.Query/GetProtoRevProfitsByDenom",
             );
-            self.inner.unary(request.into_request(), path, codec).await
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "osmosis.protorev.v1beta1.Query",
+                "GetProtoRevProfitsByDenom",
+            ));
+            self.inner.unary(req, path, codec).await
         }
         pub async fn get_proto_rev_all_profits(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryGetProtoRevAllProfitsRequest>,
-        ) -> Result<tonic::Response<super::QueryGetProtoRevAllProfitsResponse>, tonic::Status>
-        {
+        ) -> std::result::Result<
+            tonic::Response<super::QueryGetProtoRevAllProfitsResponse>,
+            tonic::Status,
+        > {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -138,13 +174,18 @@ pub mod query_client {
             let path = http::uri::PathAndQuery::from_static(
                 "/osmosis.protorev.v1beta1.Query/GetProtoRevAllProfits",
             );
-            self.inner.unary(request.into_request(), path, codec).await
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("osmosis.protorev.v1beta1.Query", "GetProtoRevAllProfits"));
+            self.inner.unary(req, path, codec).await
         }
         pub async fn get_proto_rev_statistics_by_route(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryGetProtoRevStatisticsByRouteRequest>,
-        ) -> Result<tonic::Response<super::QueryGetProtoRevStatisticsByRouteResponse>, tonic::Status>
-        {
+        ) -> std::result::Result<
+            tonic::Response<super::QueryGetProtoRevStatisticsByRouteResponse>,
+            tonic::Status,
+        > {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -155,13 +196,20 @@ pub mod query_client {
             let path = http::uri::PathAndQuery::from_static(
                 "/osmosis.protorev.v1beta1.Query/GetProtoRevStatisticsByRoute",
             );
-            self.inner.unary(request.into_request(), path, codec).await
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "osmosis.protorev.v1beta1.Query",
+                "GetProtoRevStatisticsByRoute",
+            ));
+            self.inner.unary(req, path, codec).await
         }
         pub async fn get_proto_rev_all_route_statistics(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryGetProtoRevAllRouteStatisticsRequest>,
-        ) -> Result<tonic::Response<super::QueryGetProtoRevAllRouteStatisticsResponse>, tonic::Status>
-        {
+        ) -> std::result::Result<
+            tonic::Response<super::QueryGetProtoRevAllRouteStatisticsResponse>,
+            tonic::Status,
+        > {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -172,13 +220,20 @@ pub mod query_client {
             let path = http::uri::PathAndQuery::from_static(
                 "/osmosis.protorev.v1beta1.Query/GetProtoRevAllRouteStatistics",
             );
-            self.inner.unary(request.into_request(), path, codec).await
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "osmosis.protorev.v1beta1.Query",
+                "GetProtoRevAllRouteStatistics",
+            ));
+            self.inner.unary(req, path, codec).await
         }
         pub async fn get_proto_rev_token_pair_arb_routes(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryGetProtoRevTokenPairArbRoutesRequest>,
-        ) -> Result<tonic::Response<super::QueryGetProtoRevTokenPairArbRoutesResponse>, tonic::Status>
-        {
+        ) -> std::result::Result<
+            tonic::Response<super::QueryGetProtoRevTokenPairArbRoutesResponse>,
+            tonic::Status,
+        > {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -189,13 +244,20 @@ pub mod query_client {
             let path = http::uri::PathAndQuery::from_static(
                 "/osmosis.protorev.v1beta1.Query/GetProtoRevTokenPairArbRoutes",
             );
-            self.inner.unary(request.into_request(), path, codec).await
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "osmosis.protorev.v1beta1.Query",
+                "GetProtoRevTokenPairArbRoutes",
+            ));
+            self.inner.unary(req, path, codec).await
         }
         pub async fn get_proto_rev_admin_account(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryGetProtoRevAdminAccountRequest>,
-        ) -> Result<tonic::Response<super::QueryGetProtoRevAdminAccountResponse>, tonic::Status>
-        {
+        ) -> std::result::Result<
+            tonic::Response<super::QueryGetProtoRevAdminAccountResponse>,
+            tonic::Status,
+        > {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -206,13 +268,20 @@ pub mod query_client {
             let path = http::uri::PathAndQuery::from_static(
                 "/osmosis.protorev.v1beta1.Query/GetProtoRevAdminAccount",
             );
-            self.inner.unary(request.into_request(), path, codec).await
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "osmosis.protorev.v1beta1.Query",
+                "GetProtoRevAdminAccount",
+            ));
+            self.inner.unary(req, path, codec).await
         }
         pub async fn get_proto_rev_developer_account(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryGetProtoRevDeveloperAccountRequest>,
-        ) -> Result<tonic::Response<super::QueryGetProtoRevDeveloperAccountResponse>, tonic::Status>
-        {
+        ) -> std::result::Result<
+            tonic::Response<super::QueryGetProtoRevDeveloperAccountResponse>,
+            tonic::Status,
+        > {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -223,13 +292,20 @@ pub mod query_client {
             let path = http::uri::PathAndQuery::from_static(
                 "/osmosis.protorev.v1beta1.Query/GetProtoRevDeveloperAccount",
             );
-            self.inner.unary(request.into_request(), path, codec).await
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "osmosis.protorev.v1beta1.Query",
+                "GetProtoRevDeveloperAccount",
+            ));
+            self.inner.unary(req, path, codec).await
         }
-        pub async fn get_proto_rev_pool_weights(
+        pub async fn get_proto_rev_info_by_pool_type(
             &mut self,
-            request: impl tonic::IntoRequest<super::QueryGetProtoRevPoolWeightsRequest>,
-        ) -> Result<tonic::Response<super::QueryGetProtoRevPoolWeightsResponse>, tonic::Status>
-        {
+            request: impl tonic::IntoRequest<super::QueryGetProtoRevInfoByPoolTypeRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::QueryGetProtoRevInfoByPoolTypeResponse>,
+            tonic::Status,
+        > {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -238,15 +314,22 @@ pub mod query_client {
             })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
-                "/osmosis.protorev.v1beta1.Query/GetProtoRevPoolWeights",
+                "/osmosis.protorev.v1beta1.Query/GetProtoRevInfoByPoolType",
             );
-            self.inner.unary(request.into_request(), path, codec).await
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "osmosis.protorev.v1beta1.Query",
+                "GetProtoRevInfoByPoolType",
+            ));
+            self.inner.unary(req, path, codec).await
         }
         pub async fn get_proto_rev_max_pool_points_per_tx(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryGetProtoRevMaxPoolPointsPerTxRequest>,
-        ) -> Result<tonic::Response<super::QueryGetProtoRevMaxPoolPointsPerTxResponse>, tonic::Status>
-        {
+        ) -> std::result::Result<
+            tonic::Response<super::QueryGetProtoRevMaxPoolPointsPerTxResponse>,
+            tonic::Status,
+        > {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -257,12 +340,17 @@ pub mod query_client {
             let path = http::uri::PathAndQuery::from_static(
                 "/osmosis.protorev.v1beta1.Query/GetProtoRevMaxPoolPointsPerTx",
             );
-            self.inner.unary(request.into_request(), path, codec).await
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "osmosis.protorev.v1beta1.Query",
+                "GetProtoRevMaxPoolPointsPerTx",
+            ));
+            self.inner.unary(req, path, codec).await
         }
         pub async fn get_proto_rev_max_pool_points_per_block(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryGetProtoRevMaxPoolPointsPerBlockRequest>,
-        ) -> Result<
+        ) -> std::result::Result<
             tonic::Response<super::QueryGetProtoRevMaxPoolPointsPerBlockResponse>,
             tonic::Status,
         > {
@@ -276,13 +364,20 @@ pub mod query_client {
             let path = http::uri::PathAndQuery::from_static(
                 "/osmosis.protorev.v1beta1.Query/GetProtoRevMaxPoolPointsPerBlock",
             );
-            self.inner.unary(request.into_request(), path, codec).await
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "osmosis.protorev.v1beta1.Query",
+                "GetProtoRevMaxPoolPointsPerBlock",
+            ));
+            self.inner.unary(req, path, codec).await
         }
         pub async fn get_proto_rev_base_denoms(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryGetProtoRevBaseDenomsRequest>,
-        ) -> Result<tonic::Response<super::QueryGetProtoRevBaseDenomsResponse>, tonic::Status>
-        {
+        ) -> std::result::Result<
+            tonic::Response<super::QueryGetProtoRevBaseDenomsResponse>,
+            tonic::Status,
+        > {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -293,13 +388,18 @@ pub mod query_client {
             let path = http::uri::PathAndQuery::from_static(
                 "/osmosis.protorev.v1beta1.Query/GetProtoRevBaseDenoms",
             );
-            self.inner.unary(request.into_request(), path, codec).await
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("osmosis.protorev.v1beta1.Query", "GetProtoRevBaseDenoms"));
+            self.inner.unary(req, path, codec).await
         }
         pub async fn get_proto_rev_enabled(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryGetProtoRevEnabledRequest>,
-        ) -> Result<tonic::Response<super::QueryGetProtoRevEnabledResponse>, tonic::Status>
-        {
+        ) -> std::result::Result<
+            tonic::Response<super::QueryGetProtoRevEnabledResponse>,
+            tonic::Status,
+        > {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -310,12 +410,16 @@ pub mod query_client {
             let path = http::uri::PathAndQuery::from_static(
                 "/osmosis.protorev.v1beta1.Query/GetProtoRevEnabled",
             );
-            self.inner.unary(request.into_request(), path, codec).await
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("osmosis.protorev.v1beta1.Query", "GetProtoRevEnabled"));
+            self.inner.unary(req, path, codec).await
         }
         pub async fn get_proto_rev_pool(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryGetProtoRevPoolRequest>,
-        ) -> Result<tonic::Response<super::QueryGetProtoRevPoolResponse>, tonic::Status> {
+        ) -> std::result::Result<tonic::Response<super::QueryGetProtoRevPoolResponse>, tonic::Status>
+        {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -326,7 +430,10 @@ pub mod query_client {
             let path = http::uri::PathAndQuery::from_static(
                 "/osmosis.protorev.v1beta1.Query/GetProtoRevPool",
             );
-            self.inner.unary(request.into_request(), path, codec).await
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("osmosis.protorev.v1beta1.Query", "GetProtoRevPool"));
+            self.inner.unary(req, path, codec).await
         }
     }
 }
@@ -336,78 +443,116 @@ pub mod query_client {
 pub mod query_server {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
     use tonic::codegen::*;
-    ///Generated trait containing gRPC methods that should be implemented for use with QueryServer.
+    /// Generated trait containing gRPC methods that should be implemented for use with QueryServer.
     #[async_trait]
     pub trait Query: Send + Sync + 'static {
         async fn params(
             &self,
             request: tonic::Request<super::QueryParamsRequest>,
-        ) -> Result<tonic::Response<super::QueryParamsResponse>, tonic::Status>;
+        ) -> std::result::Result<tonic::Response<super::QueryParamsResponse>, tonic::Status>;
         async fn get_proto_rev_number_of_trades(
             &self,
             request: tonic::Request<super::QueryGetProtoRevNumberOfTradesRequest>,
-        ) -> Result<tonic::Response<super::QueryGetProtoRevNumberOfTradesResponse>, tonic::Status>;
+        ) -> std::result::Result<
+            tonic::Response<super::QueryGetProtoRevNumberOfTradesResponse>,
+            tonic::Status,
+        >;
         async fn get_proto_rev_profits_by_denom(
             &self,
             request: tonic::Request<super::QueryGetProtoRevProfitsByDenomRequest>,
-        ) -> Result<tonic::Response<super::QueryGetProtoRevProfitsByDenomResponse>, tonic::Status>;
+        ) -> std::result::Result<
+            tonic::Response<super::QueryGetProtoRevProfitsByDenomResponse>,
+            tonic::Status,
+        >;
         async fn get_proto_rev_all_profits(
             &self,
             request: tonic::Request<super::QueryGetProtoRevAllProfitsRequest>,
-        ) -> Result<tonic::Response<super::QueryGetProtoRevAllProfitsResponse>, tonic::Status>;
+        ) -> std::result::Result<
+            tonic::Response<super::QueryGetProtoRevAllProfitsResponse>,
+            tonic::Status,
+        >;
         async fn get_proto_rev_statistics_by_route(
             &self,
             request: tonic::Request<super::QueryGetProtoRevStatisticsByRouteRequest>,
-        ) -> Result<tonic::Response<super::QueryGetProtoRevStatisticsByRouteResponse>, tonic::Status>;
+        ) -> std::result::Result<
+            tonic::Response<super::QueryGetProtoRevStatisticsByRouteResponse>,
+            tonic::Status,
+        >;
         async fn get_proto_rev_all_route_statistics(
             &self,
             request: tonic::Request<super::QueryGetProtoRevAllRouteStatisticsRequest>,
-        ) -> Result<tonic::Response<super::QueryGetProtoRevAllRouteStatisticsResponse>, tonic::Status>;
+        ) -> std::result::Result<
+            tonic::Response<super::QueryGetProtoRevAllRouteStatisticsResponse>,
+            tonic::Status,
+        >;
         async fn get_proto_rev_token_pair_arb_routes(
             &self,
             request: tonic::Request<super::QueryGetProtoRevTokenPairArbRoutesRequest>,
-        ) -> Result<tonic::Response<super::QueryGetProtoRevTokenPairArbRoutesResponse>, tonic::Status>;
+        ) -> std::result::Result<
+            tonic::Response<super::QueryGetProtoRevTokenPairArbRoutesResponse>,
+            tonic::Status,
+        >;
         async fn get_proto_rev_admin_account(
             &self,
             request: tonic::Request<super::QueryGetProtoRevAdminAccountRequest>,
-        ) -> Result<tonic::Response<super::QueryGetProtoRevAdminAccountResponse>, tonic::Status>;
+        ) -> std::result::Result<
+            tonic::Response<super::QueryGetProtoRevAdminAccountResponse>,
+            tonic::Status,
+        >;
         async fn get_proto_rev_developer_account(
             &self,
             request: tonic::Request<super::QueryGetProtoRevDeveloperAccountRequest>,
-        ) -> Result<tonic::Response<super::QueryGetProtoRevDeveloperAccountResponse>, tonic::Status>;
-        async fn get_proto_rev_pool_weights(
+        ) -> std::result::Result<
+            tonic::Response<super::QueryGetProtoRevDeveloperAccountResponse>,
+            tonic::Status,
+        >;
+        async fn get_proto_rev_info_by_pool_type(
             &self,
-            request: tonic::Request<super::QueryGetProtoRevPoolWeightsRequest>,
-        ) -> Result<tonic::Response<super::QueryGetProtoRevPoolWeightsResponse>, tonic::Status>;
+            request: tonic::Request<super::QueryGetProtoRevInfoByPoolTypeRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::QueryGetProtoRevInfoByPoolTypeResponse>,
+            tonic::Status,
+        >;
         async fn get_proto_rev_max_pool_points_per_tx(
             &self,
             request: tonic::Request<super::QueryGetProtoRevMaxPoolPointsPerTxRequest>,
-        ) -> Result<tonic::Response<super::QueryGetProtoRevMaxPoolPointsPerTxResponse>, tonic::Status>;
+        ) -> std::result::Result<
+            tonic::Response<super::QueryGetProtoRevMaxPoolPointsPerTxResponse>,
+            tonic::Status,
+        >;
         async fn get_proto_rev_max_pool_points_per_block(
             &self,
             request: tonic::Request<super::QueryGetProtoRevMaxPoolPointsPerBlockRequest>,
-        ) -> Result<
+        ) -> std::result::Result<
             tonic::Response<super::QueryGetProtoRevMaxPoolPointsPerBlockResponse>,
             tonic::Status,
         >;
         async fn get_proto_rev_base_denoms(
             &self,
             request: tonic::Request<super::QueryGetProtoRevBaseDenomsRequest>,
-        ) -> Result<tonic::Response<super::QueryGetProtoRevBaseDenomsResponse>, tonic::Status>;
+        ) -> std::result::Result<
+            tonic::Response<super::QueryGetProtoRevBaseDenomsResponse>,
+            tonic::Status,
+        >;
         async fn get_proto_rev_enabled(
             &self,
             request: tonic::Request<super::QueryGetProtoRevEnabledRequest>,
-        ) -> Result<tonic::Response<super::QueryGetProtoRevEnabledResponse>, tonic::Status>;
+        ) -> std::result::Result<
+            tonic::Response<super::QueryGetProtoRevEnabledResponse>,
+            tonic::Status,
+        >;
         async fn get_proto_rev_pool(
             &self,
             request: tonic::Request<super::QueryGetProtoRevPoolRequest>,
-        ) -> Result<tonic::Response<super::QueryGetProtoRevPoolResponse>, tonic::Status>;
+        ) -> std::result::Result<tonic::Response<super::QueryGetProtoRevPoolResponse>, tonic::Status>;
     }
     #[derive(Debug)]
     pub struct QueryServer<T: Query> {
         inner: _Inner<T>,
         accept_compression_encodings: EnabledCompressionEncodings,
         send_compression_encodings: EnabledCompressionEncodings,
+        max_decoding_message_size: Option<usize>,
+        max_encoding_message_size: Option<usize>,
     }
     struct _Inner<T>(Arc<T>);
     impl<T: Query> QueryServer<T> {
@@ -420,6 +565,8 @@ pub mod query_server {
                 inner,
                 accept_compression_encodings: Default::default(),
                 send_compression_encodings: Default::default(),
+                max_decoding_message_size: None,
+                max_encoding_message_size: None,
             }
         }
         pub fn with_interceptor<F>(inner: T, interceptor: F) -> InterceptedService<Self, F>
@@ -440,6 +587,22 @@ pub mod query_server {
             self.send_compression_encodings.enable(encoding);
             self
         }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.max_decoding_message_size = Some(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.max_encoding_message_size = Some(limit);
+            self
+        }
     }
     impl<T, B> tonic::codegen::Service<http::Request<B>> for QueryServer<T>
     where
@@ -450,7 +613,10 @@ pub mod query_server {
         type Response = http::Response<tonic::body::BoxBody>;
         type Error = std::convert::Infallible;
         type Future = BoxFuture<Self::Response, Self::Error>;
-        fn poll_ready(&mut self, _cx: &mut Context<'_>) -> Poll<Result<(), Self::Error>> {
+        fn poll_ready(
+            &mut self,
+            _cx: &mut Context<'_>,
+        ) -> Poll<std::result::Result<(), Self::Error>> {
             Poll::Ready(Ok(()))
         }
         fn call(&mut self, req: http::Request<B>) -> Self::Future {
@@ -466,22 +632,29 @@ pub mod query_server {
                             &mut self,
                             request: tonic::Request<super::QueryParamsRequest>,
                         ) -> Self::Future {
-                            let inner = self.0.clone();
+                            let inner = Arc::clone(&self.0);
                             let fut = async move { (*inner).params(request).await };
                             Box::pin(fut)
                         }
                     }
                     let accept_compression_encodings = self.accept_compression_encodings;
                     let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
                     let inner = self.inner.clone();
                     let fut = async move {
                         let inner = inner.0;
                         let method = ParamsSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
-                            accept_compression_encodings,
-                            send_compression_encodings,
-                        );
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
                         let res = grpc.unary(method, req).await;
                         Ok(res)
                     };
@@ -500,7 +673,7 @@ pub mod query_server {
                             &mut self,
                             request: tonic::Request<super::QueryGetProtoRevNumberOfTradesRequest>,
                         ) -> Self::Future {
-                            let inner = self.0.clone();
+                            let inner = Arc::clone(&self.0);
                             let fut = async move {
                                 (*inner).get_proto_rev_number_of_trades(request).await
                             };
@@ -509,15 +682,22 @@ pub mod query_server {
                     }
                     let accept_compression_encodings = self.accept_compression_encodings;
                     let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
                     let inner = self.inner.clone();
                     let fut = async move {
                         let inner = inner.0;
                         let method = GetProtoRevNumberOfTradesSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
-                            accept_compression_encodings,
-                            send_compression_encodings,
-                        );
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
                         let res = grpc.unary(method, req).await;
                         Ok(res)
                     };
@@ -536,7 +716,7 @@ pub mod query_server {
                             &mut self,
                             request: tonic::Request<super::QueryGetProtoRevProfitsByDenomRequest>,
                         ) -> Self::Future {
-                            let inner = self.0.clone();
+                            let inner = Arc::clone(&self.0);
                             let fut = async move {
                                 (*inner).get_proto_rev_profits_by_denom(request).await
                             };
@@ -545,15 +725,22 @@ pub mod query_server {
                     }
                     let accept_compression_encodings = self.accept_compression_encodings;
                     let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
                     let inner = self.inner.clone();
                     let fut = async move {
                         let inner = inner.0;
                         let method = GetProtoRevProfitsByDenomSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
-                            accept_compression_encodings,
-                            send_compression_encodings,
-                        );
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
                         let res = grpc.unary(method, req).await;
                         Ok(res)
                     };
@@ -572,7 +759,7 @@ pub mod query_server {
                             &mut self,
                             request: tonic::Request<super::QueryGetProtoRevAllProfitsRequest>,
                         ) -> Self::Future {
-                            let inner = self.0.clone();
+                            let inner = Arc::clone(&self.0);
                             let fut =
                                 async move { (*inner).get_proto_rev_all_profits(request).await };
                             Box::pin(fut)
@@ -580,15 +767,22 @@ pub mod query_server {
                     }
                     let accept_compression_encodings = self.accept_compression_encodings;
                     let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
                     let inner = self.inner.clone();
                     let fut = async move {
                         let inner = inner.0;
                         let method = GetProtoRevAllProfitsSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
-                            accept_compression_encodings,
-                            send_compression_encodings,
-                        );
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
                         let res = grpc.unary(method, req).await;
                         Ok(res)
                     };
@@ -609,7 +803,7 @@ pub mod query_server {
                                 super::QueryGetProtoRevStatisticsByRouteRequest,
                             >,
                         ) -> Self::Future {
-                            let inner = self.0.clone();
+                            let inner = Arc::clone(&self.0);
                             let fut = async move {
                                 (*inner).get_proto_rev_statistics_by_route(request).await
                             };
@@ -618,15 +812,22 @@ pub mod query_server {
                     }
                     let accept_compression_encodings = self.accept_compression_encodings;
                     let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
                     let inner = self.inner.clone();
                     let fut = async move {
                         let inner = inner.0;
                         let method = GetProtoRevStatisticsByRouteSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
-                            accept_compression_encodings,
-                            send_compression_encodings,
-                        );
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
                         let res = grpc.unary(method, req).await;
                         Ok(res)
                     };
@@ -648,7 +849,7 @@ pub mod query_server {
                                 super::QueryGetProtoRevAllRouteStatisticsRequest,
                             >,
                         ) -> Self::Future {
-                            let inner = self.0.clone();
+                            let inner = Arc::clone(&self.0);
                             let fut = async move {
                                 (*inner).get_proto_rev_all_route_statistics(request).await
                             };
@@ -657,15 +858,22 @@ pub mod query_server {
                     }
                     let accept_compression_encodings = self.accept_compression_encodings;
                     let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
                     let inner = self.inner.clone();
                     let fut = async move {
                         let inner = inner.0;
                         let method = GetProtoRevAllRouteStatisticsSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
-                            accept_compression_encodings,
-                            send_compression_encodings,
-                        );
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
                         let res = grpc.unary(method, req).await;
                         Ok(res)
                     };
@@ -687,7 +895,7 @@ pub mod query_server {
                                 super::QueryGetProtoRevTokenPairArbRoutesRequest,
                             >,
                         ) -> Self::Future {
-                            let inner = self.0.clone();
+                            let inner = Arc::clone(&self.0);
                             let fut = async move {
                                 (*inner).get_proto_rev_token_pair_arb_routes(request).await
                             };
@@ -696,15 +904,22 @@ pub mod query_server {
                     }
                     let accept_compression_encodings = self.accept_compression_encodings;
                     let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
                     let inner = self.inner.clone();
                     let fut = async move {
                         let inner = inner.0;
                         let method = GetProtoRevTokenPairArbRoutesSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
-                            accept_compression_encodings,
-                            send_compression_encodings,
-                        );
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
                         let res = grpc.unary(method, req).await;
                         Ok(res)
                     };
@@ -723,7 +938,7 @@ pub mod query_server {
                             &mut self,
                             request: tonic::Request<super::QueryGetProtoRevAdminAccountRequest>,
                         ) -> Self::Future {
-                            let inner = self.0.clone();
+                            let inner = Arc::clone(&self.0);
                             let fut =
                                 async move { (*inner).get_proto_rev_admin_account(request).await };
                             Box::pin(fut)
@@ -731,15 +946,22 @@ pub mod query_server {
                     }
                     let accept_compression_encodings = self.accept_compression_encodings;
                     let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
                     let inner = self.inner.clone();
                     let fut = async move {
                         let inner = inner.0;
                         let method = GetProtoRevAdminAccountSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
-                            accept_compression_encodings,
-                            send_compression_encodings,
-                        );
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
                         let res = grpc.unary(method, req).await;
                         Ok(res)
                     };
@@ -758,7 +980,7 @@ pub mod query_server {
                             &mut self,
                             request: tonic::Request<super::QueryGetProtoRevDeveloperAccountRequest>,
                         ) -> Self::Future {
-                            let inner = self.0.clone();
+                            let inner = Arc::clone(&self.0);
                             let fut = async move {
                                 (*inner).get_proto_rev_developer_account(request).await
                             };
@@ -767,50 +989,65 @@ pub mod query_server {
                     }
                     let accept_compression_encodings = self.accept_compression_encodings;
                     let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
                     let inner = self.inner.clone();
                     let fut = async move {
                         let inner = inner.0;
                         let method = GetProtoRevDeveloperAccountSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
-                            accept_compression_encodings,
-                            send_compression_encodings,
-                        );
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
                         let res = grpc.unary(method, req).await;
                         Ok(res)
                     };
                     Box::pin(fut)
                 },
-                "/osmosis.protorev.v1beta1.Query/GetProtoRevPoolWeights" => {
+                "/osmosis.protorev.v1beta1.Query/GetProtoRevInfoByPoolType" => {
                     #[allow(non_camel_case_types)]
-                    struct GetProtoRevPoolWeightsSvc<T: Query>(pub Arc<T>);
+                    struct GetProtoRevInfoByPoolTypeSvc<T: Query>(pub Arc<T>);
                     impl<T: Query>
-                        tonic::server::UnaryService<super::QueryGetProtoRevPoolWeightsRequest>
-                        for GetProtoRevPoolWeightsSvc<T>
+                        tonic::server::UnaryService<super::QueryGetProtoRevInfoByPoolTypeRequest>
+                        for GetProtoRevInfoByPoolTypeSvc<T>
                     {
-                        type Response = super::QueryGetProtoRevPoolWeightsResponse;
+                        type Response = super::QueryGetProtoRevInfoByPoolTypeResponse;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
-                            request: tonic::Request<super::QueryGetProtoRevPoolWeightsRequest>,
+                            request: tonic::Request<super::QueryGetProtoRevInfoByPoolTypeRequest>,
                         ) -> Self::Future {
-                            let inner = self.0.clone();
-                            let fut =
-                                async move { (*inner).get_proto_rev_pool_weights(request).await };
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move {
+                                (*inner).get_proto_rev_info_by_pool_type(request).await
+                            };
                             Box::pin(fut)
                         }
                     }
                     let accept_compression_encodings = self.accept_compression_encodings;
                     let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
                     let inner = self.inner.clone();
                     let fut = async move {
                         let inner = inner.0;
-                        let method = GetProtoRevPoolWeightsSvc(inner);
+                        let method = GetProtoRevInfoByPoolTypeSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
-                            accept_compression_encodings,
-                            send_compression_encodings,
-                        );
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
                         let res = grpc.unary(method, req).await;
                         Ok(res)
                     };
@@ -832,7 +1069,7 @@ pub mod query_server {
                                 super::QueryGetProtoRevMaxPoolPointsPerTxRequest,
                             >,
                         ) -> Self::Future {
-                            let inner = self.0.clone();
+                            let inner = Arc::clone(&self.0);
                             let fut = async move {
                                 (*inner).get_proto_rev_max_pool_points_per_tx(request).await
                             };
@@ -841,15 +1078,22 @@ pub mod query_server {
                     }
                     let accept_compression_encodings = self.accept_compression_encodings;
                     let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
                     let inner = self.inner.clone();
                     let fut = async move {
                         let inner = inner.0;
                         let method = GetProtoRevMaxPoolPointsPerTxSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
-                            accept_compression_encodings,
-                            send_compression_encodings,
-                        );
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
                         let res = grpc.unary(method, req).await;
                         Ok(res)
                     };
@@ -871,7 +1115,7 @@ pub mod query_server {
                                 super::QueryGetProtoRevMaxPoolPointsPerBlockRequest,
                             >,
                         ) -> Self::Future {
-                            let inner = self.0.clone();
+                            let inner = Arc::clone(&self.0);
                             let fut = async move {
                                 (*inner).get_proto_rev_max_pool_points_per_block(request).await
                             };
@@ -880,15 +1124,22 @@ pub mod query_server {
                     }
                     let accept_compression_encodings = self.accept_compression_encodings;
                     let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
                     let inner = self.inner.clone();
                     let fut = async move {
                         let inner = inner.0;
                         let method = GetProtoRevMaxPoolPointsPerBlockSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
-                            accept_compression_encodings,
-                            send_compression_encodings,
-                        );
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
                         let res = grpc.unary(method, req).await;
                         Ok(res)
                     };
@@ -907,7 +1158,7 @@ pub mod query_server {
                             &mut self,
                             request: tonic::Request<super::QueryGetProtoRevBaseDenomsRequest>,
                         ) -> Self::Future {
-                            let inner = self.0.clone();
+                            let inner = Arc::clone(&self.0);
                             let fut =
                                 async move { (*inner).get_proto_rev_base_denoms(request).await };
                             Box::pin(fut)
@@ -915,15 +1166,22 @@ pub mod query_server {
                     }
                     let accept_compression_encodings = self.accept_compression_encodings;
                     let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
                     let inner = self.inner.clone();
                     let fut = async move {
                         let inner = inner.0;
                         let method = GetProtoRevBaseDenomsSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
-                            accept_compression_encodings,
-                            send_compression_encodings,
-                        );
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
                         let res = grpc.unary(method, req).await;
                         Ok(res)
                     };
@@ -942,22 +1200,29 @@ pub mod query_server {
                             &mut self,
                             request: tonic::Request<super::QueryGetProtoRevEnabledRequest>,
                         ) -> Self::Future {
-                            let inner = self.0.clone();
+                            let inner = Arc::clone(&self.0);
                             let fut = async move { (*inner).get_proto_rev_enabled(request).await };
                             Box::pin(fut)
                         }
                     }
                     let accept_compression_encodings = self.accept_compression_encodings;
                     let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
                     let inner = self.inner.clone();
                     let fut = async move {
                         let inner = inner.0;
                         let method = GetProtoRevEnabledSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
-                            accept_compression_encodings,
-                            send_compression_encodings,
-                        );
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
                         let res = grpc.unary(method, req).await;
                         Ok(res)
                     };
@@ -975,22 +1240,29 @@ pub mod query_server {
                             &mut self,
                             request: tonic::Request<super::QueryGetProtoRevPoolRequest>,
                         ) -> Self::Future {
-                            let inner = self.0.clone();
+                            let inner = Arc::clone(&self.0);
                             let fut = async move { (*inner).get_proto_rev_pool(request).await };
                             Box::pin(fut)
                         }
                     }
                     let accept_compression_encodings = self.accept_compression_encodings;
                     let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
                     let inner = self.inner.clone();
                     let fut = async move {
                         let inner = inner.0;
                         let method = GetProtoRevPoolSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
-                            accept_compression_encodings,
-                            send_compression_encodings,
-                        );
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
                         let res = grpc.unary(method, req).await;
                         Ok(res)
                     };
@@ -1014,12 +1286,14 @@ pub mod query_server {
                 inner,
                 accept_compression_encodings: self.accept_compression_encodings,
                 send_compression_encodings: self.send_compression_encodings,
+                max_decoding_message_size: self.max_decoding_message_size,
+                max_encoding_message_size: self.max_encoding_message_size,
             }
         }
     }
     impl<T: Query> Clone for _Inner<T> {
         fn clone(&self) -> Self {
-            Self(self.0.clone())
+            Self(Arc::clone(&self.0))
         }
     }
     impl<T: std::fmt::Debug> std::fmt::Debug for _Inner<T> {
@@ -1047,7 +1321,7 @@ pub mod msg_client {
         /// Attempt to create a new client by connecting to a given endpoint.
         pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
         where
-            D: std::convert::TryInto<tonic::transport::Endpoint>,
+            D: TryInto<tonic::transport::Endpoint>,
             D::Error: Into<StdError>,
         {
             let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
@@ -1103,10 +1377,27 @@ pub mod msg_client {
             self.inner = self.inner.accept_compressed(encoding);
             self
         }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
         pub async fn set_hot_routes(
             &mut self,
             request: impl tonic::IntoRequest<super::MsgSetHotRoutes>,
-        ) -> Result<tonic::Response<super::MsgSetHotRoutesResponse>, tonic::Status> {
+        ) -> std::result::Result<tonic::Response<super::MsgSetHotRoutesResponse>, tonic::Status>
+        {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -1116,12 +1407,18 @@ pub mod msg_client {
             let codec = tonic::codec::ProstCodec::default();
             let path =
                 http::uri::PathAndQuery::from_static("/osmosis.protorev.v1beta1.Msg/SetHotRoutes");
-            self.inner.unary(request.into_request(), path, codec).await
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("osmosis.protorev.v1beta1.Msg", "SetHotRoutes"));
+            self.inner.unary(req, path, codec).await
         }
         pub async fn set_developer_account(
             &mut self,
             request: impl tonic::IntoRequest<super::MsgSetDeveloperAccount>,
-        ) -> Result<tonic::Response<super::MsgSetDeveloperAccountResponse>, tonic::Status> {
+        ) -> std::result::Result<
+            tonic::Response<super::MsgSetDeveloperAccountResponse>,
+            tonic::Status,
+        > {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -1132,13 +1429,18 @@ pub mod msg_client {
             let path = http::uri::PathAndQuery::from_static(
                 "/osmosis.protorev.v1beta1.Msg/SetDeveloperAccount",
             );
-            self.inner.unary(request.into_request(), path, codec).await
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("osmosis.protorev.v1beta1.Msg", "SetDeveloperAccount"));
+            self.inner.unary(req, path, codec).await
         }
         pub async fn set_max_pool_points_per_tx(
             &mut self,
             request: impl tonic::IntoRequest<super::MsgSetMaxPoolPointsPerTx>,
-        ) -> Result<tonic::Response<super::MsgSetMaxPoolPointsPerTxResponse>, tonic::Status>
-        {
+        ) -> std::result::Result<
+            tonic::Response<super::MsgSetMaxPoolPointsPerTxResponse>,
+            tonic::Status,
+        > {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -1149,13 +1451,18 @@ pub mod msg_client {
             let path = http::uri::PathAndQuery::from_static(
                 "/osmosis.protorev.v1beta1.Msg/SetMaxPoolPointsPerTx",
             );
-            self.inner.unary(request.into_request(), path, codec).await
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("osmosis.protorev.v1beta1.Msg", "SetMaxPoolPointsPerTx"));
+            self.inner.unary(req, path, codec).await
         }
         pub async fn set_max_pool_points_per_block(
             &mut self,
             request: impl tonic::IntoRequest<super::MsgSetMaxPoolPointsPerBlock>,
-        ) -> Result<tonic::Response<super::MsgSetMaxPoolPointsPerBlockResponse>, tonic::Status>
-        {
+        ) -> std::result::Result<
+            tonic::Response<super::MsgSetMaxPoolPointsPerBlockResponse>,
+            tonic::Status,
+        > {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -1166,12 +1473,18 @@ pub mod msg_client {
             let path = http::uri::PathAndQuery::from_static(
                 "/osmosis.protorev.v1beta1.Msg/SetMaxPoolPointsPerBlock",
             );
-            self.inner.unary(request.into_request(), path, codec).await
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "osmosis.protorev.v1beta1.Msg",
+                "SetMaxPoolPointsPerBlock",
+            ));
+            self.inner.unary(req, path, codec).await
         }
-        pub async fn set_pool_weights(
+        pub async fn set_info_by_pool_type(
             &mut self,
-            request: impl tonic::IntoRequest<super::MsgSetPoolWeights>,
-        ) -> Result<tonic::Response<super::MsgSetPoolWeightsResponse>, tonic::Status> {
+            request: impl tonic::IntoRequest<super::MsgSetInfoByPoolType>,
+        ) -> std::result::Result<tonic::Response<super::MsgSetInfoByPoolTypeResponse>, tonic::Status>
+        {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -1180,14 +1493,18 @@ pub mod msg_client {
             })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
-                "/osmosis.protorev.v1beta1.Msg/SetPoolWeights",
+                "/osmosis.protorev.v1beta1.Msg/SetInfoByPoolType",
             );
-            self.inner.unary(request.into_request(), path, codec).await
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("osmosis.protorev.v1beta1.Msg", "SetInfoByPoolType"));
+            self.inner.unary(req, path, codec).await
         }
         pub async fn set_base_denoms(
             &mut self,
             request: impl tonic::IntoRequest<super::MsgSetBaseDenoms>,
-        ) -> Result<tonic::Response<super::MsgSetBaseDenomsResponse>, tonic::Status> {
+        ) -> std::result::Result<tonic::Response<super::MsgSetBaseDenomsResponse>, tonic::Status>
+        {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -1197,7 +1514,10 @@ pub mod msg_client {
             let codec = tonic::codec::ProstCodec::default();
             let path =
                 http::uri::PathAndQuery::from_static("/osmosis.protorev.v1beta1.Msg/SetBaseDenoms");
-            self.inner.unary(request.into_request(), path, codec).await
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("osmosis.protorev.v1beta1.Msg", "SetBaseDenoms"));
+            self.inner.unary(req, path, codec).await
         }
     }
 }
@@ -1207,39 +1527,50 @@ pub mod msg_client {
 pub mod msg_server {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
     use tonic::codegen::*;
-    ///Generated trait containing gRPC methods that should be implemented for use with MsgServer.
+    /// Generated trait containing gRPC methods that should be implemented for use with MsgServer.
     #[async_trait]
     pub trait Msg: Send + Sync + 'static {
         async fn set_hot_routes(
             &self,
             request: tonic::Request<super::MsgSetHotRoutes>,
-        ) -> Result<tonic::Response<super::MsgSetHotRoutesResponse>, tonic::Status>;
+        ) -> std::result::Result<tonic::Response<super::MsgSetHotRoutesResponse>, tonic::Status>;
         async fn set_developer_account(
             &self,
             request: tonic::Request<super::MsgSetDeveloperAccount>,
-        ) -> Result<tonic::Response<super::MsgSetDeveloperAccountResponse>, tonic::Status>;
+        ) -> std::result::Result<
+            tonic::Response<super::MsgSetDeveloperAccountResponse>,
+            tonic::Status,
+        >;
         async fn set_max_pool_points_per_tx(
             &self,
             request: tonic::Request<super::MsgSetMaxPoolPointsPerTx>,
-        ) -> Result<tonic::Response<super::MsgSetMaxPoolPointsPerTxResponse>, tonic::Status>;
+        ) -> std::result::Result<
+            tonic::Response<super::MsgSetMaxPoolPointsPerTxResponse>,
+            tonic::Status,
+        >;
         async fn set_max_pool_points_per_block(
             &self,
             request: tonic::Request<super::MsgSetMaxPoolPointsPerBlock>,
-        ) -> Result<tonic::Response<super::MsgSetMaxPoolPointsPerBlockResponse>, tonic::Status>;
-        async fn set_pool_weights(
+        ) -> std::result::Result<
+            tonic::Response<super::MsgSetMaxPoolPointsPerBlockResponse>,
+            tonic::Status,
+        >;
+        async fn set_info_by_pool_type(
             &self,
-            request: tonic::Request<super::MsgSetPoolWeights>,
-        ) -> Result<tonic::Response<super::MsgSetPoolWeightsResponse>, tonic::Status>;
+            request: tonic::Request<super::MsgSetInfoByPoolType>,
+        ) -> std::result::Result<tonic::Response<super::MsgSetInfoByPoolTypeResponse>, tonic::Status>;
         async fn set_base_denoms(
             &self,
             request: tonic::Request<super::MsgSetBaseDenoms>,
-        ) -> Result<tonic::Response<super::MsgSetBaseDenomsResponse>, tonic::Status>;
+        ) -> std::result::Result<tonic::Response<super::MsgSetBaseDenomsResponse>, tonic::Status>;
     }
     #[derive(Debug)]
     pub struct MsgServer<T: Msg> {
         inner: _Inner<T>,
         accept_compression_encodings: EnabledCompressionEncodings,
         send_compression_encodings: EnabledCompressionEncodings,
+        max_decoding_message_size: Option<usize>,
+        max_encoding_message_size: Option<usize>,
     }
     struct _Inner<T>(Arc<T>);
     impl<T: Msg> MsgServer<T> {
@@ -1252,6 +1583,8 @@ pub mod msg_server {
                 inner,
                 accept_compression_encodings: Default::default(),
                 send_compression_encodings: Default::default(),
+                max_decoding_message_size: None,
+                max_encoding_message_size: None,
             }
         }
         pub fn with_interceptor<F>(inner: T, interceptor: F) -> InterceptedService<Self, F>
@@ -1272,6 +1605,22 @@ pub mod msg_server {
             self.send_compression_encodings.enable(encoding);
             self
         }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.max_decoding_message_size = Some(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.max_encoding_message_size = Some(limit);
+            self
+        }
     }
     impl<T, B> tonic::codegen::Service<http::Request<B>> for MsgServer<T>
     where
@@ -1282,7 +1631,10 @@ pub mod msg_server {
         type Response = http::Response<tonic::body::BoxBody>;
         type Error = std::convert::Infallible;
         type Future = BoxFuture<Self::Response, Self::Error>;
-        fn poll_ready(&mut self, _cx: &mut Context<'_>) -> Poll<Result<(), Self::Error>> {
+        fn poll_ready(
+            &mut self,
+            _cx: &mut Context<'_>,
+        ) -> Poll<std::result::Result<(), Self::Error>> {
             Poll::Ready(Ok(()))
         }
         fn call(&mut self, req: http::Request<B>) -> Self::Future {
@@ -1298,22 +1650,29 @@ pub mod msg_server {
                             &mut self,
                             request: tonic::Request<super::MsgSetHotRoutes>,
                         ) -> Self::Future {
-                            let inner = self.0.clone();
+                            let inner = Arc::clone(&self.0);
                             let fut = async move { (*inner).set_hot_routes(request).await };
                             Box::pin(fut)
                         }
                     }
                     let accept_compression_encodings = self.accept_compression_encodings;
                     let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
                     let inner = self.inner.clone();
                     let fut = async move {
                         let inner = inner.0;
                         let method = SetHotRoutesSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
-                            accept_compression_encodings,
-                            send_compression_encodings,
-                        );
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
                         let res = grpc.unary(method, req).await;
                         Ok(res)
                     };
@@ -1331,22 +1690,29 @@ pub mod msg_server {
                             &mut self,
                             request: tonic::Request<super::MsgSetDeveloperAccount>,
                         ) -> Self::Future {
-                            let inner = self.0.clone();
+                            let inner = Arc::clone(&self.0);
                             let fut = async move { (*inner).set_developer_account(request).await };
                             Box::pin(fut)
                         }
                     }
                     let accept_compression_encodings = self.accept_compression_encodings;
                     let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
                     let inner = self.inner.clone();
                     let fut = async move {
                         let inner = inner.0;
                         let method = SetDeveloperAccountSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
-                            accept_compression_encodings,
-                            send_compression_encodings,
-                        );
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
                         let res = grpc.unary(method, req).await;
                         Ok(res)
                     };
@@ -1364,7 +1730,7 @@ pub mod msg_server {
                             &mut self,
                             request: tonic::Request<super::MsgSetMaxPoolPointsPerTx>,
                         ) -> Self::Future {
-                            let inner = self.0.clone();
+                            let inner = Arc::clone(&self.0);
                             let fut =
                                 async move { (*inner).set_max_pool_points_per_tx(request).await };
                             Box::pin(fut)
@@ -1372,15 +1738,22 @@ pub mod msg_server {
                     }
                     let accept_compression_encodings = self.accept_compression_encodings;
                     let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
                     let inner = self.inner.clone();
                     let fut = async move {
                         let inner = inner.0;
                         let method = SetMaxPoolPointsPerTxSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
-                            accept_compression_encodings,
-                            send_compression_encodings,
-                        );
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
                         let res = grpc.unary(method, req).await;
                         Ok(res)
                     };
@@ -1398,7 +1771,7 @@ pub mod msg_server {
                             &mut self,
                             request: tonic::Request<super::MsgSetMaxPoolPointsPerBlock>,
                         ) -> Self::Future {
-                            let inner = self.0.clone();
+                            let inner = Arc::clone(&self.0);
                             let fut = async move {
                                 (*inner).set_max_pool_points_per_block(request).await
                             };
@@ -1407,46 +1780,60 @@ pub mod msg_server {
                     }
                     let accept_compression_encodings = self.accept_compression_encodings;
                     let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
                     let inner = self.inner.clone();
                     let fut = async move {
                         let inner = inner.0;
                         let method = SetMaxPoolPointsPerBlockSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
-                            accept_compression_encodings,
-                            send_compression_encodings,
-                        );
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
                         let res = grpc.unary(method, req).await;
                         Ok(res)
                     };
                     Box::pin(fut)
                 },
-                "/osmosis.protorev.v1beta1.Msg/SetPoolWeights" => {
+                "/osmosis.protorev.v1beta1.Msg/SetInfoByPoolType" => {
                     #[allow(non_camel_case_types)]
-                    struct SetPoolWeightsSvc<T: Msg>(pub Arc<T>);
-                    impl<T: Msg> tonic::server::UnaryService<super::MsgSetPoolWeights> for SetPoolWeightsSvc<T> {
-                        type Response = super::MsgSetPoolWeightsResponse;
+                    struct SetInfoByPoolTypeSvc<T: Msg>(pub Arc<T>);
+                    impl<T: Msg> tonic::server::UnaryService<super::MsgSetInfoByPoolType> for SetInfoByPoolTypeSvc<T> {
+                        type Response = super::MsgSetInfoByPoolTypeResponse;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
-                            request: tonic::Request<super::MsgSetPoolWeights>,
+                            request: tonic::Request<super::MsgSetInfoByPoolType>,
                         ) -> Self::Future {
-                            let inner = self.0.clone();
-                            let fut = async move { (*inner).set_pool_weights(request).await };
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move { (*inner).set_info_by_pool_type(request).await };
                             Box::pin(fut)
                         }
                     }
                     let accept_compression_encodings = self.accept_compression_encodings;
                     let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
                     let inner = self.inner.clone();
                     let fut = async move {
                         let inner = inner.0;
-                        let method = SetPoolWeightsSvc(inner);
+                        let method = SetInfoByPoolTypeSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
-                            accept_compression_encodings,
-                            send_compression_encodings,
-                        );
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
                         let res = grpc.unary(method, req).await;
                         Ok(res)
                     };
@@ -1462,22 +1849,29 @@ pub mod msg_server {
                             &mut self,
                             request: tonic::Request<super::MsgSetBaseDenoms>,
                         ) -> Self::Future {
-                            let inner = self.0.clone();
+                            let inner = Arc::clone(&self.0);
                             let fut = async move { (*inner).set_base_denoms(request).await };
                             Box::pin(fut)
                         }
                     }
                     let accept_compression_encodings = self.accept_compression_encodings;
                     let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
                     let inner = self.inner.clone();
                     let fut = async move {
                         let inner = inner.0;
                         let method = SetBaseDenomsSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
-                            accept_compression_encodings,
-                            send_compression_encodings,
-                        );
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
                         let res = grpc.unary(method, req).await;
                         Ok(res)
                     };
@@ -1501,12 +1895,14 @@ pub mod msg_server {
                 inner,
                 accept_compression_encodings: self.accept_compression_encodings,
                 send_compression_encodings: self.send_compression_encodings,
+                max_decoding_message_size: self.max_decoding_message_size,
+                max_encoding_message_size: self.max_encoding_message_size,
             }
         }
     }
     impl<T: Msg> Clone for _Inner<T> {
         fn clone(&self) -> Self {
-            Self(self.0.clone())
+            Self(Arc::clone(&self.0))
         }
     }
     impl<T: std::fmt::Debug> std::fmt::Debug for _Inner<T> {
