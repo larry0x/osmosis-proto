@@ -7,6 +7,28 @@ pub mod osmosis {
         }
     }
 
+    pub mod concentratedliquidity {
+        include!("prost/osmosis/osmosis.concentratedliquidity.rs");
+
+        pub mod poolmodel {
+            pub mod concentrated {
+                pub mod v1beta1 {
+                    include!("prost/osmosis/osmosis.concentratedliquidity.poolmodel.concentrated.v1beta1.rs");
+                }
+            }
+        }
+
+        pub mod v1beta1 {
+            include!("prost/osmosis/osmosis.concentratedliquidity.v1beta1.rs");
+        }
+    }
+
+    pub mod cosmwasmpool {
+        pub mod v1beta1 {
+            include!("prost/osmosis/osmosis.cosmwasmpool.v1beta1.rs");
+        }
+    }
+
     pub mod downtimedetector {
         pub mod v1beta1 {
             include!("prost/osmosis/osmosis.downtimedetector.v1beta1.rs");
@@ -20,14 +42,6 @@ pub mod osmosis {
     }
 
     pub mod gamm {
-        pub mod v1beta1 {
-            include!("prost/osmosis/osmosis.gamm.v1beta1.rs");
-        }
-
-        pub mod v2 {
-            include!("prost/osmosis/osmosis.gamm.v2.rs");
-        }
-
         pub mod poolmodels {
             pub mod balancer {
                 pub mod v1beta1 {
@@ -41,6 +55,18 @@ pub mod osmosis {
                 }
             }
         }
+
+        pub mod v1beta1 {
+            include!("prost/osmosis/osmosis.gamm.v1beta1.rs");
+        }
+
+        pub mod v2 {
+            include!("prost/osmosis/osmosis.gamm.v2.rs");
+        }
+    }
+
+    pub mod ibchooks {
+        include!("prost/osmosis/osmosis.ibchooks.rs");
     }
 
     pub mod ibcratelimmit {
