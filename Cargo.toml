@@ -19,7 +19,7 @@ prost            = "0.11"
 prost-build      = "0.11"
 prost-types      = "0.11"
 regex            = "1"
-tendermint-proto = "0.32"
+tendermint-proto = "0.33"
 tokio            = "1"
 tonic            = { version = "0.9", default-features = false }
 tonic-build      = "0.9"
