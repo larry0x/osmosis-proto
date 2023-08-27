@@ -19,7 +19,7 @@ use walkdir::WalkDir;
 static QUIET: AtomicBool = AtomicBool::new(false);
 
 /// The Osmosis commit or tag to be cloned and used to build the proto files
-const OSMOSIS_REV: &str = "v15.1.2";
+const OSMOSIS_REV: &str = "v18.0.0";
 
 // All paths must end with a / and either be absolute or include a ./ to reference the current
 // working directory.
