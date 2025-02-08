@@ -175,6 +175,76 @@ pub mod msg_client {
             ));
             self.inner.unary(req, path, codec).await
         }
+        pub async fn set_denom_pair_taker_fee(
+            &mut self,
+            request: impl tonic::IntoRequest<super::MsgSetDenomPairTakerFee>,
+        ) -> std::result::Result<
+            tonic::Response<super::MsgSetDenomPairTakerFeeResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/osmosis.poolmanager.v1beta1.Msg/SetDenomPairTakerFee",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("osmosis.poolmanager.v1beta1.Msg", "SetDenomPairTakerFee"));
+            self.inner.unary(req, path, codec).await
+        }
+        pub async fn set_taker_fee_share_agreement_for_denom(
+            &mut self,
+            request: impl tonic::IntoRequest<super::MsgSetTakerFeeShareAgreementForDenom>,
+        ) -> std::result::Result<
+            tonic::Response<super::MsgSetTakerFeeShareAgreementForDenomResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/osmosis.poolmanager.v1beta1.Msg/SetTakerFeeShareAgreementForDenom",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "osmosis.poolmanager.v1beta1.Msg",
+                "SetTakerFeeShareAgreementForDenom",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        pub async fn set_registered_alloyed_pool(
+            &mut self,
+            request: impl tonic::IntoRequest<super::MsgSetRegisteredAlloyedPool>,
+        ) -> std::result::Result<
+            tonic::Response<super::MsgSetRegisteredAlloyedPoolResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/osmosis.poolmanager.v1beta1.Msg/SetRegisteredAlloyedPool",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "osmosis.poolmanager.v1beta1.Msg",
+                "SetRegisteredAlloyedPool",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
     }
 }
 /// Generated server implementations.
@@ -206,6 +276,27 @@ pub mod msg_server {
             request: tonic::Request<super::MsgSplitRouteSwapExactAmountOut>,
         ) -> std::result::Result<
             tonic::Response<super::MsgSplitRouteSwapExactAmountOutResponse>,
+            tonic::Status,
+        >;
+        async fn set_denom_pair_taker_fee(
+            &self,
+            request: tonic::Request<super::MsgSetDenomPairTakerFee>,
+        ) -> std::result::Result<
+            tonic::Response<super::MsgSetDenomPairTakerFeeResponse>,
+            tonic::Status,
+        >;
+        async fn set_taker_fee_share_agreement_for_denom(
+            &self,
+            request: tonic::Request<super::MsgSetTakerFeeShareAgreementForDenom>,
+        ) -> std::result::Result<
+            tonic::Response<super::MsgSetTakerFeeShareAgreementForDenomResponse>,
+            tonic::Status,
+        >;
+        async fn set_registered_alloyed_pool(
+            &self,
+            request: tonic::Request<super::MsgSetRegisteredAlloyedPool>,
+        ) -> std::result::Result<
+            tonic::Response<super::MsgSetRegisteredAlloyedPoolResponse>,
             tonic::Status,
         >;
     }
@@ -432,6 +523,131 @@ pub mod msg_server {
                     let fut = async move {
                         let inner = inner.0;
                         let method = SplitRouteSwapExactAmountOutSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                },
+                "/osmosis.poolmanager.v1beta1.Msg/SetDenomPairTakerFee" => {
+                    #[allow(non_camel_case_types)]
+                    struct SetDenomPairTakerFeeSvc<T: Msg>(pub Arc<T>);
+                    impl<T: Msg> tonic::server::UnaryService<super::MsgSetDenomPairTakerFee>
+                        for SetDenomPairTakerFeeSvc<T>
+                    {
+                        type Response = super::MsgSetDenomPairTakerFeeResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::MsgSetDenomPairTakerFee>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut =
+                                async move { (*inner).set_denom_pair_taker_fee(request).await };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = SetDenomPairTakerFeeSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                },
+                "/osmosis.poolmanager.v1beta1.Msg/SetTakerFeeShareAgreementForDenom" => {
+                    #[allow(non_camel_case_types)]
+                    struct SetTakerFeeShareAgreementForDenomSvc<T: Msg>(pub Arc<T>);
+                    impl<T: Msg>
+                        tonic::server::UnaryService<super::MsgSetTakerFeeShareAgreementForDenom>
+                        for SetTakerFeeShareAgreementForDenomSvc<T>
+                    {
+                        type Response = super::MsgSetTakerFeeShareAgreementForDenomResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::MsgSetTakerFeeShareAgreementForDenom>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move {
+                                (*inner).set_taker_fee_share_agreement_for_denom(request).await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = SetTakerFeeShareAgreementForDenomSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                },
+                "/osmosis.poolmanager.v1beta1.Msg/SetRegisteredAlloyedPool" => {
+                    #[allow(non_camel_case_types)]
+                    struct SetRegisteredAlloyedPoolSvc<T: Msg>(pub Arc<T>);
+                    impl<T: Msg> tonic::server::UnaryService<super::MsgSetRegisteredAlloyedPool>
+                        for SetRegisteredAlloyedPoolSvc<T>
+                    {
+                        type Response = super::MsgSetRegisteredAlloyedPoolResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::MsgSetRegisteredAlloyedPool>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut =
+                                async move { (*inner).set_registered_alloyed_pool(request).await };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = SetRegisteredAlloyedPoolSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec)
                             .apply_compression_config(
@@ -791,6 +1007,26 @@ pub mod query_client {
                 .insert(GrpcMethod::new("osmosis.poolmanager.v1beta1.Query", "AllPools"));
             self.inner.unary(req, path, codec).await
         }
+        pub async fn list_pools_by_denom(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListPoolsByDenomRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListPoolsByDenomResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/osmosis.poolmanager.v1beta1.Query/ListPoolsByDenom",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("osmosis.poolmanager.v1beta1.Query", "ListPoolsByDenom"));
+            self.inner.unary(req, path, codec).await
+        }
         pub async fn spot_price(
             &mut self,
             request: impl tonic::IntoRequest<super::SpotPriceRequest>,
@@ -848,6 +1084,240 @@ pub mod query_client {
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("osmosis.poolmanager.v1beta1.Query", "TotalLiquidity"));
+            self.inner.unary(req, path, codec).await
+        }
+        pub async fn total_volume_for_pool(
+            &mut self,
+            request: impl tonic::IntoRequest<super::TotalVolumeForPoolRequest>,
+        ) -> std::result::Result<tonic::Response<super::TotalVolumeForPoolResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/osmosis.poolmanager.v1beta1.Query/TotalVolumeForPool",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("osmosis.poolmanager.v1beta1.Query", "TotalVolumeForPool"));
+            self.inner.unary(req, path, codec).await
+        }
+        pub async fn trading_pair_taker_fee(
+            &mut self,
+            request: impl tonic::IntoRequest<super::TradingPairTakerFeeRequest>,
+        ) -> std::result::Result<tonic::Response<super::TradingPairTakerFeeResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/osmosis.poolmanager.v1beta1.Query/TradingPairTakerFee",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "osmosis.poolmanager.v1beta1.Query",
+                "TradingPairTakerFee",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        pub async fn estimate_trade_based_on_price_impact(
+            &mut self,
+            request: impl tonic::IntoRequest<super::EstimateTradeBasedOnPriceImpactRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::EstimateTradeBasedOnPriceImpactResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/osmosis.poolmanager.v1beta1.Query/EstimateTradeBasedOnPriceImpact",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "osmosis.poolmanager.v1beta1.Query",
+                "EstimateTradeBasedOnPriceImpact",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        pub async fn all_taker_fee_share_agreements(
+            &mut self,
+            request: impl tonic::IntoRequest<super::AllTakerFeeShareAgreementsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::AllTakerFeeShareAgreementsResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/osmosis.poolmanager.v1beta1.Query/AllTakerFeeShareAgreements",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "osmosis.poolmanager.v1beta1.Query",
+                "AllTakerFeeShareAgreements",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        pub async fn taker_fee_share_agreement_from_denom(
+            &mut self,
+            request: impl tonic::IntoRequest<super::TakerFeeShareAgreementFromDenomRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::TakerFeeShareAgreementFromDenomResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/osmosis.poolmanager.v1beta1.Query/TakerFeeShareAgreementFromDenom",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "osmosis.poolmanager.v1beta1.Query",
+                "TakerFeeShareAgreementFromDenom",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        pub async fn taker_fee_share_denoms_to_accrued_value(
+            &mut self,
+            request: impl tonic::IntoRequest<super::TakerFeeShareDenomsToAccruedValueRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::TakerFeeShareDenomsToAccruedValueResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/osmosis.poolmanager.v1beta1.Query/TakerFeeShareDenomsToAccruedValue",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "osmosis.poolmanager.v1beta1.Query",
+                "TakerFeeShareDenomsToAccruedValue",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        pub async fn all_taker_fee_share_accumulators(
+            &mut self,
+            request: impl tonic::IntoRequest<super::AllTakerFeeShareAccumulatorsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::AllTakerFeeShareAccumulatorsResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/osmosis.poolmanager.v1beta1.Query/AllTakerFeeShareAccumulators",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "osmosis.poolmanager.v1beta1.Query",
+                "AllTakerFeeShareAccumulators",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        pub async fn registered_alloyed_pool_from_denom(
+            &mut self,
+            request: impl tonic::IntoRequest<super::RegisteredAlloyedPoolFromDenomRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::RegisteredAlloyedPoolFromDenomResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/osmosis.poolmanager.v1beta1.Query/RegisteredAlloyedPoolFromDenom",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "osmosis.poolmanager.v1beta1.Query",
+                "RegisteredAlloyedPoolFromDenom",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        pub async fn registered_alloyed_pool_from_pool_id(
+            &mut self,
+            request: impl tonic::IntoRequest<super::RegisteredAlloyedPoolFromPoolIdRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::RegisteredAlloyedPoolFromPoolIdResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/osmosis.poolmanager.v1beta1.Query/RegisteredAlloyedPoolFromPoolId",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "osmosis.poolmanager.v1beta1.Query",
+                "RegisteredAlloyedPoolFromPoolId",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        pub async fn all_registered_alloyed_pools(
+            &mut self,
+            request: impl tonic::IntoRequest<super::AllRegisteredAlloyedPoolsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::AllRegisteredAlloyedPoolsResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/osmosis.poolmanager.v1beta1.Query/AllRegisteredAlloyedPools",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "osmosis.poolmanager.v1beta1.Query",
+                "AllRegisteredAlloyedPools",
+            ));
             self.inner.unary(req, path, codec).await
         }
     }
@@ -919,6 +1389,10 @@ pub mod query_server {
             &self,
             request: tonic::Request<super::AllPoolsRequest>,
         ) -> std::result::Result<tonic::Response<super::AllPoolsResponse>, tonic::Status>;
+        async fn list_pools_by_denom(
+            &self,
+            request: tonic::Request<super::ListPoolsByDenomRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListPoolsByDenomResponse>, tonic::Status>;
         async fn spot_price(
             &self,
             request: tonic::Request<super::SpotPriceRequest>,
@@ -931,6 +1405,70 @@ pub mod query_server {
             &self,
             request: tonic::Request<super::TotalLiquidityRequest>,
         ) -> std::result::Result<tonic::Response<super::TotalLiquidityResponse>, tonic::Status>;
+        async fn total_volume_for_pool(
+            &self,
+            request: tonic::Request<super::TotalVolumeForPoolRequest>,
+        ) -> std::result::Result<tonic::Response<super::TotalVolumeForPoolResponse>, tonic::Status>;
+        async fn trading_pair_taker_fee(
+            &self,
+            request: tonic::Request<super::TradingPairTakerFeeRequest>,
+        ) -> std::result::Result<tonic::Response<super::TradingPairTakerFeeResponse>, tonic::Status>;
+        async fn estimate_trade_based_on_price_impact(
+            &self,
+            request: tonic::Request<super::EstimateTradeBasedOnPriceImpactRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::EstimateTradeBasedOnPriceImpactResponse>,
+            tonic::Status,
+        >;
+        async fn all_taker_fee_share_agreements(
+            &self,
+            request: tonic::Request<super::AllTakerFeeShareAgreementsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::AllTakerFeeShareAgreementsResponse>,
+            tonic::Status,
+        >;
+        async fn taker_fee_share_agreement_from_denom(
+            &self,
+            request: tonic::Request<super::TakerFeeShareAgreementFromDenomRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::TakerFeeShareAgreementFromDenomResponse>,
+            tonic::Status,
+        >;
+        async fn taker_fee_share_denoms_to_accrued_value(
+            &self,
+            request: tonic::Request<super::TakerFeeShareDenomsToAccruedValueRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::TakerFeeShareDenomsToAccruedValueResponse>,
+            tonic::Status,
+        >;
+        async fn all_taker_fee_share_accumulators(
+            &self,
+            request: tonic::Request<super::AllTakerFeeShareAccumulatorsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::AllTakerFeeShareAccumulatorsResponse>,
+            tonic::Status,
+        >;
+        async fn registered_alloyed_pool_from_denom(
+            &self,
+            request: tonic::Request<super::RegisteredAlloyedPoolFromDenomRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::RegisteredAlloyedPoolFromDenomResponse>,
+            tonic::Status,
+        >;
+        async fn registered_alloyed_pool_from_pool_id(
+            &self,
+            request: tonic::Request<super::RegisteredAlloyedPoolFromPoolIdRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::RegisteredAlloyedPoolFromPoolIdResponse>,
+            tonic::Status,
+        >;
+        async fn all_registered_alloyed_pools(
+            &self,
+            request: tonic::Request<super::AllRegisteredAlloyedPoolsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::AllRegisteredAlloyedPoolsResponse>,
+            tonic::Status,
+        >;
     }
     #[derive(Debug)]
     pub struct QueryServer<T: Query> {
@@ -1488,6 +2026,52 @@ pub mod query_server {
                     };
                     Box::pin(fut)
                 }
+                "/osmosis.poolmanager.v1beta1.Query/ListPoolsByDenom" => {
+                    #[allow(non_camel_case_types)]
+                    struct ListPoolsByDenomSvc<T: Query>(pub Arc<T>);
+                    impl<
+                        T: Query,
+                    > tonic::server::UnaryService<super::ListPoolsByDenomRequest>
+                    for ListPoolsByDenomSvc<T> {
+                        type Response = super::ListPoolsByDenomResponse;
+                        type Future = BoxFuture<
+                            tonic::Response<Self::Response>,
+                            tonic::Status,
+                        >;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::ListPoolsByDenomRequest>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move {
+                                (*inner).list_pools_by_denom(request).await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = ListPoolsByDenomSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
                 "/osmosis.poolmanager.v1beta1.Query/SpotPrice" => {
                     #[allow(non_camel_case_types)]
                     struct SpotPriceSvc<T: Query>(pub Arc<T>);
@@ -1607,6 +2191,492 @@ pub mod query_server {
                     let fut = async move {
                         let inner = inner.0;
                         let method = TotalLiquiditySvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/osmosis.poolmanager.v1beta1.Query/TotalVolumeForPool" => {
+                    #[allow(non_camel_case_types)]
+                    struct TotalVolumeForPoolSvc<T: Query>(pub Arc<T>);
+                    impl<
+                        T: Query,
+                    > tonic::server::UnaryService<super::TotalVolumeForPoolRequest>
+                    for TotalVolumeForPoolSvc<T> {
+                        type Response = super::TotalVolumeForPoolResponse;
+                        type Future = BoxFuture<
+                            tonic::Response<Self::Response>,
+                            tonic::Status,
+                        >;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::TotalVolumeForPoolRequest>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move {
+                                (*inner).total_volume_for_pool(request).await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = TotalVolumeForPoolSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/osmosis.poolmanager.v1beta1.Query/TradingPairTakerFee" => {
+                    #[allow(non_camel_case_types)]
+                    struct TradingPairTakerFeeSvc<T: Query>(pub Arc<T>);
+                    impl<
+                        T: Query,
+                    > tonic::server::UnaryService<super::TradingPairTakerFeeRequest>
+                    for TradingPairTakerFeeSvc<T> {
+                        type Response = super::TradingPairTakerFeeResponse;
+                        type Future = BoxFuture<
+                            tonic::Response<Self::Response>,
+                            tonic::Status,
+                        >;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::TradingPairTakerFeeRequest>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move {
+                                (*inner).trading_pair_taker_fee(request).await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = TradingPairTakerFeeSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/osmosis.poolmanager.v1beta1.Query/EstimateTradeBasedOnPriceImpact" => {
+                    #[allow(non_camel_case_types)]
+                    struct EstimateTradeBasedOnPriceImpactSvc<T: Query>(pub Arc<T>);
+                    impl<
+                        T: Query,
+                    > tonic::server::UnaryService<
+                        super::EstimateTradeBasedOnPriceImpactRequest,
+                    > for EstimateTradeBasedOnPriceImpactSvc<T> {
+                        type Response = super::EstimateTradeBasedOnPriceImpactResponse;
+                        type Future = BoxFuture<
+                            tonic::Response<Self::Response>,
+                            tonic::Status,
+                        >;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<
+                                super::EstimateTradeBasedOnPriceImpactRequest,
+                            >,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move {
+                                (*inner).estimate_trade_based_on_price_impact(request).await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = EstimateTradeBasedOnPriceImpactSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/osmosis.poolmanager.v1beta1.Query/AllTakerFeeShareAgreements" => {
+                    #[allow(non_camel_case_types)]
+                    struct AllTakerFeeShareAgreementsSvc<T: Query>(pub Arc<T>);
+                    impl<
+                        T: Query,
+                    > tonic::server::UnaryService<
+                        super::AllTakerFeeShareAgreementsRequest,
+                    > for AllTakerFeeShareAgreementsSvc<T> {
+                        type Response = super::AllTakerFeeShareAgreementsResponse;
+                        type Future = BoxFuture<
+                            tonic::Response<Self::Response>,
+                            tonic::Status,
+                        >;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<
+                                super::AllTakerFeeShareAgreementsRequest,
+                            >,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move {
+                                (*inner).all_taker_fee_share_agreements(request).await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = AllTakerFeeShareAgreementsSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/osmosis.poolmanager.v1beta1.Query/TakerFeeShareAgreementFromDenom" => {
+                    #[allow(non_camel_case_types)]
+                    struct TakerFeeShareAgreementFromDenomSvc<T: Query>(pub Arc<T>);
+                    impl<
+                        T: Query,
+                    > tonic::server::UnaryService<
+                        super::TakerFeeShareAgreementFromDenomRequest,
+                    > for TakerFeeShareAgreementFromDenomSvc<T> {
+                        type Response = super::TakerFeeShareAgreementFromDenomResponse;
+                        type Future = BoxFuture<
+                            tonic::Response<Self::Response>,
+                            tonic::Status,
+                        >;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<
+                                super::TakerFeeShareAgreementFromDenomRequest,
+                            >,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move {
+                                (*inner).taker_fee_share_agreement_from_denom(request).await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = TakerFeeShareAgreementFromDenomSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/osmosis.poolmanager.v1beta1.Query/TakerFeeShareDenomsToAccruedValue" => {
+                    #[allow(non_camel_case_types)]
+                    struct TakerFeeShareDenomsToAccruedValueSvc<T: Query>(pub Arc<T>);
+                    impl<
+                        T: Query,
+                    > tonic::server::UnaryService<
+                        super::TakerFeeShareDenomsToAccruedValueRequest,
+                    > for TakerFeeShareDenomsToAccruedValueSvc<T> {
+                        type Response = super::TakerFeeShareDenomsToAccruedValueResponse;
+                        type Future = BoxFuture<
+                            tonic::Response<Self::Response>,
+                            tonic::Status,
+                        >;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<
+                                super::TakerFeeShareDenomsToAccruedValueRequest,
+                            >,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move {
+                                (*inner)
+                                    .taker_fee_share_denoms_to_accrued_value(request)
+                                    .await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = TakerFeeShareDenomsToAccruedValueSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/osmosis.poolmanager.v1beta1.Query/AllTakerFeeShareAccumulators" => {
+                    #[allow(non_camel_case_types)]
+                    struct AllTakerFeeShareAccumulatorsSvc<T: Query>(pub Arc<T>);
+                    impl<
+                        T: Query,
+                    > tonic::server::UnaryService<
+                        super::AllTakerFeeShareAccumulatorsRequest,
+                    > for AllTakerFeeShareAccumulatorsSvc<T> {
+                        type Response = super::AllTakerFeeShareAccumulatorsResponse;
+                        type Future = BoxFuture<
+                            tonic::Response<Self::Response>,
+                            tonic::Status,
+                        >;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<
+                                super::AllTakerFeeShareAccumulatorsRequest,
+                            >,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move {
+                                (*inner).all_taker_fee_share_accumulators(request).await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = AllTakerFeeShareAccumulatorsSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/osmosis.poolmanager.v1beta1.Query/RegisteredAlloyedPoolFromDenom" => {
+                    #[allow(non_camel_case_types)]
+                    struct RegisteredAlloyedPoolFromDenomSvc<T: Query>(pub Arc<T>);
+                    impl<
+                        T: Query,
+                    > tonic::server::UnaryService<
+                        super::RegisteredAlloyedPoolFromDenomRequest,
+                    > for RegisteredAlloyedPoolFromDenomSvc<T> {
+                        type Response = super::RegisteredAlloyedPoolFromDenomResponse;
+                        type Future = BoxFuture<
+                            tonic::Response<Self::Response>,
+                            tonic::Status,
+                        >;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<
+                                super::RegisteredAlloyedPoolFromDenomRequest,
+                            >,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move {
+                                (*inner).registered_alloyed_pool_from_denom(request).await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = RegisteredAlloyedPoolFromDenomSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/osmosis.poolmanager.v1beta1.Query/RegisteredAlloyedPoolFromPoolId" => {
+                    #[allow(non_camel_case_types)]
+                    struct RegisteredAlloyedPoolFromPoolIdSvc<T: Query>(pub Arc<T>);
+                    impl<
+                        T: Query,
+                    > tonic::server::UnaryService<
+                        super::RegisteredAlloyedPoolFromPoolIdRequest,
+                    > for RegisteredAlloyedPoolFromPoolIdSvc<T> {
+                        type Response = super::RegisteredAlloyedPoolFromPoolIdResponse;
+                        type Future = BoxFuture<
+                            tonic::Response<Self::Response>,
+                            tonic::Status,
+                        >;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<
+                                super::RegisteredAlloyedPoolFromPoolIdRequest,
+                            >,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move {
+                                (*inner).registered_alloyed_pool_from_pool_id(request).await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = RegisteredAlloyedPoolFromPoolIdSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/osmosis.poolmanager.v1beta1.Query/AllRegisteredAlloyedPools" => {
+                    #[allow(non_camel_case_types)]
+                    struct AllRegisteredAlloyedPoolsSvc<T: Query>(pub Arc<T>);
+                    impl<
+                        T: Query,
+                    > tonic::server::UnaryService<
+                        super::AllRegisteredAlloyedPoolsRequest,
+                    > for AllRegisteredAlloyedPoolsSvc<T> {
+                        type Response = super::AllRegisteredAlloyedPoolsResponse;
+                        type Future = BoxFuture<
+                            tonic::Response<Self::Response>,
+                            tonic::Status,
+                        >;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<
+                                super::AllRegisteredAlloyedPoolsRequest,
+                            >,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move {
+                                (*inner).all_registered_alloyed_pools(request).await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = AllRegisteredAlloyedPoolsSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec)
                             .apply_compression_config(

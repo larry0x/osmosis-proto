@@ -11,6 +11,13 @@ pub struct SetSuperfluidAssetsProposal {
     #[prost(message, repeated, tag = "3")]
     pub assets: ::prost::alloc::vec::Vec<super::SuperfluidAsset>,
 }
+impl ::prost::Name for SetSuperfluidAssetsProposal {
+    const NAME: &'static str = "SetSuperfluidAssetsProposal";
+    const PACKAGE: &'static str = "osmosis.superfluid.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.superfluid.v1beta1.{}", Self::NAME)
+    }
+}
 /// RemoveSuperfluidAssetsProposal is a gov Content type to remove the superfluid
 /// assets by denom
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -22,6 +29,13 @@ pub struct RemoveSuperfluidAssetsProposal {
     pub description: ::prost::alloc::string::String,
     #[prost(string, repeated, tag = "3")]
     pub superfluid_asset_denoms: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+impl ::prost::Name for RemoveSuperfluidAssetsProposal {
+    const NAME: &'static str = "RemoveSuperfluidAssetsProposal";
+    const PACKAGE: &'static str = "osmosis.superfluid.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.superfluid.v1beta1.{}", Self::NAME)
+    }
 }
 /// UpdateUnpoolWhiteListProposal is a gov Content type to update the
 /// allowed list of pool ids.
@@ -37,4 +51,12 @@ pub struct UpdateUnpoolWhiteListProposal {
     #[prost(bool, tag = "4")]
     pub is_overwrite: bool,
 }
+impl ::prost::Name for UpdateUnpoolWhiteListProposal {
+    const NAME: &'static str = "UpdateUnpoolWhiteListProposal";
+    const PACKAGE: &'static str = "osmosis.superfluid.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.superfluid.v1beta1.{}", Self::NAME)
+    }
+}
+include!("osmosis.superfluid.v1beta1.serde.rs");
 // @@protoc_insertion_point(module)

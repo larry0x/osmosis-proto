@@ -13,6 +13,13 @@ pub struct Params {
     #[prost(uint64, tag = "2")]
     pub pool_migration_limit: u64,
 }
+impl ::prost::Name for Params {
+    const NAME: &'static str = "Params";
+    const PACKAGE: &'static str = "osmosis.cosmwasmpool.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.cosmwasmpool.v1beta1.{}", Self::NAME)
+    }
+}
 /// GenesisState defines the cosmwasmpool module's genesis state.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -21,7 +28,14 @@ pub struct GenesisState {
     #[prost(message, optional, tag = "1")]
     pub params: ::core::option::Option<Params>,
     #[prost(message, repeated, tag = "2")]
-    pub pools: ::prost::alloc::vec::Vec<::prost_types::Any>,
+    pub pools: ::prost::alloc::vec::Vec<::tendermint_proto::google::protobuf::Any>,
+}
+impl ::prost::Name for GenesisState {
+    const NAME: &'static str = "GenesisState";
+    const PACKAGE: &'static str = "osmosis.cosmwasmpool.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.cosmwasmpool.v1beta1.{}", Self::NAME)
+    }
 }
 /// UploadCosmWasmPoolCodeAndWhiteListProposal is a gov Content type for
 /// uploading coswasm pool code and adding it to internal whitelist. Only the
@@ -36,6 +50,13 @@ pub struct UploadCosmWasmPoolCodeAndWhiteListProposal {
     /// WASMByteCode can be raw or gzip compressed
     #[prost(bytes = "vec", tag = "3")]
     pub wasm_byte_code: ::prost::alloc::vec::Vec<u8>,
+}
+impl ::prost::Name for UploadCosmWasmPoolCodeAndWhiteListProposal {
+    const NAME: &'static str = "UploadCosmWasmPoolCodeAndWhiteListProposal";
+    const PACKAGE: &'static str = "osmosis.cosmwasmpool.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.cosmwasmpool.v1beta1.{}", Self::NAME)
+    }
 }
 /// MigratePoolContractsProposal is a gov Content type for
 /// migrating  given pools to the new contract code and adding to internal
@@ -89,6 +110,13 @@ pub struct MigratePoolContractsProposal {
     #[prost(bytes = "vec", tag = "6")]
     pub migrate_msg: ::prost::alloc::vec::Vec<u8>,
 }
+impl ::prost::Name for MigratePoolContractsProposal {
+    const NAME: &'static str = "MigratePoolContractsProposal";
+    const PACKAGE: &'static str = "osmosis.cosmwasmpool.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.cosmwasmpool.v1beta1.{}", Self::NAME)
+    }
+}
 /// ===================== InstantiateMsg
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -98,19 +126,33 @@ pub struct InstantiateMsg {
     #[prost(string, repeated, tag = "1")]
     pub pool_asset_denoms: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
+impl ::prost::Name for InstantiateMsg {
+    const NAME: &'static str = "InstantiateMsg";
+    const PACKAGE: &'static str = "osmosis.cosmwasmpool.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.cosmwasmpool.v1beta1.{}", Self::NAME)
+    }
+}
 /// ===================== CalcOutAmtGivenIn
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CalcOutAmtGivenIn {
     /// token_in is the token to be sent to the pool.
     #[prost(message, optional, tag = "1")]
-    pub token_in: ::core::option::Option<::cosmos_sdk_proto::cosmos::base::v1beta1::Coin>,
+    pub token_in: ::core::option::Option<super::super::super::cosmos::base::v1beta1::Coin>,
     /// token_out_denom is the token denom to be received from the pool.
     #[prost(string, tag = "2")]
     pub token_out_denom: ::prost::alloc::string::String,
     /// swap_fee is the swap fee for this swap estimate.
     #[prost(string, tag = "3")]
     pub swap_fee: ::prost::alloc::string::String,
+}
+impl ::prost::Name for CalcOutAmtGivenIn {
+    const NAME: &'static str = "CalcOutAmtGivenIn";
+    const PACKAGE: &'static str = "osmosis.cosmwasmpool.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.cosmwasmpool.v1beta1.{}", Self::NAME)
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -120,12 +162,26 @@ pub struct CalcOutAmtGivenInRequest {
     #[prost(message, optional, tag = "1")]
     pub calc_out_amt_given_in: ::core::option::Option<CalcOutAmtGivenIn>,
 }
+impl ::prost::Name for CalcOutAmtGivenInRequest {
+    const NAME: &'static str = "CalcOutAmtGivenInRequest";
+    const PACKAGE: &'static str = "osmosis.cosmwasmpool.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.cosmwasmpool.v1beta1.{}", Self::NAME)
+    }
+}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CalcOutAmtGivenInResponse {
     /// token_out is the token out computed from this swap estimate call.
     #[prost(message, optional, tag = "1")]
-    pub token_out: ::core::option::Option<::cosmos_sdk_proto::cosmos::base::v1beta1::Coin>,
+    pub token_out: ::core::option::Option<super::super::super::cosmos::base::v1beta1::Coin>,
+}
+impl ::prost::Name for CalcOutAmtGivenInResponse {
+    const NAME: &'static str = "CalcOutAmtGivenInResponse";
+    const PACKAGE: &'static str = "osmosis.cosmwasmpool.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.cosmwasmpool.v1beta1.{}", Self::NAME)
+    }
 }
 /// ===================== CalcInAmtGivenOut
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -133,13 +189,20 @@ pub struct CalcOutAmtGivenInResponse {
 pub struct CalcInAmtGivenOut {
     /// token_out is the token out to be receoved from the pool.
     #[prost(message, optional, tag = "1")]
-    pub token_out: ::core::option::Option<::cosmos_sdk_proto::cosmos::base::v1beta1::Coin>,
+    pub token_out: ::core::option::Option<super::super::super::cosmos::base::v1beta1::Coin>,
     /// token_in_denom is the token denom to be sentt to the pool.
     #[prost(string, tag = "2")]
     pub token_in_denom: ::prost::alloc::string::String,
     /// swap_fee is the swap fee for this swap estimate.
     #[prost(string, tag = "3")]
     pub swap_fee: ::prost::alloc::string::String,
+}
+impl ::prost::Name for CalcInAmtGivenOut {
+    const NAME: &'static str = "CalcInAmtGivenOut";
+    const PACKAGE: &'static str = "osmosis.cosmwasmpool.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.cosmwasmpool.v1beta1.{}", Self::NAME)
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -149,12 +212,26 @@ pub struct CalcInAmtGivenOutRequest {
     #[prost(message, optional, tag = "1")]
     pub calc_in_amt_given_out: ::core::option::Option<CalcInAmtGivenOut>,
 }
+impl ::prost::Name for CalcInAmtGivenOutRequest {
+    const NAME: &'static str = "CalcInAmtGivenOutRequest";
+    const PACKAGE: &'static str = "osmosis.cosmwasmpool.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.cosmwasmpool.v1beta1.{}", Self::NAME)
+    }
+}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CalcInAmtGivenOutResponse {
     /// token_in is the token in computed from this swap estimate call.
     #[prost(message, optional, tag = "1")]
-    pub token_in: ::core::option::Option<::cosmos_sdk_proto::cosmos::base::v1beta1::Coin>,
+    pub token_in: ::core::option::Option<super::super::super::cosmos::base::v1beta1::Coin>,
+}
+impl ::prost::Name for CalcInAmtGivenOutResponse {
+    const NAME: &'static str = "CalcInAmtGivenOutResponse";
+    const PACKAGE: &'static str = "osmosis.cosmwasmpool.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.cosmwasmpool.v1beta1.{}", Self::NAME)
+    }
 }
 /// ===================== SwapExactAmountIn
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -164,7 +241,7 @@ pub struct SwapExactAmountIn {
     pub sender: ::prost::alloc::string::String,
     /// token_in is the token to be sent to the pool.
     #[prost(message, optional, tag = "2")]
-    pub token_in: ::core::option::Option<::cosmos_sdk_proto::cosmos::base::v1beta1::Coin>,
+    pub token_in: ::core::option::Option<super::super::super::cosmos::base::v1beta1::Coin>,
     /// token_out_denom is the token denom to be received from the pool.
     #[prost(string, tag = "3")]
     pub token_out_denom: ::prost::alloc::string::String,
@@ -176,6 +253,13 @@ pub struct SwapExactAmountIn {
     #[prost(string, tag = "5")]
     pub swap_fee: ::prost::alloc::string::String,
 }
+impl ::prost::Name for SwapExactAmountIn {
+    const NAME: &'static str = "SwapExactAmountIn";
+    const PACKAGE: &'static str = "osmosis.cosmwasmpool.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.cosmwasmpool.v1beta1.{}", Self::NAME)
+    }
+}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SwapExactAmountInSudoMsg {
@@ -184,12 +268,26 @@ pub struct SwapExactAmountInSudoMsg {
     #[prost(message, optional, tag = "1")]
     pub swap_exact_amount_in: ::core::option::Option<SwapExactAmountIn>,
 }
+impl ::prost::Name for SwapExactAmountInSudoMsg {
+    const NAME: &'static str = "SwapExactAmountInSudoMsg";
+    const PACKAGE: &'static str = "osmosis.cosmwasmpool.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.cosmwasmpool.v1beta1.{}", Self::NAME)
+    }
+}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SwapExactAmountInSudoMsgResponse {
     /// token_out_amount is the token out computed from this swap estimate call.
     #[prost(string, tag = "1")]
     pub token_out_amount: ::prost::alloc::string::String,
+}
+impl ::prost::Name for SwapExactAmountInSudoMsgResponse {
+    const NAME: &'static str = "SwapExactAmountInSudoMsgResponse";
+    const PACKAGE: &'static str = "osmosis.cosmwasmpool.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.cosmwasmpool.v1beta1.{}", Self::NAME)
+    }
 }
 /// ===================== SwapExactAmountOut
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -199,7 +297,7 @@ pub struct SwapExactAmountOut {
     pub sender: ::prost::alloc::string::String,
     /// token_out is the token to be sent out of the pool.
     #[prost(message, optional, tag = "2")]
-    pub token_out: ::core::option::Option<::cosmos_sdk_proto::cosmos::base::v1beta1::Coin>,
+    pub token_out: ::core::option::Option<super::super::super::cosmos::base::v1beta1::Coin>,
     /// token_in_denom is the token denom to be sent too the pool.
     #[prost(string, tag = "3")]
     pub token_in_denom: ::prost::alloc::string::String,
@@ -211,6 +309,13 @@ pub struct SwapExactAmountOut {
     #[prost(string, tag = "5")]
     pub swap_fee: ::prost::alloc::string::String,
 }
+impl ::prost::Name for SwapExactAmountOut {
+    const NAME: &'static str = "SwapExactAmountOut";
+    const PACKAGE: &'static str = "osmosis.cosmwasmpool.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.cosmwasmpool.v1beta1.{}", Self::NAME)
+    }
+}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SwapExactAmountOutSudoMsg {
@@ -219,6 +324,13 @@ pub struct SwapExactAmountOutSudoMsg {
     #[prost(message, optional, tag = "1")]
     pub swap_exact_amount_out: ::core::option::Option<SwapExactAmountOut>,
 }
+impl ::prost::Name for SwapExactAmountOutSudoMsg {
+    const NAME: &'static str = "SwapExactAmountOutSudoMsg";
+    const PACKAGE: &'static str = "osmosis.cosmwasmpool.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.cosmwasmpool.v1beta1.{}", Self::NAME)
+    }
+}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SwapExactAmountOutSudoMsgResponse {
@@ -226,6 +338,29 @@ pub struct SwapExactAmountOutSudoMsgResponse {
     #[prost(string, tag = "1")]
     pub token_in_amount: ::prost::alloc::string::String,
 }
+impl ::prost::Name for SwapExactAmountOutSudoMsgResponse {
+    const NAME: &'static str = "SwapExactAmountOutSudoMsgResponse";
+    const PACKAGE: &'static str = "osmosis.cosmwasmpool.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.cosmwasmpool.v1beta1.{}", Self::NAME)
+    }
+}
+/// CosmWasmPool represents the data serialized into state for each CW pool.
+///
+/// Note: CW Pool has 2 pool models:
+/// - CosmWasmPool which is a proto-generated store model used for serialization
+/// into state.
+/// - Pool struct that encapsulates the CosmWasmPool and wasmKeeper for calling
+/// the contract.
+///
+/// CosmWasmPool implements the poolmanager.PoolI interface but it panics on all
+/// methods. The reason is that access to wasmKeeper is required to call the
+/// contract.
+///
+/// Instead, all interactions and poolmanager.PoolI methods are to be performed
+/// on the Pool struct. The reason why we cannot have a Pool struct only is
+/// because it cannot be serialized into state due to having a non-serializable
+/// wasmKeeper field.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CosmWasmPool {
@@ -238,13 +373,27 @@ pub struct CosmWasmPool {
     #[prost(bytes = "vec", tag = "4")]
     pub instantiate_msg: ::prost::alloc::vec::Vec<u8>,
 }
+impl ::prost::Name for CosmWasmPool {
+    const NAME: &'static str = "CosmWasmPool";
+    const PACKAGE: &'static str = "osmosis.cosmwasmpool.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.cosmwasmpool.v1beta1.{}", Self::NAME)
+    }
+}
 /// ===================== GetSwapFeeQueryMsg
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetSwapFeeQueryMsg {
-    /// get_swap_fee is the query strcuture to get swap fee.
+    /// get_swap_fee is the query structure to get swap fee.
     #[prost(message, optional, tag = "1")]
     pub get_swap_fee: ::core::option::Option<EmptyStruct>,
+}
+impl ::prost::Name for GetSwapFeeQueryMsg {
+    const NAME: &'static str = "GetSwapFeeQueryMsg";
+    const PACKAGE: &'static str = "osmosis.cosmwasmpool.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.cosmwasmpool.v1beta1.{}", Self::NAME)
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -252,6 +401,13 @@ pub struct GetSwapFeeQueryMsgResponse {
     /// swap_fee is the swap fee for this swap estimate.
     #[prost(string, tag = "3")]
     pub swap_fee: ::prost::alloc::string::String,
+}
+impl ::prost::Name for GetSwapFeeQueryMsgResponse {
+    const NAME: &'static str = "GetSwapFeeQueryMsgResponse";
+    const PACKAGE: &'static str = "osmosis.cosmwasmpool.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.cosmwasmpool.v1beta1.{}", Self::NAME)
+    }
 }
 /// ===================== SpotPriceQueryMsg
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -264,6 +420,13 @@ pub struct SpotPrice {
     #[prost(string, tag = "2")]
     pub base_asset_denom: ::prost::alloc::string::String,
 }
+impl ::prost::Name for SpotPrice {
+    const NAME: &'static str = "SpotPrice";
+    const PACKAGE: &'static str = "osmosis.cosmwasmpool.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.cosmwasmpool.v1beta1.{}", Self::NAME)
+    }
+}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SpotPriceQueryMsg {
@@ -272,6 +435,13 @@ pub struct SpotPriceQueryMsg {
     #[prost(message, optional, tag = "1")]
     pub spot_price: ::core::option::Option<SpotPrice>,
 }
+impl ::prost::Name for SpotPriceQueryMsg {
+    const NAME: &'static str = "SpotPriceQueryMsg";
+    const PACKAGE: &'static str = "osmosis.cosmwasmpool.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.cosmwasmpool.v1beta1.{}", Self::NAME)
+    }
+}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SpotPriceQueryMsgResponse {
@@ -279,10 +449,24 @@ pub struct SpotPriceQueryMsgResponse {
     #[prost(string, tag = "1")]
     pub spot_price: ::prost::alloc::string::String,
 }
+impl ::prost::Name for SpotPriceQueryMsgResponse {
+    const NAME: &'static str = "SpotPriceQueryMsgResponse";
+    const PACKAGE: &'static str = "osmosis.cosmwasmpool.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.cosmwasmpool.v1beta1.{}", Self::NAME)
+    }
+}
 /// ===================== GetTotalPoolLiquidityQueryMsg
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EmptyStruct {}
+impl ::prost::Name for EmptyStruct {
+    const NAME: &'static str = "EmptyStruct";
+    const PACKAGE: &'static str = "osmosis.cosmwasmpool.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.cosmwasmpool.v1beta1.{}", Self::NAME)
+    }
+}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetTotalPoolLiquidityQueryMsg {
@@ -291,6 +475,13 @@ pub struct GetTotalPoolLiquidityQueryMsg {
     #[prost(message, optional, tag = "1")]
     pub get_total_pool_liquidity: ::core::option::Option<EmptyStruct>,
 }
+impl ::prost::Name for GetTotalPoolLiquidityQueryMsg {
+    const NAME: &'static str = "GetTotalPoolLiquidityQueryMsg";
+    const PACKAGE: &'static str = "osmosis.cosmwasmpool.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.cosmwasmpool.v1beta1.{}", Self::NAME)
+    }
+}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetTotalPoolLiquidityQueryMsgResponse {
@@ -298,7 +489,14 @@ pub struct GetTotalPoolLiquidityQueryMsgResponse {
     ///   coins.
     #[prost(message, repeated, tag = "1")]
     pub total_pool_liquidity:
-        ::prost::alloc::vec::Vec<::cosmos_sdk_proto::cosmos::base::v1beta1::Coin>,
+        ::prost::alloc::vec::Vec<super::super::super::cosmos::base::v1beta1::Coin>,
+}
+impl ::prost::Name for GetTotalPoolLiquidityQueryMsgResponse {
+    const NAME: &'static str = "GetTotalPoolLiquidityQueryMsgResponse";
+    const PACKAGE: &'static str = "osmosis.cosmwasmpool.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.cosmwasmpool.v1beta1.{}", Self::NAME)
+    }
 }
 /// ===================== GetTotalSharesQueryMsg
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -309,6 +507,13 @@ pub struct GetTotalSharesQueryMsg {
     #[prost(message, optional, tag = "1")]
     pub get_total_shares: ::core::option::Option<EmptyStruct>,
 }
+impl ::prost::Name for GetTotalSharesQueryMsg {
+    const NAME: &'static str = "GetTotalSharesQueryMsg";
+    const PACKAGE: &'static str = "osmosis.cosmwasmpool.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.cosmwasmpool.v1beta1.{}", Self::NAME)
+    }
+}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetTotalSharesQueryMsgResponse {
@@ -316,10 +521,24 @@ pub struct GetTotalSharesQueryMsgResponse {
     #[prost(string, tag = "1")]
     pub total_shares: ::prost::alloc::string::String,
 }
+impl ::prost::Name for GetTotalSharesQueryMsgResponse {
+    const NAME: &'static str = "GetTotalSharesQueryMsgResponse";
+    const PACKAGE: &'static str = "osmosis.cosmwasmpool.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.cosmwasmpool.v1beta1.{}", Self::NAME)
+    }
+}
 /// ===================== JoinPoolExecuteMsg
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EmptyRequest {}
+impl ::prost::Name for EmptyRequest {
+    const NAME: &'static str = "EmptyRequest";
+    const PACKAGE: &'static str = "osmosis.cosmwasmpool.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.cosmwasmpool.v1beta1.{}", Self::NAME)
+    }
+}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct JoinPoolExecuteMsgRequest {
@@ -328,9 +547,23 @@ pub struct JoinPoolExecuteMsgRequest {
     #[prost(message, optional, tag = "1")]
     pub join_pool: ::core::option::Option<EmptyRequest>,
 }
+impl ::prost::Name for JoinPoolExecuteMsgRequest {
+    const NAME: &'static str = "JoinPoolExecuteMsgRequest";
+    const PACKAGE: &'static str = "osmosis.cosmwasmpool.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.cosmwasmpool.v1beta1.{}", Self::NAME)
+    }
+}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct JoinPoolExecuteMsgResponse {}
+impl ::prost::Name for JoinPoolExecuteMsgResponse {
+    const NAME: &'static str = "JoinPoolExecuteMsgResponse";
+    const PACKAGE: &'static str = "osmosis.cosmwasmpool.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.cosmwasmpool.v1beta1.{}", Self::NAME)
+    }
+}
 /// ===================== ExitPoolExecuteMsg
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -340,9 +573,23 @@ pub struct ExitPoolExecuteMsgRequest {
     #[prost(message, optional, tag = "1")]
     pub exit_pool: ::core::option::Option<EmptyRequest>,
 }
+impl ::prost::Name for ExitPoolExecuteMsgRequest {
+    const NAME: &'static str = "ExitPoolExecuteMsgRequest";
+    const PACKAGE: &'static str = "osmosis.cosmwasmpool.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.cosmwasmpool.v1beta1.{}", Self::NAME)
+    }
+}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExitPoolExecuteMsgResponse {}
+impl ::prost::Name for ExitPoolExecuteMsgResponse {
+    const NAME: &'static str = "ExitPoolExecuteMsgResponse";
+    const PACKAGE: &'static str = "osmosis.cosmwasmpool.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.cosmwasmpool.v1beta1.{}", Self::NAME)
+    }
+}
 /// ===================== MsgCreateCosmwasmPool
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -354,6 +601,13 @@ pub struct MsgCreateCosmWasmPool {
     #[prost(string, tag = "3")]
     pub sender: ::prost::alloc::string::String,
 }
+impl ::prost::Name for MsgCreateCosmWasmPool {
+    const NAME: &'static str = "MsgCreateCosmWasmPool";
+    const PACKAGE: &'static str = "osmosis.cosmwasmpool.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.cosmwasmpool.v1beta1.{}", Self::NAME)
+    }
+}
 /// Returns a unique poolID to identify the pool with.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -361,15 +615,36 @@ pub struct MsgCreateCosmWasmPoolResponse {
     #[prost(uint64, tag = "1")]
     pub pool_id: u64,
 }
+impl ::prost::Name for MsgCreateCosmWasmPoolResponse {
+    const NAME: &'static str = "MsgCreateCosmWasmPoolResponse";
+    const PACKAGE: &'static str = "osmosis.cosmwasmpool.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.cosmwasmpool.v1beta1.{}", Self::NAME)
+    }
+}
 /// =============================== ContractInfoByPoolId
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ParamsRequest {}
+impl ::prost::Name for ParamsRequest {
+    const NAME: &'static str = "ParamsRequest";
+    const PACKAGE: &'static str = "osmosis.cosmwasmpool.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.cosmwasmpool.v1beta1.{}", Self::NAME)
+    }
+}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ParamsResponse {
     #[prost(message, optional, tag = "1")]
     pub params: ::core::option::Option<Params>,
+}
+impl ::prost::Name for ParamsResponse {
+    const NAME: &'static str = "ParamsResponse";
+    const PACKAGE: &'static str = "osmosis.cosmwasmpool.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.cosmwasmpool.v1beta1.{}", Self::NAME)
+    }
 }
 /// =============================== Pools
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -378,17 +653,31 @@ pub struct PoolsRequest {
     /// pagination defines an optional pagination for the request.
     #[prost(message, optional, tag = "2")]
     pub pagination:
-        ::core::option::Option<::cosmos_sdk_proto::cosmos::base::query::v1beta1::PageRequest>,
+        ::core::option::Option<super::super::super::cosmos::base::query::v1beta1::PageRequest>,
+}
+impl ::prost::Name for PoolsRequest {
+    const NAME: &'static str = "PoolsRequest";
+    const PACKAGE: &'static str = "osmosis.cosmwasmpool.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.cosmwasmpool.v1beta1.{}", Self::NAME)
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PoolsResponse {
     #[prost(message, repeated, tag = "1")]
-    pub pools: ::prost::alloc::vec::Vec<::prost_types::Any>,
+    pub pools: ::prost::alloc::vec::Vec<::tendermint_proto::google::protobuf::Any>,
     /// pagination defines the pagination in the response.
     #[prost(message, optional, tag = "2")]
     pub pagination:
-        ::core::option::Option<::cosmos_sdk_proto::cosmos::base::query::v1beta1::PageResponse>,
+        ::core::option::Option<super::super::super::cosmos::base::query::v1beta1::PageResponse>,
+}
+impl ::prost::Name for PoolsResponse {
+    const NAME: &'static str = "PoolsResponse";
+    const PACKAGE: &'static str = "osmosis.cosmwasmpool.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.cosmwasmpool.v1beta1.{}", Self::NAME)
+    }
 }
 /// =============================== ContractInfoByPoolId
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -397,6 +686,13 @@ pub struct ContractInfoByPoolIdRequest {
     /// pool_id is the pool id of the requested pool.
     #[prost(uint64, tag = "1")]
     pub pool_id: u64,
+}
+impl ::prost::Name for ContractInfoByPoolIdRequest {
+    const NAME: &'static str = "ContractInfoByPoolIdRequest";
+    const PACKAGE: &'static str = "osmosis.cosmwasmpool.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.cosmwasmpool.v1beta1.{}", Self::NAME)
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -409,5 +705,13 @@ pub struct ContractInfoByPoolIdResponse {
     #[prost(uint64, tag = "2")]
     pub code_id: u64,
 }
+impl ::prost::Name for ContractInfoByPoolIdResponse {
+    const NAME: &'static str = "ContractInfoByPoolIdResponse";
+    const PACKAGE: &'static str = "osmosis.cosmwasmpool.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.cosmwasmpool.v1beta1.{}", Self::NAME)
+    }
+}
+include!("osmosis.cosmwasmpool.v1beta1.serde.rs");
 include!("osmosis.cosmwasmpool.v1beta1.tonic.rs");
 // @@protoc_insertion_point(module)

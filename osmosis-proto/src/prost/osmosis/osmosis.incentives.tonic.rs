@@ -262,6 +262,181 @@ pub mod query_client {
                 .insert(GrpcMethod::new("osmosis.incentives.Query", "LockableDurations"));
             self.inner.unary(req, path, codec).await
         }
+        pub async fn all_groups(
+            &mut self,
+            request: impl tonic::IntoRequest<super::QueryAllGroupsRequest>,
+        ) -> std::result::Result<tonic::Response<super::QueryAllGroupsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static("/osmosis.incentives.Query/AllGroups");
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new("osmosis.incentives.Query", "AllGroups"));
+            self.inner.unary(req, path, codec).await
+        }
+        pub async fn all_groups_gauges(
+            &mut self,
+            request: impl tonic::IntoRequest<super::QueryAllGroupsGaugesRequest>,
+        ) -> std::result::Result<tonic::Response<super::QueryAllGroupsGaugesResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path =
+                http::uri::PathAndQuery::from_static("/osmosis.incentives.Query/AllGroupsGauges");
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("osmosis.incentives.Query", "AllGroupsGauges"));
+            self.inner.unary(req, path, codec).await
+        }
+        pub async fn all_groups_with_gauge(
+            &mut self,
+            request: impl tonic::IntoRequest<super::QueryAllGroupsWithGaugeRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::QueryAllGroupsWithGaugeResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/osmosis.incentives.Query/AllGroupsWithGauge",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("osmosis.incentives.Query", "AllGroupsWithGauge"));
+            self.inner.unary(req, path, codec).await
+        }
+        pub async fn group_by_group_gauge_id(
+            &mut self,
+            request: impl tonic::IntoRequest<super::QueryGroupByGroupGaugeIdRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::QueryGroupByGroupGaugeIdResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/osmosis.incentives.Query/GroupByGroupGaugeID",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("osmosis.incentives.Query", "GroupByGroupGaugeID"));
+            self.inner.unary(req, path, codec).await
+        }
+        pub async fn current_weight_by_group_gauge_id(
+            &mut self,
+            request: impl tonic::IntoRequest<super::QueryCurrentWeightByGroupGaugeIdRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::QueryCurrentWeightByGroupGaugeIdResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/osmosis.incentives.Query/CurrentWeightByGroupGaugeID",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("osmosis.incentives.Query", "CurrentWeightByGroupGaugeID"));
+            self.inner.unary(req, path, codec).await
+        }
+        pub async fn internal_gauges(
+            &mut self,
+            request: impl tonic::IntoRequest<super::QueryInternalGaugesRequest>,
+        ) -> std::result::Result<tonic::Response<super::QueryInternalGaugesResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path =
+                http::uri::PathAndQuery::from_static("/osmosis.incentives.Query/InternalGauges");
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("osmosis.incentives.Query", "InternalGauges"));
+            self.inner.unary(req, path, codec).await
+        }
+        pub async fn external_gauges(
+            &mut self,
+            request: impl tonic::IntoRequest<super::QueryExternalGaugesRequest>,
+        ) -> std::result::Result<tonic::Response<super::QueryExternalGaugesResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path =
+                http::uri::PathAndQuery::from_static("/osmosis.incentives.Query/ExternalGauges");
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("osmosis.incentives.Query", "ExternalGauges"));
+            self.inner.unary(req, path, codec).await
+        }
+        pub async fn gauges_by_pool_id(
+            &mut self,
+            request: impl tonic::IntoRequest<super::QueryGaugesByPoolIdRequest>,
+        ) -> std::result::Result<tonic::Response<super::QueryGaugesByPoolIdResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path =
+                http::uri::PathAndQuery::from_static("/osmosis.incentives.Query/GaugesByPoolID");
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("osmosis.incentives.Query", "GaugesByPoolID"));
+            self.inner.unary(req, path, codec).await
+        }
+        pub async fn params(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ParamsRequest>,
+        ) -> std::result::Result<tonic::Response<super::ParamsResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static("/osmosis.incentives.Query/Params");
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new("osmosis.incentives.Query", "Params"));
+            self.inner.unary(req, path, codec).await
+        }
     }
 }
 /// Generated server implementations.
@@ -318,6 +493,51 @@ pub mod query_server {
             tonic::Response<super::QueryLockableDurationsResponse>,
             tonic::Status,
         >;
+        async fn all_groups(
+            &self,
+            request: tonic::Request<super::QueryAllGroupsRequest>,
+        ) -> std::result::Result<tonic::Response<super::QueryAllGroupsResponse>, tonic::Status>;
+        async fn all_groups_gauges(
+            &self,
+            request: tonic::Request<super::QueryAllGroupsGaugesRequest>,
+        ) -> std::result::Result<tonic::Response<super::QueryAllGroupsGaugesResponse>, tonic::Status>;
+        async fn all_groups_with_gauge(
+            &self,
+            request: tonic::Request<super::QueryAllGroupsWithGaugeRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::QueryAllGroupsWithGaugeResponse>,
+            tonic::Status,
+        >;
+        async fn group_by_group_gauge_id(
+            &self,
+            request: tonic::Request<super::QueryGroupByGroupGaugeIdRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::QueryGroupByGroupGaugeIdResponse>,
+            tonic::Status,
+        >;
+        async fn current_weight_by_group_gauge_id(
+            &self,
+            request: tonic::Request<super::QueryCurrentWeightByGroupGaugeIdRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::QueryCurrentWeightByGroupGaugeIdResponse>,
+            tonic::Status,
+        >;
+        async fn internal_gauges(
+            &self,
+            request: tonic::Request<super::QueryInternalGaugesRequest>,
+        ) -> std::result::Result<tonic::Response<super::QueryInternalGaugesResponse>, tonic::Status>;
+        async fn external_gauges(
+            &self,
+            request: tonic::Request<super::QueryExternalGaugesRequest>,
+        ) -> std::result::Result<tonic::Response<super::QueryExternalGaugesResponse>, tonic::Status>;
+        async fn gauges_by_pool_id(
+            &self,
+            request: tonic::Request<super::QueryGaugesByPoolIdRequest>,
+        ) -> std::result::Result<tonic::Response<super::QueryGaugesByPoolIdResponse>, tonic::Status>;
+        async fn params(
+            &self,
+            request: tonic::Request<super::ParamsRequest>,
+        ) -> std::result::Result<tonic::Response<super::ParamsResponse>, tonic::Status>;
     }
     #[derive(Debug)]
     pub struct QueryServer<T: Query> {
@@ -749,6 +969,368 @@ pub mod query_server {
                     };
                     Box::pin(fut)
                 },
+                "/osmosis.incentives.Query/AllGroups" => {
+                    #[allow(non_camel_case_types)]
+                    struct AllGroupsSvc<T: Query>(pub Arc<T>);
+                    impl<T: Query> tonic::server::UnaryService<super::QueryAllGroupsRequest> for AllGroupsSvc<T> {
+                        type Response = super::QueryAllGroupsResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::QueryAllGroupsRequest>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move { (*inner).all_groups(request).await };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = AllGroupsSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                },
+                "/osmosis.incentives.Query/AllGroupsGauges" => {
+                    #[allow(non_camel_case_types)]
+                    struct AllGroupsGaugesSvc<T: Query>(pub Arc<T>);
+                    impl<T: Query> tonic::server::UnaryService<super::QueryAllGroupsGaugesRequest>
+                        for AllGroupsGaugesSvc<T>
+                    {
+                        type Response = super::QueryAllGroupsGaugesResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::QueryAllGroupsGaugesRequest>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move { (*inner).all_groups_gauges(request).await };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = AllGroupsGaugesSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                },
+                "/osmosis.incentives.Query/AllGroupsWithGauge" => {
+                    #[allow(non_camel_case_types)]
+                    struct AllGroupsWithGaugeSvc<T: Query>(pub Arc<T>);
+                    impl<T: Query>
+                        tonic::server::UnaryService<super::QueryAllGroupsWithGaugeRequest>
+                        for AllGroupsWithGaugeSvc<T>
+                    {
+                        type Response = super::QueryAllGroupsWithGaugeResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::QueryAllGroupsWithGaugeRequest>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move { (*inner).all_groups_with_gauge(request).await };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = AllGroupsWithGaugeSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                },
+                "/osmosis.incentives.Query/GroupByGroupGaugeID" => {
+                    #[allow(non_camel_case_types)]
+                    struct GroupByGroupGaugeIDSvc<T: Query>(pub Arc<T>);
+                    impl<T: Query>
+                        tonic::server::UnaryService<super::QueryGroupByGroupGaugeIdRequest>
+                        for GroupByGroupGaugeIDSvc<T>
+                    {
+                        type Response = super::QueryGroupByGroupGaugeIdResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::QueryGroupByGroupGaugeIdRequest>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut =
+                                async move { (*inner).group_by_group_gauge_id(request).await };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = GroupByGroupGaugeIDSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                },
+                "/osmosis.incentives.Query/CurrentWeightByGroupGaugeID" => {
+                    #[allow(non_camel_case_types)]
+                    struct CurrentWeightByGroupGaugeIDSvc<T: Query>(pub Arc<T>);
+                    impl<T: Query>
+                        tonic::server::UnaryService<super::QueryCurrentWeightByGroupGaugeIdRequest>
+                        for CurrentWeightByGroupGaugeIDSvc<T>
+                    {
+                        type Response = super::QueryCurrentWeightByGroupGaugeIdResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::QueryCurrentWeightByGroupGaugeIdRequest>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move {
+                                (*inner).current_weight_by_group_gauge_id(request).await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = CurrentWeightByGroupGaugeIDSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                },
+                "/osmosis.incentives.Query/InternalGauges" => {
+                    #[allow(non_camel_case_types)]
+                    struct InternalGaugesSvc<T: Query>(pub Arc<T>);
+                    impl<T: Query> tonic::server::UnaryService<super::QueryInternalGaugesRequest>
+                        for InternalGaugesSvc<T>
+                    {
+                        type Response = super::QueryInternalGaugesResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::QueryInternalGaugesRequest>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move { (*inner).internal_gauges(request).await };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = InternalGaugesSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                },
+                "/osmosis.incentives.Query/ExternalGauges" => {
+                    #[allow(non_camel_case_types)]
+                    struct ExternalGaugesSvc<T: Query>(pub Arc<T>);
+                    impl<T: Query> tonic::server::UnaryService<super::QueryExternalGaugesRequest>
+                        for ExternalGaugesSvc<T>
+                    {
+                        type Response = super::QueryExternalGaugesResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::QueryExternalGaugesRequest>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move { (*inner).external_gauges(request).await };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = ExternalGaugesSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                },
+                "/osmosis.incentives.Query/GaugesByPoolID" => {
+                    #[allow(non_camel_case_types)]
+                    struct GaugesByPoolIDSvc<T: Query>(pub Arc<T>);
+                    impl<T: Query> tonic::server::UnaryService<super::QueryGaugesByPoolIdRequest>
+                        for GaugesByPoolIDSvc<T>
+                    {
+                        type Response = super::QueryGaugesByPoolIdResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::QueryGaugesByPoolIdRequest>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move { (*inner).gauges_by_pool_id(request).await };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = GaugesByPoolIDSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                },
+                "/osmosis.incentives.Query/Params" => {
+                    #[allow(non_camel_case_types)]
+                    struct ParamsSvc<T: Query>(pub Arc<T>);
+                    impl<T: Query> tonic::server::UnaryService<super::ParamsRequest> for ParamsSvc<T> {
+                        type Response = super::ParamsResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::ParamsRequest>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move { (*inner).params(request).await };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = ParamsSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                },
                 _ => Box::pin(async move {
                     Ok(http::Response::builder()
                         .status(200)
@@ -908,6 +1490,23 @@ pub mod msg_client {
             req.extensions_mut().insert(GrpcMethod::new("osmosis.incentives.Msg", "AddToGauge"));
             self.inner.unary(req, path, codec).await
         }
+        pub async fn create_group(
+            &mut self,
+            request: impl tonic::IntoRequest<super::MsgCreateGroup>,
+        ) -> std::result::Result<tonic::Response<super::MsgCreateGroupResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static("/osmosis.incentives.Msg/CreateGroup");
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new("osmosis.incentives.Msg", "CreateGroup"));
+            self.inner.unary(req, path, codec).await
+        }
     }
 }
 /// Generated server implementations.
@@ -927,6 +1526,10 @@ pub mod msg_server {
             &self,
             request: tonic::Request<super::MsgAddToGauge>,
         ) -> std::result::Result<tonic::Response<super::MsgAddToGaugeResponse>, tonic::Status>;
+        async fn create_group(
+            &self,
+            request: tonic::Request<super::MsgCreateGroup>,
+        ) -> std::result::Result<tonic::Response<super::MsgCreateGroupResponse>, tonic::Status>;
     }
     #[derive(Debug)]
     pub struct MsgServer<T: Msg> {
@@ -1065,6 +1668,44 @@ pub mod msg_server {
                     let fut = async move {
                         let inner = inner.0;
                         let method = AddToGaugeSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                },
+                "/osmosis.incentives.Msg/CreateGroup" => {
+                    #[allow(non_camel_case_types)]
+                    struct CreateGroupSvc<T: Msg>(pub Arc<T>);
+                    impl<T: Msg> tonic::server::UnaryService<super::MsgCreateGroup> for CreateGroupSvc<T> {
+                        type Response = super::MsgCreateGroupResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::MsgCreateGroup>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move { (*inner).create_group(request).await };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = CreateGroupSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec)
                             .apply_compression_config(

@@ -14,6 +14,13 @@ pub struct PoolParams {
     #[prost(string, tag = "2")]
     pub exit_fee: ::prost::alloc::string::String,
 }
+impl ::prost::Name for PoolParams {
+    const NAME: &'static str = "PoolParams";
+    const PACKAGE: &'static str = "osmosis.gamm.poolmodels.stableswap.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.gamm.poolmodels.stableswap.v1beta1.{}", Self::NAME)
+    }
+}
 /// Pool is the stableswap Pool struct
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -36,16 +43,25 @@ pub struct Pool {
     pub future_pool_governor: ::prost::alloc::string::String,
     /// sum of all LP shares
     #[prost(message, optional, tag = "5")]
-    pub total_shares: ::core::option::Option<::cosmos_sdk_proto::cosmos::base::v1beta1::Coin>,
+    pub total_shares:
+        ::core::option::Option<super::super::super::super::super::cosmos::base::v1beta1::Coin>,
     /// assets in the pool
     #[prost(message, repeated, tag = "6")]
-    pub pool_liquidity: ::prost::alloc::vec::Vec<::cosmos_sdk_proto::cosmos::base::v1beta1::Coin>,
+    pub pool_liquidity:
+        ::prost::alloc::vec::Vec<super::super::super::super::super::cosmos::base::v1beta1::Coin>,
     /// for calculation amognst assets with different precisions
     #[prost(uint64, repeated, packed = "false", tag = "7")]
     pub scaling_factors: ::prost::alloc::vec::Vec<u64>,
     /// scaling_factor_controller is the address can adjust pool scaling factors
     #[prost(string, tag = "8")]
     pub scaling_factor_controller: ::prost::alloc::string::String,
+}
+impl ::prost::Name for Pool {
+    const NAME: &'static str = "Pool";
+    const PACKAGE: &'static str = "osmosis.gamm.poolmodels.stableswap.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.gamm.poolmodels.stableswap.v1beta1.{}", Self::NAME)
+    }
 }
 /// ===================== MsgCreatePool
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -57,7 +73,7 @@ pub struct MsgCreateStableswapPool {
     pub pool_params: ::core::option::Option<PoolParams>,
     #[prost(message, repeated, tag = "3")]
     pub initial_pool_liquidity:
-        ::prost::alloc::vec::Vec<::cosmos_sdk_proto::cosmos::base::v1beta1::Coin>,
+        ::prost::alloc::vec::Vec<super::super::super::super::super::cosmos::base::v1beta1::Coin>,
     #[prost(uint64, repeated, packed = "false", tag = "4")]
     pub scaling_factors: ::prost::alloc::vec::Vec<u64>,
     #[prost(string, tag = "5")]
@@ -65,12 +81,26 @@ pub struct MsgCreateStableswapPool {
     #[prost(string, tag = "6")]
     pub scaling_factor_controller: ::prost::alloc::string::String,
 }
+impl ::prost::Name for MsgCreateStableswapPool {
+    const NAME: &'static str = "MsgCreateStableswapPool";
+    const PACKAGE: &'static str = "osmosis.gamm.poolmodels.stableswap.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.gamm.poolmodels.stableswap.v1beta1.{}", Self::NAME)
+    }
+}
 /// Returns a poolID with custom poolName.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MsgCreateStableswapPoolResponse {
     #[prost(uint64, tag = "1")]
     pub pool_id: u64,
+}
+impl ::prost::Name for MsgCreateStableswapPoolResponse {
+    const NAME: &'static str = "MsgCreateStableswapPoolResponse";
+    const PACKAGE: &'static str = "osmosis.gamm.poolmodels.stableswap.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.gamm.poolmodels.stableswap.v1beta1.{}", Self::NAME)
+    }
 }
 /// Sender must be the pool's scaling_factor_governor in order for the tx to
 /// succeed. Adjusts stableswap scaling factors.
@@ -84,8 +114,23 @@ pub struct MsgStableSwapAdjustScalingFactors {
     #[prost(uint64, repeated, packed = "false", tag = "3")]
     pub scaling_factors: ::prost::alloc::vec::Vec<u64>,
 }
+impl ::prost::Name for MsgStableSwapAdjustScalingFactors {
+    const NAME: &'static str = "MsgStableSwapAdjustScalingFactors";
+    const PACKAGE: &'static str = "osmosis.gamm.poolmodels.stableswap.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.gamm.poolmodels.stableswap.v1beta1.{}", Self::NAME)
+    }
+}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MsgStableSwapAdjustScalingFactorsResponse {}
+impl ::prost::Name for MsgStableSwapAdjustScalingFactorsResponse {
+    const NAME: &'static str = "MsgStableSwapAdjustScalingFactorsResponse";
+    const PACKAGE: &'static str = "osmosis.gamm.poolmodels.stableswap.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.gamm.poolmodels.stableswap.v1beta1.{}", Self::NAME)
+    }
+}
+include!("osmosis.gamm.poolmodels.stableswap.v1beta1.serde.rs");
 include!("osmosis.gamm.poolmodels.stableswap.v1beta1.tonic.rs");
 // @@protoc_insertion_point(module)

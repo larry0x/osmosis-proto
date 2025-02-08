@@ -100,7 +100,14 @@ pub struct GenesisDowntimeEntry {
     #[prost(enumeration = "Downtime", tag = "1")]
     pub duration: i32,
     #[prost(message, optional, tag = "2")]
-    pub last_downtime: ::core::option::Option<::prost_types::Timestamp>,
+    pub last_downtime: ::core::option::Option<::tendermint_proto::google::protobuf::Timestamp>,
+}
+impl ::prost::Name for GenesisDowntimeEntry {
+    const NAME: &'static str = "GenesisDowntimeEntry";
+    const PACKAGE: &'static str = "osmosis.downtimedetector.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.downtimedetector.v1beta1.{}", Self::NAME)
+    }
 }
 /// GenesisState defines the twap module's genesis state.
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -109,7 +116,14 @@ pub struct GenesisState {
     #[prost(message, repeated, tag = "1")]
     pub downtimes: ::prost::alloc::vec::Vec<GenesisDowntimeEntry>,
     #[prost(message, optional, tag = "2")]
-    pub last_block_time: ::core::option::Option<::prost_types::Timestamp>,
+    pub last_block_time: ::core::option::Option<::tendermint_proto::google::protobuf::Timestamp>,
+}
+impl ::prost::Name for GenesisState {
+    const NAME: &'static str = "GenesisState";
+    const PACKAGE: &'static str = "osmosis.downtimedetector.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.downtimedetector.v1beta1.{}", Self::NAME)
+    }
 }
 /// Query for has it been at least $RECOVERY_DURATION units of time,
 /// since the chain has been down for $DOWNTIME_DURATION.
@@ -119,7 +133,14 @@ pub struct RecoveredSinceDowntimeOfLengthRequest {
     #[prost(enumeration = "Downtime", tag = "1")]
     pub downtime: i32,
     #[prost(message, optional, tag = "2")]
-    pub recovery: ::core::option::Option<::prost_types::Duration>,
+    pub recovery: ::core::option::Option<::tendermint_proto::google::protobuf::Duration>,
+}
+impl ::prost::Name for RecoveredSinceDowntimeOfLengthRequest {
+    const NAME: &'static str = "RecoveredSinceDowntimeOfLengthRequest";
+    const PACKAGE: &'static str = "osmosis.downtimedetector.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.downtimedetector.v1beta1.{}", Self::NAME)
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -127,5 +148,13 @@ pub struct RecoveredSinceDowntimeOfLengthResponse {
     #[prost(bool, tag = "1")]
     pub succesfully_recovered: bool,
 }
+impl ::prost::Name for RecoveredSinceDowntimeOfLengthResponse {
+    const NAME: &'static str = "RecoveredSinceDowntimeOfLengthResponse";
+    const PACKAGE: &'static str = "osmosis.downtimedetector.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.downtimedetector.v1beta1.{}", Self::NAME)
+    }
+}
+include!("osmosis.downtimedetector.v1beta1.serde.rs");
 include!("osmosis.downtimedetector.v1beta1.tonic.rs");
 // @@protoc_insertion_point(module)
