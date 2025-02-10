@@ -11,13 +11,13 @@ pub struct EpochInfo {
     /// If start_time is in the future, the epoch will not begin until the start
     /// time.
     #[prost(message, optional, tag = "2")]
-    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+    pub start_time: ::core::option::Option<::tendermint_proto::google::protobuf::Timestamp>,
     /// duration is the time in between epoch ticks.
     /// In order for intended behavior to be met, duration should
     /// be greater than the chains expected block time.
     /// Duration must be non-zero.
     #[prost(message, optional, tag = "3")]
-    pub duration: ::core::option::Option<::prost_types::Duration>,
+    pub duration: ::core::option::Option<::tendermint_proto::google::protobuf::Duration>,
     /// current_epoch is the current epoch number, or in other words,
     /// how many times has the timer 'ticked'.
     /// The first tick (current_epoch=1) is defined as
@@ -42,7 +42,8 @@ pub struct EpochInfo {
     /// * The t=34 block will start the epoch for (30, 35]
     /// * The **t=36** block will start the epoch for (35, 40]
     #[prost(message, optional, tag = "5")]
-    pub current_epoch_start_time: ::core::option::Option<::prost_types::Timestamp>,
+    pub current_epoch_start_time:
+        ::core::option::Option<::tendermint_proto::google::protobuf::Timestamp>,
     /// epoch_counting_started is a boolean, that indicates whether this
     /// epoch timer has began yet.
     #[prost(bool, tag = "6")]
@@ -52,6 +53,13 @@ pub struct EpochInfo {
     #[prost(int64, tag = "8")]
     pub current_epoch_start_height: i64,
 }
+impl ::prost::Name for EpochInfo {
+    const NAME: &'static str = "EpochInfo";
+    const PACKAGE: &'static str = "osmosis.epochs.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.epochs.v1beta1.{}", Self::NAME)
+    }
+}
 /// GenesisState defines the epochs module's genesis state.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -59,14 +67,35 @@ pub struct GenesisState {
     #[prost(message, repeated, tag = "1")]
     pub epochs: ::prost::alloc::vec::Vec<EpochInfo>,
 }
+impl ::prost::Name for GenesisState {
+    const NAME: &'static str = "GenesisState";
+    const PACKAGE: &'static str = "osmosis.epochs.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.epochs.v1beta1.{}", Self::NAME)
+    }
+}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryEpochsInfoRequest {}
+impl ::prost::Name for QueryEpochsInfoRequest {
+    const NAME: &'static str = "QueryEpochsInfoRequest";
+    const PACKAGE: &'static str = "osmosis.epochs.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.epochs.v1beta1.{}", Self::NAME)
+    }
+}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryEpochsInfoResponse {
     #[prost(message, repeated, tag = "1")]
     pub epochs: ::prost::alloc::vec::Vec<EpochInfo>,
+}
+impl ::prost::Name for QueryEpochsInfoResponse {
+    const NAME: &'static str = "QueryEpochsInfoResponse";
+    const PACKAGE: &'static str = "osmosis.epochs.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.epochs.v1beta1.{}", Self::NAME)
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -74,11 +103,26 @@ pub struct QueryCurrentEpochRequest {
     #[prost(string, tag = "1")]
     pub identifier: ::prost::alloc::string::String,
 }
+impl ::prost::Name for QueryCurrentEpochRequest {
+    const NAME: &'static str = "QueryCurrentEpochRequest";
+    const PACKAGE: &'static str = "osmosis.epochs.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.epochs.v1beta1.{}", Self::NAME)
+    }
+}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryCurrentEpochResponse {
     #[prost(int64, tag = "1")]
     pub current_epoch: i64,
 }
+impl ::prost::Name for QueryCurrentEpochResponse {
+    const NAME: &'static str = "QueryCurrentEpochResponse";
+    const PACKAGE: &'static str = "osmosis.epochs.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.epochs.v1beta1.{}", Self::NAME)
+    }
+}
+include!("osmosis.epochs.v1beta1.serde.rs");
 include!("osmosis.epochs.v1beta1.tonic.rs");
 // @@protoc_insertion_point(module)

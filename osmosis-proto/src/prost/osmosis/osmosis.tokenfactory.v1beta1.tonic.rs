@@ -179,6 +179,30 @@ pub mod query_client {
             ));
             self.inner.unary(req, path, codec).await
         }
+        pub async fn all_before_send_hooks_addresses(
+            &mut self,
+            request: impl tonic::IntoRequest<super::QueryAllBeforeSendHooksAddressesRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::QueryAllBeforeSendHooksAddressesResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/osmosis.tokenfactory.v1beta1.Query/AllBeforeSendHooksAddresses",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "osmosis.tokenfactory.v1beta1.Query",
+                "AllBeforeSendHooksAddresses",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
     }
 }
 /// Generated server implementations.
@@ -213,6 +237,13 @@ pub mod query_server {
             request: tonic::Request<super::QueryBeforeSendHookAddressRequest>,
         ) -> std::result::Result<
             tonic::Response<super::QueryBeforeSendHookAddressResponse>,
+            tonic::Status,
+        >;
+        async fn all_before_send_hooks_addresses(
+            &self,
+            request: tonic::Request<super::QueryAllBeforeSendHooksAddressesRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::QueryAllBeforeSendHooksAddressesResponse>,
             tonic::Status,
         >;
     }
@@ -439,6 +470,49 @@ pub mod query_server {
                     let fut = async move {
                         let inner = inner.0;
                         let method = BeforeSendHookAddressSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                },
+                "/osmosis.tokenfactory.v1beta1.Query/AllBeforeSendHooksAddresses" => {
+                    #[allow(non_camel_case_types)]
+                    struct AllBeforeSendHooksAddressesSvc<T: Query>(pub Arc<T>);
+                    impl<T: Query>
+                        tonic::server::UnaryService<super::QueryAllBeforeSendHooksAddressesRequest>
+                        for AllBeforeSendHooksAddressesSvc<T>
+                    {
+                        type Response = super::QueryAllBeforeSendHooksAddressesResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::QueryAllBeforeSendHooksAddressesRequest>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move {
+                                (*inner).all_before_send_hooks_addresses(request).await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = AllBeforeSendHooksAddressesSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec)
                             .apply_compression_config(

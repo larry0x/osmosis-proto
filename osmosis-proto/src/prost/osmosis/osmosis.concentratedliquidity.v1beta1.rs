@@ -15,9 +15,16 @@ pub struct Position {
     #[prost(int64, tag = "5")]
     pub upper_tick: i64,
     #[prost(message, optional, tag = "6")]
-    pub join_time: ::core::option::Option<::prost_types::Timestamp>,
+    pub join_time: ::core::option::Option<::tendermint_proto::google::protobuf::Timestamp>,
     #[prost(string, tag = "7")]
     pub liquidity: ::prost::alloc::string::String,
+}
+impl ::prost::Name for Position {
+    const NAME: &'static str = "Position";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
 }
 /// FullPositionBreakdown returns:
 /// - the position itself
@@ -32,18 +39,25 @@ pub struct FullPositionBreakdown {
     #[prost(message, optional, tag = "1")]
     pub position: ::core::option::Option<Position>,
     #[prost(message, optional, tag = "2")]
-    pub asset0: ::core::option::Option<::cosmos_sdk_proto::cosmos::base::v1beta1::Coin>,
+    pub asset0: ::core::option::Option<super::super::super::cosmos::base::v1beta1::Coin>,
     #[prost(message, optional, tag = "3")]
-    pub asset1: ::core::option::Option<::cosmos_sdk_proto::cosmos::base::v1beta1::Coin>,
+    pub asset1: ::core::option::Option<super::super::super::cosmos::base::v1beta1::Coin>,
     #[prost(message, repeated, tag = "4")]
     pub claimable_spread_rewards:
-        ::prost::alloc::vec::Vec<::cosmos_sdk_proto::cosmos::base::v1beta1::Coin>,
+        ::prost::alloc::vec::Vec<super::super::super::cosmos::base::v1beta1::Coin>,
     #[prost(message, repeated, tag = "5")]
     pub claimable_incentives:
-        ::prost::alloc::vec::Vec<::cosmos_sdk_proto::cosmos::base::v1beta1::Coin>,
+        ::prost::alloc::vec::Vec<super::super::super::cosmos::base::v1beta1::Coin>,
     #[prost(message, repeated, tag = "6")]
     pub forfeited_incentives:
-        ::prost::alloc::vec::Vec<::cosmos_sdk_proto::cosmos::base::v1beta1::Coin>,
+        ::prost::alloc::vec::Vec<super::super::super::cosmos::base::v1beta1::Coin>,
+}
+impl ::prost::Name for FullPositionBreakdown {
+    const NAME: &'static str = "FullPositionBreakdown";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -52,6 +66,13 @@ pub struct PositionWithPeriodLock {
     pub position: ::core::option::Option<Position>,
     #[prost(message, optional, tag = "2")]
     pub locks: ::core::option::Option<super::super::lockup::PeriodLock>,
+}
+impl ::prost::Name for PositionWithPeriodLock {
+    const NAME: &'static str = "PositionWithPeriodLock";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -77,7 +98,7 @@ pub struct TickInfo {
     /// spreadRewardGrowthOppositeDirectionOfLastTraversal value.
     #[prost(message, repeated, tag = "3")]
     pub spread_reward_growth_opposite_direction_of_last_traversal:
-        ::prost::alloc::vec::Vec<::cosmos_sdk_proto::cosmos::base::v1beta1::DecCoin>,
+        ::prost::alloc::vec::Vec<super::super::super::cosmos::base::v1beta1::DecCoin>,
     /// uptime_trackers is a container encapsulating the uptime trackers.
     /// We use a container instead of a "repeated UptimeTracker" directly
     /// because we need the ability to serialize and deserialize the
@@ -85,18 +106,39 @@ pub struct TickInfo {
     #[prost(message, optional, tag = "4")]
     pub uptime_trackers: ::core::option::Option<UptimeTrackers>,
 }
+impl ::prost::Name for TickInfo {
+    const NAME: &'static str = "TickInfo";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
+}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UptimeTrackers {
     #[prost(message, repeated, tag = "1")]
     pub list: ::prost::alloc::vec::Vec<UptimeTracker>,
 }
+impl ::prost::Name for UptimeTrackers {
+    const NAME: &'static str = "UptimeTrackers";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
+}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UptimeTracker {
     #[prost(message, repeated, tag = "1")]
     pub uptime_growth_outside:
-        ::prost::alloc::vec::Vec<::cosmos_sdk_proto::cosmos::base::v1beta1::DecCoin>,
+        ::prost::alloc::vec::Vec<super::super::super::cosmos::base::v1beta1::DecCoin>,
+}
+impl ::prost::Name for UptimeTracker {
+    const NAME: &'static str = "UptimeTracker";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
 }
 /// IncentiveRecord is the high-level struct we use to deal with an independent
 /// incentive being distributed on a pool. Note that PoolId, Denom, and MinUptime
@@ -117,7 +159,14 @@ pub struct IncentiveRecord {
     /// incentive. It should be always be one of the supported uptimes in
     /// types.SupportedUptimes
     #[prost(message, optional, tag = "5")]
-    pub min_uptime: ::core::option::Option<::prost_types::Duration>,
+    pub min_uptime: ::core::option::Option<::tendermint_proto::google::protobuf::Duration>,
+}
+impl ::prost::Name for IncentiveRecord {
+    const NAME: &'static str = "IncentiveRecord";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
 }
 /// IncentiveRecordBody represents the body stored in state for each individual
 /// record.
@@ -126,13 +175,20 @@ pub struct IncentiveRecord {
 pub struct IncentiveRecordBody {
     /// remaining_coin is the total amount of incentives to be distributed
     #[prost(message, optional, tag = "1")]
-    pub remaining_coin: ::core::option::Option<::cosmos_sdk_proto::cosmos::base::v1beta1::DecCoin>,
+    pub remaining_coin: ::core::option::Option<super::super::super::cosmos::base::v1beta1::DecCoin>,
     /// emission_rate is the incentive emission rate per second
     #[prost(string, tag = "2")]
     pub emission_rate: ::prost::alloc::string::String,
     /// start_time is the time when the incentive starts distributing
     #[prost(message, optional, tag = "3")]
-    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+    pub start_time: ::core::option::Option<::tendermint_proto::google::protobuf::Timestamp>,
+}
+impl ::prost::Name for IncentiveRecordBody {
+    const NAME: &'static str = "IncentiveRecordBody";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
 }
 /// FullTick contains tick index and pool id along with other tick model
 /// information.
@@ -149,6 +205,13 @@ pub struct FullTick {
     #[prost(message, optional, tag = "3")]
     pub info: ::core::option::Option<TickInfo>,
 }
+impl ::prost::Name for FullTick {
+    const NAME: &'static str = "FullTick";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
+}
 /// PoolData represents a serialized pool along with its ticks
 /// for genesis state.
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -156,7 +219,7 @@ pub struct FullTick {
 pub struct PoolData {
     /// pool struct
     #[prost(message, optional, tag = "1")]
-    pub pool: ::core::option::Option<::prost_types::Any>,
+    pub pool: ::core::option::Option<::tendermint_proto::google::protobuf::Any>,
     /// pool's ticks
     #[prost(message, repeated, tag = "2")]
     pub ticks: ::prost::alloc::vec::Vec<FullTick>,
@@ -167,6 +230,13 @@ pub struct PoolData {
     /// incentive records to be set
     #[prost(message, repeated, tag = "5")]
     pub incentive_records: ::prost::alloc::vec::Vec<IncentiveRecord>,
+}
+impl ::prost::Name for PoolData {
+    const NAME: &'static str = "PoolData";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -180,6 +250,13 @@ pub struct PositionData {
     #[prost(message, repeated, tag = "4")]
     pub uptime_accum_records: ::prost::alloc::vec::Vec<super::super::accum::v1beta1::Record>,
 }
+impl ::prost::Name for PositionData {
+    const NAME: &'static str = "PositionData";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
+}
 /// GenesisState defines the concentrated liquidity module's genesis state.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -187,7 +264,7 @@ pub struct GenesisState {
     /// params are all the parameters of the module
     #[prost(message, optional, tag = "1")]
     pub params: ::core::option::Option<super::Params>,
-    /// pool data containining serialized pool struct and ticks.
+    /// pool data containing serialized pool struct and ticks.
     #[prost(message, repeated, tag = "2")]
     pub pool_data: ::prost::alloc::vec::Vec<PoolData>,
     #[prost(message, repeated, tag = "3")]
@@ -196,6 +273,17 @@ pub struct GenesisState {
     pub next_position_id: u64,
     #[prost(uint64, tag = "5")]
     pub next_incentive_record_id: u64,
+    #[prost(uint64, tag = "6")]
+    pub incentives_accumulator_pool_id_migration_threshold: u64,
+    #[prost(uint64, tag = "7")]
+    pub spread_factor_pool_id_migration_threshold: u64,
+}
+impl ::prost::Name for GenesisState {
+    const NAME: &'static str = "GenesisState";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
 }
 /// In original struct of Accum object, store.KVStore is stored together.
 /// For handling genesis, we do not need to include store.KVStore since we use
@@ -209,6 +297,13 @@ pub struct AccumObject {
     #[prost(message, optional, tag = "2")]
     pub accum_content: ::core::option::Option<super::super::accum::v1beta1::AccumulatorContent>,
 }
+impl ::prost::Name for AccumObject {
+    const NAME: &'static str = "AccumObject";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
+}
 /// CreateConcentratedLiquidityPoolsProposal is a gov Content type for creating
 /// concentrated liquidity pools. If a CreateConcentratedLiquidityPoolsProposal
 /// passes, the pools are created via pool manager module account.
@@ -221,6 +316,13 @@ pub struct CreateConcentratedLiquidityPoolsProposal {
     pub description: ::prost::alloc::string::String,
     #[prost(message, repeated, tag = "3")]
     pub pool_records: ::prost::alloc::vec::Vec<PoolRecord>,
+}
+impl ::prost::Name for CreateConcentratedLiquidityPoolsProposal {
+    const NAME: &'static str = "CreateConcentratedLiquidityPoolsProposal";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
 }
 /// TickSpacingDecreaseProposal is a gov Content type for proposing a tick
 /// spacing decrease for a pool. The proposal will fail if one of the pools do
@@ -236,6 +338,13 @@ pub struct TickSpacingDecreaseProposal {
     #[prost(message, repeated, tag = "3")]
     pub pool_id_to_tick_spacing_records: ::prost::alloc::vec::Vec<PoolIdToTickSpacingRecord>,
 }
+impl ::prost::Name for TickSpacingDecreaseProposal {
+    const NAME: &'static str = "TickSpacingDecreaseProposal";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
+}
 /// PoolIdToTickSpacingRecord is a struct that contains a pool id to new tick
 /// spacing pair.
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -246,6 +355,13 @@ pub struct PoolIdToTickSpacingRecord {
     #[prost(uint64, tag = "2")]
     pub new_tick_spacing: u64,
 }
+impl ::prost::Name for PoolIdToTickSpacingRecord {
+    const NAME: &'static str = "PoolIdToTickSpacingRecord";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
+}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PoolRecord {
@@ -255,8 +371,19 @@ pub struct PoolRecord {
     pub denom1: ::prost::alloc::string::String,
     #[prost(uint64, tag = "3")]
     pub tick_spacing: u64,
+    /// DEPRECATED
+    #[deprecated]
+    #[prost(string, tag = "4")]
+    pub exponent_at_price_one: ::prost::alloc::string::String,
     #[prost(string, tag = "5")]
     pub spread_factor: ::prost::alloc::string::String,
+}
+impl ::prost::Name for PoolRecord {
+    const NAME: &'static str = "PoolRecord";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -295,7 +422,15 @@ pub struct Pool {
     /// last_liquidity_update is the last time either the pool liquidity or the
     /// active tick changed
     #[prost(message, optional, tag = "13")]
-    pub last_liquidity_update: ::core::option::Option<::prost_types::Timestamp>,
+    pub last_liquidity_update:
+        ::core::option::Option<::tendermint_proto::google::protobuf::Timestamp>,
+}
+impl ::prost::Name for Pool {
+    const NAME: &'static str = "Pool";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
 }
 /// =============================== UserPositions
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -307,7 +442,14 @@ pub struct UserPositionsRequest {
     pub pool_id: u64,
     #[prost(message, optional, tag = "3")]
     pub pagination:
-        ::core::option::Option<::cosmos_sdk_proto::cosmos::base::query::v1beta1::PageRequest>,
+        ::core::option::Option<super::super::super::cosmos::base::query::v1beta1::PageRequest>,
+}
+impl ::prost::Name for UserPositionsRequest {
+    const NAME: &'static str = "UserPositionsRequest";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -316,7 +458,14 @@ pub struct UserPositionsResponse {
     pub positions: ::prost::alloc::vec::Vec<FullPositionBreakdown>,
     #[prost(message, optional, tag = "2")]
     pub pagination:
-        ::core::option::Option<::cosmos_sdk_proto::cosmos::base::query::v1beta1::PageResponse>,
+        ::core::option::Option<super::super::super::cosmos::base::query::v1beta1::PageResponse>,
+}
+impl ::prost::Name for UserPositionsResponse {
+    const NAME: &'static str = "UserPositionsResponse";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
 }
 /// =============================== PositionById
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -325,11 +474,51 @@ pub struct PositionByIdRequest {
     #[prost(uint64, tag = "1")]
     pub position_id: u64,
 }
+impl ::prost::Name for PositionByIdRequest {
+    const NAME: &'static str = "PositionByIdRequest";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
+}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PositionByIdResponse {
     #[prost(message, optional, tag = "1")]
     pub position: ::core::option::Option<FullPositionBreakdown>,
+}
+impl ::prost::Name for PositionByIdResponse {
+    const NAME: &'static str = "PositionByIdResponse";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct NumPoolPositionsRequest {
+    #[prost(uint64, tag = "1")]
+    pub pool_id: u64,
+}
+impl ::prost::Name for NumPoolPositionsRequest {
+    const NAME: &'static str = "NumPoolPositionsRequest";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct NumPoolPositionsResponse {
+    #[prost(uint64, tag = "1")]
+    pub position_count: u64,
+}
+impl ::prost::Name for NumPoolPositionsResponse {
+    const NAME: &'static str = "NumPoolPositionsResponse";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
 }
 /// =============================== Pools
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -338,27 +527,55 @@ pub struct PoolsRequest {
     /// pagination defines an optional pagination for the request.
     #[prost(message, optional, tag = "2")]
     pub pagination:
-        ::core::option::Option<::cosmos_sdk_proto::cosmos::base::query::v1beta1::PageRequest>,
+        ::core::option::Option<super::super::super::cosmos::base::query::v1beta1::PageRequest>,
+}
+impl ::prost::Name for PoolsRequest {
+    const NAME: &'static str = "PoolsRequest";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PoolsResponse {
     #[prost(message, repeated, tag = "1")]
-    pub pools: ::prost::alloc::vec::Vec<::prost_types::Any>,
+    pub pools: ::prost::alloc::vec::Vec<::tendermint_proto::google::protobuf::Any>,
     /// pagination defines the pagination in the response.
     #[prost(message, optional, tag = "2")]
     pub pagination:
-        ::core::option::Option<::cosmos_sdk_proto::cosmos::base::query::v1beta1::PageResponse>,
+        ::core::option::Option<super::super::super::cosmos::base::query::v1beta1::PageResponse>,
+}
+impl ::prost::Name for PoolsResponse {
+    const NAME: &'static str = "PoolsResponse";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
 }
 /// =============================== ModuleParams
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ParamsRequest {}
+impl ::prost::Name for ParamsRequest {
+    const NAME: &'static str = "ParamsRequest";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
+}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ParamsResponse {
     #[prost(message, optional, tag = "1")]
     pub params: ::core::option::Option<super::Params>,
+}
+impl ::prost::Name for ParamsResponse {
+    const NAME: &'static str = "ParamsResponse";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -367,6 +584,13 @@ pub struct TickLiquidityNet {
     pub liquidity_net: ::prost::alloc::string::String,
     #[prost(int64, tag = "2")]
     pub tick_index: i64,
+}
+impl ::prost::Name for TickLiquidityNet {
+    const NAME: &'static str = "TickLiquidityNet";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -377,6 +601,13 @@ pub struct LiquidityDepthWithRange {
     pub lower_tick: i64,
     #[prost(int64, tag = "3")]
     pub upper_tick: i64,
+}
+impl ::prost::Name for LiquidityDepthWithRange {
+    const NAME: &'static str = "LiquidityDepthWithRange";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
 }
 /// =============================== LiquidityNetInDirection
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -395,6 +626,13 @@ pub struct LiquidityNetInDirectionRequest {
     #[prost(bool, tag = "6")]
     pub use_no_bound: bool,
 }
+impl ::prost::Name for LiquidityNetInDirectionRequest {
+    const NAME: &'static str = "LiquidityNetInDirectionRequest";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
+}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LiquidityNetInDirectionResponse {
@@ -404,6 +642,15 @@ pub struct LiquidityNetInDirectionResponse {
     pub current_tick: i64,
     #[prost(string, tag = "3")]
     pub current_liquidity: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub current_sqrt_price: ::prost::alloc::string::String,
+}
+impl ::prost::Name for LiquidityNetInDirectionResponse {
+    const NAME: &'static str = "LiquidityNetInDirectionResponse";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
 }
 /// =============================== LiquidityPerTickRange
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -412,11 +659,27 @@ pub struct LiquidityPerTickRangeRequest {
     #[prost(uint64, tag = "1")]
     pub pool_id: u64,
 }
+impl ::prost::Name for LiquidityPerTickRangeRequest {
+    const NAME: &'static str = "LiquidityPerTickRangeRequest";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
+}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LiquidityPerTickRangeResponse {
     #[prost(message, repeated, tag = "1")]
     pub liquidity: ::prost::alloc::vec::Vec<LiquidityDepthWithRange>,
+    #[prost(int64, tag = "2")]
+    pub bucket_index: i64,
+}
+impl ::prost::Name for LiquidityPerTickRangeResponse {
+    const NAME: &'static str = "LiquidityPerTickRangeResponse";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
 }
 /// ===================== QueryClaimableSpreadRewards
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -425,12 +688,26 @@ pub struct ClaimableSpreadRewardsRequest {
     #[prost(uint64, tag = "1")]
     pub position_id: u64,
 }
+impl ::prost::Name for ClaimableSpreadRewardsRequest {
+    const NAME: &'static str = "ClaimableSpreadRewardsRequest";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
+}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ClaimableSpreadRewardsResponse {
     #[prost(message, repeated, tag = "1")]
     pub claimable_spread_rewards:
-        ::prost::alloc::vec::Vec<::cosmos_sdk_proto::cosmos::base::v1beta1::Coin>,
+        ::prost::alloc::vec::Vec<super::super::super::cosmos::base::v1beta1::Coin>,
+}
+impl ::prost::Name for ClaimableSpreadRewardsResponse {
+    const NAME: &'static str = "ClaimableSpreadRewardsResponse";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
 }
 /// ===================== QueryClaimableIncentives
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -439,15 +716,29 @@ pub struct ClaimableIncentivesRequest {
     #[prost(uint64, tag = "1")]
     pub position_id: u64,
 }
+impl ::prost::Name for ClaimableIncentivesRequest {
+    const NAME: &'static str = "ClaimableIncentivesRequest";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
+}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ClaimableIncentivesResponse {
     #[prost(message, repeated, tag = "1")]
     pub claimable_incentives:
-        ::prost::alloc::vec::Vec<::cosmos_sdk_proto::cosmos::base::v1beta1::Coin>,
+        ::prost::alloc::vec::Vec<super::super::super::cosmos::base::v1beta1::Coin>,
     #[prost(message, repeated, tag = "2")]
     pub forfeited_incentives:
-        ::prost::alloc::vec::Vec<::cosmos_sdk_proto::cosmos::base::v1beta1::Coin>,
+        ::prost::alloc::vec::Vec<super::super::super::cosmos::base::v1beta1::Coin>,
+}
+impl ::prost::Name for ClaimableIncentivesResponse {
+    const NAME: &'static str = "ClaimableIncentivesResponse";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
 }
 /// ===================== QueryPoolAccumulatorRewards
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -456,14 +747,28 @@ pub struct PoolAccumulatorRewardsRequest {
     #[prost(uint64, tag = "1")]
     pub pool_id: u64,
 }
+impl ::prost::Name for PoolAccumulatorRewardsRequest {
+    const NAME: &'static str = "PoolAccumulatorRewardsRequest";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
+}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PoolAccumulatorRewardsResponse {
     #[prost(message, repeated, tag = "1")]
     pub spread_reward_growth_global:
-        ::prost::alloc::vec::Vec<::cosmos_sdk_proto::cosmos::base::v1beta1::DecCoin>,
+        ::prost::alloc::vec::Vec<super::super::super::cosmos::base::v1beta1::DecCoin>,
     #[prost(message, repeated, tag = "2")]
     pub uptime_growth_global: ::prost::alloc::vec::Vec<UptimeTracker>,
+}
+impl ::prost::Name for PoolAccumulatorRewardsResponse {
+    const NAME: &'static str = "PoolAccumulatorRewardsResponse";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
 }
 /// ===================== QueryTickAccumulatorTrackers
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -474,14 +779,28 @@ pub struct TickAccumulatorTrackersRequest {
     #[prost(int64, tag = "2")]
     pub tick_index: i64,
 }
+impl ::prost::Name for TickAccumulatorTrackersRequest {
+    const NAME: &'static str = "TickAccumulatorTrackersRequest";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
+}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TickAccumulatorTrackersResponse {
     #[prost(message, repeated, tag = "1")]
     pub spread_reward_growth_opposite_direction_of_last_traversal:
-        ::prost::alloc::vec::Vec<::cosmos_sdk_proto::cosmos::base::v1beta1::DecCoin>,
+        ::prost::alloc::vec::Vec<super::super::super::cosmos::base::v1beta1::DecCoin>,
     #[prost(message, repeated, tag = "2")]
     pub uptime_trackers: ::prost::alloc::vec::Vec<UptimeTracker>,
+}
+impl ::prost::Name for TickAccumulatorTrackersResponse {
+    const NAME: &'static str = "TickAccumulatorTrackersResponse";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
 }
 /// ===================== QueryIncentiveRecords
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -491,7 +810,14 @@ pub struct IncentiveRecordsRequest {
     pub pool_id: u64,
     #[prost(message, optional, tag = "2")]
     pub pagination:
-        ::core::option::Option<::cosmos_sdk_proto::cosmos::base::query::v1beta1::PageRequest>,
+        ::core::option::Option<super::super::super::cosmos::base::query::v1beta1::PageRequest>,
+}
+impl ::prost::Name for IncentiveRecordsRequest {
+    const NAME: &'static str = "IncentiveRecordsRequest";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -501,7 +827,14 @@ pub struct IncentiveRecordsResponse {
     /// pagination defines the pagination in the response.
     #[prost(message, optional, tag = "2")]
     pub pagination:
-        ::core::option::Option<::cosmos_sdk_proto::cosmos::base::query::v1beta1::PageResponse>,
+        ::core::option::Option<super::super::super::cosmos::base::query::v1beta1::PageResponse>,
+}
+impl ::prost::Name for IncentiveRecordsResponse {
+    const NAME: &'static str = "IncentiveRecordsResponse";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
 }
 /// =============================== CFMMPoolIdLinkFromConcentratedPoolId
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -510,11 +843,25 @@ pub struct CfmmPoolIdLinkFromConcentratedPoolIdRequest {
     #[prost(uint64, tag = "1")]
     pub concentrated_pool_id: u64,
 }
+impl ::prost::Name for CfmmPoolIdLinkFromConcentratedPoolIdRequest {
+    const NAME: &'static str = "CFMMPoolIdLinkFromConcentratedPoolIdRequest";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
+}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CfmmPoolIdLinkFromConcentratedPoolIdResponse {
     #[prost(uint64, tag = "1")]
     pub cfmm_pool_id: u64,
+}
+impl ::prost::Name for CfmmPoolIdLinkFromConcentratedPoolIdResponse {
+    const NAME: &'static str = "CFMMPoolIdLinkFromConcentratedPoolIdResponse";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
 }
 /// =============================== UserUnbondingPositions
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -523,21 +870,84 @@ pub struct UserUnbondingPositionsRequest {
     #[prost(string, tag = "1")]
     pub address: ::prost::alloc::string::String,
 }
+impl ::prost::Name for UserUnbondingPositionsRequest {
+    const NAME: &'static str = "UserUnbondingPositionsRequest";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
+}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UserUnbondingPositionsResponse {
     #[prost(message, repeated, tag = "1")]
     pub positions_with_period_lock: ::prost::alloc::vec::Vec<PositionWithPeriodLock>,
 }
+impl ::prost::Name for UserUnbondingPositionsResponse {
+    const NAME: &'static str = "UserUnbondingPositionsResponse";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
+}
 /// =============================== GetTotalLiquidity
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetTotalLiquidityRequest {}
+impl ::prost::Name for GetTotalLiquidityRequest {
+    const NAME: &'static str = "GetTotalLiquidityRequest";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
+}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetTotalLiquidityResponse {
     #[prost(message, repeated, tag = "1")]
-    pub total_liquidity: ::prost::alloc::vec::Vec<::cosmos_sdk_proto::cosmos::base::v1beta1::Coin>,
+    pub total_liquidity: ::prost::alloc::vec::Vec<super::super::super::cosmos::base::v1beta1::Coin>,
+}
+impl ::prost::Name for GetTotalLiquidityResponse {
+    const NAME: &'static str = "GetTotalLiquidityResponse";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
+}
+/// =============================== NumNextInitializedTicks
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct NumNextInitializedTicksRequest {
+    #[prost(uint64, tag = "1")]
+    pub pool_id: u64,
+    #[prost(string, tag = "2")]
+    pub token_in_denom: ::prost::alloc::string::String,
+    #[prost(uint64, tag = "3")]
+    pub num_next_initialized_ticks: u64,
+}
+impl ::prost::Name for NumNextInitializedTicksRequest {
+    const NAME: &'static str = "NumNextInitializedTicksRequest";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct NumNextInitializedTicksResponse {
+    #[prost(message, repeated, tag = "1")]
+    pub liquidity_depths: ::prost::alloc::vec::Vec<TickLiquidityNet>,
+    #[prost(int64, tag = "2")]
+    pub current_tick: i64,
+    #[prost(string, tag = "3")]
+    pub current_liquidity: ::prost::alloc::string::String,
+}
+impl ::prost::Name for NumNextInitializedTicksResponse {
+    const NAME: &'static str = "NumNextInitializedTicksResponse";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
 }
 /// ===================== MsgCreatePosition
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -556,11 +966,18 @@ pub struct MsgCreatePosition {
     /// and at a maximum be of length 2 (for a position that straddles the current
     /// tick).
     #[prost(message, repeated, tag = "5")]
-    pub tokens_provided: ::prost::alloc::vec::Vec<::cosmos_sdk_proto::cosmos::base::v1beta1::Coin>,
+    pub tokens_provided: ::prost::alloc::vec::Vec<super::super::super::cosmos::base::v1beta1::Coin>,
     #[prost(string, tag = "6")]
     pub token_min_amount0: ::prost::alloc::string::String,
     #[prost(string, tag = "7")]
     pub token_min_amount1: ::prost::alloc::string::String,
+}
+impl ::prost::Name for MsgCreatePosition {
+    const NAME: &'static str = "MsgCreatePosition";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -581,6 +998,13 @@ pub struct MsgCreatePositionResponse {
     pub lower_tick: i64,
     #[prost(int64, tag = "7")]
     pub upper_tick: i64,
+}
+impl ::prost::Name for MsgCreatePositionResponse {
+    const NAME: &'static str = "MsgCreatePositionResponse";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
 }
 /// ===================== MsgAddToPosition
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -609,6 +1033,13 @@ pub struct MsgAddToPosition {
     #[prost(string, tag = "6")]
     pub token_min_amount1: ::prost::alloc::string::String,
 }
+impl ::prost::Name for MsgAddToPosition {
+    const NAME: &'static str = "MsgAddToPosition";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
+}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MsgAddToPositionResponse {
@@ -618,6 +1049,13 @@ pub struct MsgAddToPositionResponse {
     pub amount0: ::prost::alloc::string::String,
     #[prost(string, tag = "3")]
     pub amount1: ::prost::alloc::string::String,
+}
+impl ::prost::Name for MsgAddToPositionResponse {
+    const NAME: &'static str = "MsgAddToPositionResponse";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
 }
 /// ===================== MsgWithdrawPosition
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -630,6 +1068,13 @@ pub struct MsgWithdrawPosition {
     #[prost(string, tag = "3")]
     pub liquidity_amount: ::prost::alloc::string::String,
 }
+impl ::prost::Name for MsgWithdrawPosition {
+    const NAME: &'static str = "MsgWithdrawPosition";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
+}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MsgWithdrawPositionResponse {
@@ -637,6 +1082,13 @@ pub struct MsgWithdrawPositionResponse {
     pub amount0: ::prost::alloc::string::String,
     #[prost(string, tag = "2")]
     pub amount1: ::prost::alloc::string::String,
+}
+impl ::prost::Name for MsgWithdrawPositionResponse {
+    const NAME: &'static str = "MsgWithdrawPositionResponse";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
 }
 /// ===================== MsgCollectSpreadRewards
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -647,12 +1099,26 @@ pub struct MsgCollectSpreadRewards {
     #[prost(string, tag = "2")]
     pub sender: ::prost::alloc::string::String,
 }
+impl ::prost::Name for MsgCollectSpreadRewards {
+    const NAME: &'static str = "MsgCollectSpreadRewards";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
+}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MsgCollectSpreadRewardsResponse {
     #[prost(message, repeated, tag = "1")]
     pub collected_spread_rewards:
-        ::prost::alloc::vec::Vec<::cosmos_sdk_proto::cosmos::base::v1beta1::Coin>,
+        ::prost::alloc::vec::Vec<super::super::super::cosmos::base::v1beta1::Coin>,
+}
+impl ::prost::Name for MsgCollectSpreadRewardsResponse {
+    const NAME: &'static str = "MsgCollectSpreadRewardsResponse";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
 }
 /// ===================== MsgCollectIncentives
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -663,15 +1129,29 @@ pub struct MsgCollectIncentives {
     #[prost(string, tag = "2")]
     pub sender: ::prost::alloc::string::String,
 }
+impl ::prost::Name for MsgCollectIncentives {
+    const NAME: &'static str = "MsgCollectIncentives";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
+}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MsgCollectIncentivesResponse {
     #[prost(message, repeated, tag = "1")]
     pub collected_incentives:
-        ::prost::alloc::vec::Vec<::cosmos_sdk_proto::cosmos::base::v1beta1::Coin>,
+        ::prost::alloc::vec::Vec<super::super::super::cosmos::base::v1beta1::Coin>,
     #[prost(message, repeated, tag = "2")]
     pub forfeited_incentives:
-        ::prost::alloc::vec::Vec<::cosmos_sdk_proto::cosmos::base::v1beta1::Coin>,
+        ::prost::alloc::vec::Vec<super::super::super::cosmos::base::v1beta1::Coin>,
+}
+impl ::prost::Name for MsgCollectIncentivesResponse {
+    const NAME: &'static str = "MsgCollectIncentivesResponse";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
 }
 /// ===================== MsgFungifyChargedPositions
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -682,11 +1162,54 @@ pub struct MsgFungifyChargedPositions {
     #[prost(string, tag = "2")]
     pub sender: ::prost::alloc::string::String,
 }
+impl ::prost::Name for MsgFungifyChargedPositions {
+    const NAME: &'static str = "MsgFungifyChargedPositions";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
+}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MsgFungifyChargedPositionsResponse {
     #[prost(uint64, tag = "1")]
     pub new_position_id: u64,
 }
+impl ::prost::Name for MsgFungifyChargedPositionsResponse {
+    const NAME: &'static str = "MsgFungifyChargedPositionsResponse";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
+}
+/// ===================== MsgTransferPositions
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgTransferPositions {
+    #[prost(uint64, repeated, packed = "false", tag = "1")]
+    pub position_ids: ::prost::alloc::vec::Vec<u64>,
+    #[prost(string, tag = "2")]
+    pub sender: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub new_owner: ::prost::alloc::string::String,
+}
+impl ::prost::Name for MsgTransferPositions {
+    const NAME: &'static str = "MsgTransferPositions";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgTransferPositionsResponse {}
+impl ::prost::Name for MsgTransferPositionsResponse {
+    const NAME: &'static str = "MsgTransferPositionsResponse";
+    const PACKAGE: &'static str = "osmosis.concentratedliquidity.v1beta1";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("osmosis.concentratedliquidity.v1beta1.{}", Self::NAME)
+    }
+}
+include!("osmosis.concentratedliquidity.v1beta1.serde.rs");
 include!("osmosis.concentratedliquidity.v1beta1.tonic.rs");
 // @@protoc_insertion_point(module)

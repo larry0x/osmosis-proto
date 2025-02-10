@@ -448,6 +448,30 @@ pub mod msg_client {
             ));
             self.inner.unary(req, path, codec).await
         }
+        pub async fn undelegate_from_rebalanced_validator_set(
+            &mut self,
+            request: impl tonic::IntoRequest<super::MsgUndelegateFromRebalancedValidatorSet>,
+        ) -> std::result::Result<
+            tonic::Response<super::MsgUndelegateFromRebalancedValidatorSetResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/osmosis.valsetpref.v1beta1.Msg/UndelegateFromRebalancedValidatorSet",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "osmosis.valsetpref.v1beta1.Msg",
+                "UndelegateFromRebalancedValidatorSet",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
         pub async fn redelegate_validator_set(
             &mut self,
             request: impl tonic::IntoRequest<super::MsgRedelegateValidatorSet>,
@@ -548,6 +572,13 @@ pub mod msg_server {
             request: tonic::Request<super::MsgUndelegateFromValidatorSet>,
         ) -> std::result::Result<
             tonic::Response<super::MsgUndelegateFromValidatorSetResponse>,
+            tonic::Status,
+        >;
+        async fn undelegate_from_rebalanced_validator_set(
+            &self,
+            request: tonic::Request<super::MsgUndelegateFromRebalancedValidatorSet>,
+        ) -> std::result::Result<
+            tonic::Response<super::MsgUndelegateFromRebalancedValidatorSetResponse>,
             tonic::Status,
         >;
         async fn redelegate_validator_set(
@@ -757,6 +788,49 @@ pub mod msg_server {
                     let fut = async move {
                         let inner = inner.0;
                         let method = UndelegateFromValidatorSetSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                },
+                "/osmosis.valsetpref.v1beta1.Msg/UndelegateFromRebalancedValidatorSet" => {
+                    #[allow(non_camel_case_types)]
+                    struct UndelegateFromRebalancedValidatorSetSvc<T: Msg>(pub Arc<T>);
+                    impl<T: Msg>
+                        tonic::server::UnaryService<super::MsgUndelegateFromRebalancedValidatorSet>
+                        for UndelegateFromRebalancedValidatorSetSvc<T>
+                    {
+                        type Response = super::MsgUndelegateFromRebalancedValidatorSetResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::MsgUndelegateFromRebalancedValidatorSet>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move {
+                                (*inner).undelegate_from_rebalanced_validator_set(request).await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = UndelegateFromRebalancedValidatorSetSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec)
                             .apply_compression_config(
